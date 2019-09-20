@@ -1,9 +1,21 @@
 <template>
   <div>
+    <TheHeader></TheHeader>
     <nuxt />
+    <TheFooter></TheFooter>
   </div>
 </template>
 
+<script>
+import TheHeader from '../components/organisms/TheHeader'
+import TheFooter from '../components/organisms/TheFooter'
+export default {
+  components: {
+    TheHeader,
+    TheFooter
+  }
+}
+</script>
 <style>
 html {
   font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',

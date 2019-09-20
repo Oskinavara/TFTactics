@@ -1,15 +1,10 @@
 <template>
-    <div>
-
-    </div>
+  <div>Footer Footer</div>
 </template>
 
 <script>
-    export default {
-        
-    }
+export default {}
 </script>
 
 <style lang="scss" scoped>
-
 </style>
