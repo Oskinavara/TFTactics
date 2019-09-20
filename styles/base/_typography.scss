@@ -1,1 +1,33 @@
-@import "./../../assets/fonts/sofia-pro";
+@font-face{
+    font-family: 'Sofia Pro Bold';
+    src: url('../assets/fonts/sofia-pro-bold.ttf');
+}
+@font-face{
+    font-family: 'Sofia Pro Medium';
+    src: url('../assets/fonts/sofia-pro-medium.ttf');
+}
+@font-face{
+    font-family: 'Sofia Pro Light';
+    src: url('../assets/fonts/sofia-pro-light.ttf');
+}
+@font-face{
+    font-family: 'Sofia Pro ExtraLight';
+    src: url('../assets/fonts/sofia-pro-extralight.ttf');
+}
+
+h2{
+    font-family: 'Sofia Pro Bold';
+    font-size: 20px;
+}
+h3{
+    font-family: 'Sofia Pro Medium';
+    font-size: 20px;
+}
+h4{
+    font-family: 'Sofia Pro Light';
+    font-size: 20px;
+}
+h5{
+    font-family: 'Sofia Pro ExtraLight';
+    font-size: 20px;
+}
