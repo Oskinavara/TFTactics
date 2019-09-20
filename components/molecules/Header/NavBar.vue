@@ -17,6 +17,29 @@ export default {}
 .nav-bar {
   display: flex;
   &__nav-link {
+    position: relative;
+    text-decoration: none;
+    color: $textgray;
+    padding: 0 1.2rem;
+    font-family: 'Sofia Pro Medium';
+    &:hover,
+    &:active {
+      color: white;
+      &::after {
+        transform: scaleX(1);
+      }
+    }
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -1rem;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: $orange-accent;
+      transform: scaleX(0);
+      transition: all 0.2s;
+    }
   }
 }
 </style>
