@@ -20,7 +20,7 @@ export default {}
     position: relative;
     text-decoration: none;
     color: $textgray;
-    padding: 0 1.2rem;
+    padding: 0 2rem;
     font-family: 'Sofia Pro Medium';
     &:hover,
     &:active {
@@ -29,10 +29,10 @@ export default {}
     &::after {
       content: '';
       position: absolute;
-      bottom: -1.05rem;
+      bottom: -1.8rem;
       left: 0;
       width: 100%;
-      height: 4px;
+      height: 0.4rem;
       background: $orange-accent;
       transform: scaleX(0);
       transition: all 0.2s;

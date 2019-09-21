@@ -33,8 +33,12 @@ export default {}
     outline: none;
     border: none;
     width: 80%;
+    color: white;
+    caret-color: white;
     &::placeholder {
       color: $textgray;
+      font-family: 'Sofia Pro Medium';
+      font-size: 1.4rem;
     }
   }
 }

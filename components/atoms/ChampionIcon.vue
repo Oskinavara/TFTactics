@@ -5,16 +5,16 @@
       @mouseleave="toggleHover"
       :src="championUrl"
       :alt="championAlt"
-      :class="['champion-icon__image', hover ? 'border-active' : '']"
+      :class="['champion-icon__image', borderColor,  hover ? 'border-active' : '']"
     />
   </div>
 </template>
-// 
+
 <script>
 export default {
   props: {
     champion: {
-      type: String,
+      type: Object,
       required: true
     }
   },
@@ -31,13 +31,31 @@ export default {
   },
   computed: {
     championUrl() {
-      return `https://rerollcdn.com/characters/${this.champion}.png`
+      return `https://rerollcdn.com/characters/${this.champion.key}.png`
     },
     championAlt() {
-      return `${this.champion} splash art`
+      return `${this.champion.key} splash art`
     },
     borderColor() {
-      return `border: 1px solid white`
+      switch (this.champion.cost) {
+        case 1:
+          return 'border-common'
+          break
+        case 2:
+          return 'border-uncommon'
+          break
+        case 3:
+          return 'border-rare'
+          break
+        case 4:
+          return 'border-epic'
+          break
+        case 5:
+          return 'border-legendary'
+          break
+        default:
+          break
+      }
     }
   }
 }
@@ -47,15 +65,31 @@ export default {
 .champion-icon {
   height: 45px;
   width: 45px;
+  margin: auto;
   cursor: pointer;
   &__image {
     height: 100%;
     width: 100%;
-    border: 1px solid $epic;
-    transition: all 0.4s;
+    transition: all 0.3s;
+    border: 1px solid;
   }
 }
 .border-active {
-  border: 1px solid $orange-accent;
+  border: 1px solid $orange-accent !important;
+}
+.border-common {
+  border-color: $common;
+}
+.border-uncommon {
+  border-color: $uncommon;
+}
+.border-rare {
+  border-color: $rare;
+}
+.border-epic {
+  border-color: $epic;
+}
+.border-legendary {
+  border-color: $legendary;
 }
 </style>

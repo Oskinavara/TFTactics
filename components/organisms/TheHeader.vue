@@ -3,7 +3,6 @@
     <div class="the-header__inner">
       <img src="~/assets/icons/logo.svg" alt="main logo" class="the-header__logo" />
       <nav-bar />
-      <champion-icon champion="Aatrox" />
     </div>
   </header>
 </template>
@@ -24,7 +23,7 @@ export default {
 <style lang="scss" scoped>
 .the-header {
   background-color: $dark-gray;
-  padding: 1rem 1rem;
+  padding: 1.7rem 1.8rem;
   border-bottom: 1px solid $border-color;
   &__inner {
     display: flex;
@@ -33,7 +32,7 @@ export default {
     margin: auto;
   }
   &__logo {
-    height: 1.7rem;
+    height: 2.6rem;
   }
 }
 </style>
