@@ -22,10 +22,7 @@ export default {}
     color: $textgray;
     padding: 0 2rem;
     font-family: 'Sofia Pro Medium';
-    &:hover,
-    &:active {
-      color: white;
-    }
+    @include hover-lighten;
     &::after {
       content: '';
       position: absolute;

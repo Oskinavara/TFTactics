@@ -1,0 +1,7 @@
+@mixin hover-lighten {
+  transition: all 0.3s;
+  &:hover,
+  &:active {
+    color: $textwhite;
+  }
+}

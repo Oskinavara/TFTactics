@@ -2,7 +2,7 @@
   <div>
     <TheHeader></TheHeader>
     <nuxt />
-    <!-- <TheFooter></TheFooter> -->
+    <TheFooter></TheFooter>
   </div>
 </template>
 
@@ -23,7 +23,7 @@ export default {
   }
 }
 </script>
-<style>
+<style lang="scss" >
 html {
   font-family: 'Sofia Pro Medium';
   font-size: 62.5%;
@@ -37,6 +37,7 @@ html {
 body {
   box-sizing: border-box;
   font-size: 1.6rem;
+  background: $gray;
 }
 
 *,

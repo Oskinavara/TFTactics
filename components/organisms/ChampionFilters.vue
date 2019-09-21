@@ -5,35 +5,9 @@
       <base-button>Reset</base-button>
     </div>
     <ul class="champion-filters__filter-title">
-      <li>
-        <div class="champion-filters__filter-title-wrapper">
-          <p>Cost</p>
-          <img src="@/assets/icons/chevron.svg" alt="arrow" class="champion-filters__chevron-icon" />
-        </div>
-        <filter-list-item v-for="n in 5" :key="n">{{n}}</filter-list-item>
-      </li>
-      <li>
-        <div class="champion-filters__filter-title-wrapper">
-          <p>Origins</p>
-          <img src="@/assets/icons/chevron.svg" alt="arrow" class="champion-filters__chevron-icon" />
-        </div>
-        <filter-list-item
-          v-for="origin in originsArray"
-          :key="origin"
-          :icon="iconUrl(origin)"
-        >{{origin}}</filter-list-item>
-      </li>
-      <li>
-        <div class="champion-filters__filter-title-wrapper">
-          <p>Classes</p>
-          <img src="@/assets/icons/chevron.svg" alt="arrow" class="champion-filters__chevron-icon" />
-        </div>
-        <filter-list-item
-          v-for="_class in classesArray"
-          :key="_class"
-          :icon="iconUrl(_class)"
-        >{{_class}}</filter-list-item>
-      </li>
+      <filter-list name="cost" :content="costArray" :iconSize="15" />
+      <filter-list name="origin" :content="originsArray" />
+      <filter-list name="class" :content="classesArray" />
     </ul>
   </div>
 </template>
@@ -41,12 +15,18 @@
 <script>
 import BaseButton from '@/components/atoms/BaseButton.vue'
 import FilterListItem from '@/components/atoms/FilterListItem.vue'
+import FilterList from '@/components/molecules/pages/FilterList.vue'
 import { mapState } from 'vuex'
 
 export default {
   components: {
     BaseButton,
-    FilterListItem
+    FilterList
+  },
+  data() {
+    return {
+      costArray: [1, 2, 3, 4, 5]
+    }
   },
   computed: {
     ...mapState(['classes', 'origins']),
@@ -56,15 +36,6 @@ export default {
     classesArray() {
       return Object.keys(this.classes)
     }
-  },
-  methods: {
-    iconUrl(origin) {
-      return `https://rerollcdn.com/icons/${origin}.png`
-    }
-  },
-
-  created() {
-    // console.log(this.iconUrl('demon'))
   }
 }
 </script>
@@ -72,8 +43,7 @@ export default {
 <style lang="scss" scoped>
 .champion-filters {
   width: 30rem;
-  margin-right: 3rem;
-  margin: auto;
+  margin: 0 3rem 0 0;
   &__heading-wrapper {
     display: flex;
     justify-content: space-between;
@@ -90,14 +60,39 @@ export default {
     font-size: 1.6rem;
   }
   &__filter-title-wrapper {
+    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1rem 0;
+    cursor: pointer;
+    &::before {
+      content: '';
+      position: absolute;
+      background: $lightblue;
+      height: 100%;
+      width: 0.4rem;
+    }
+  }
+  &__list {
+    max-height: 0;
+    transition: all 0.5s;
+    overflow: hidden;
+    &--open {
+      max-height: 61rem;
+      &-short {
+        max-height: 20rem;
+      }
+    }
   }
   &__chevron-icon {
     height: 1.1rem;
     width: 1.1rem;
+    transform: rotate(180deg);
+    transition: all 0.3s;
+    &--rotated {
+      transform: rotate(0);
+    }
   }
 }
 </style>

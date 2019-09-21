@@ -1,6 +1,6 @@
 <template>
   <li class="filter-list-item">
-    <img :src="icon" alt="gold icon" class="filter-list-item__icon" v-size="24" />
+    <img :src="icon" alt="gold icon" class="filter-list-item__icon" v-size="iconSize" />
     <p class="filter-list-item__text">
       <slot></slot>
     </p>
@@ -13,6 +13,10 @@ export default {
     icon: {
       type: String,
       default: 'https://rerollcdn.com/ui/icon-gold.svg'
+    },
+    iconSize: {
+      type: Number,
+      default: 24
     }
   }
 }
@@ -23,7 +27,7 @@ export default {
   list-style: none;
   position: relative;
   width: 30rem;
-  padding: 0.75rem 0;
+  padding: 0.55rem 0;
   cursor: pointer;
   &:first-of-type {
     padding-top: 1.5rem;
