@@ -25,14 +25,11 @@ export default {}
     &:hover,
     &:active {
       color: white;
-      &::after {
-        transform: scaleX(1);
-      }
     }
     &::after {
       content: '';
       position: absolute;
-      bottom: -1rem;
+      bottom: -1.05rem;
       left: 0;
       width: 100%;
       height: 4px;
@@ -40,6 +37,11 @@ export default {}
       transform: scaleX(0);
       transition: all 0.2s;
     }
+  }
+}
+.active-link {
+  &::after {
+    transform: scaleX(1);
   }
 }
 </style>

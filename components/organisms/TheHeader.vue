@@ -3,7 +3,7 @@
     <div class="the-header__inner">
       <img src="~/assets/icons/logo.svg" alt="main logo" class="the-header__logo" />
       <nav-bar />
-      <champion-icon champion="Akali" />
+      <champion-icon champion="Aatrox" />
     </div>
   </header>
 </template>
@@ -11,17 +11,19 @@
 <script>
 import NavBar from '@/components/molecules/Header/NavBar.vue'
 import ChampionIcon from '@/components/atoms/ChampionIcon.vue'
+import SearchBar from '@/components/atoms/SearchBar.vue'
 export default {
   components: {
     NavBar,
-    ChampionIcon
+    ChampionIcon,
+    SearchBar
   }
 }
 </script>
 
 <style lang="scss" scoped>
 .the-header {
-  background-color: $gray;
+  background-color: $dark-gray;
   padding: 1rem 1rem;
   border-bottom: 1px solid $border-color;
   &__inner {
