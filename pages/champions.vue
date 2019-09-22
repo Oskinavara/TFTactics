@@ -65,7 +65,7 @@ export default {
   &__champion-block {
     margin-bottom: 3rem;
     &:hover .champions-page__champion-name {
-      color: white;
+      color: $textwhite;
     }
   }
   &__champion-name {

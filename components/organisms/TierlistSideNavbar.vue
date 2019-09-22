@@ -31,6 +31,7 @@ export default {
     font-size: 1.6rem;
     line-height: 1.6rem;
     @include blue-rect;
+    @include hover-lighten;
   }
 }
 .active-link {

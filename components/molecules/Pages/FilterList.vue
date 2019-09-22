@@ -81,10 +81,10 @@ export default {
     margin: 0.8rem 0;
     cursor: pointer;
     @include blue-rect;
+    @include hover-lighten;
   }
   &__title {
     text-transform: capitalize;
-    transition: all 0.4s;
   }
   &__list {
     max-height: 0;
