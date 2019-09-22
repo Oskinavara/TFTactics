@@ -1,12 +1,15 @@
 <template>
-  <div class="champions-page">
-    <div class="champions-page__inner">
-      <champion-filters></champion-filters>
+  <div class="champions-page page">
+    <div class="champions-page__inner inner">
+      <div class="champions-page__sidebar sidebar">
+        <champion-filters></champion-filters>
+      </div>
       <div class="champions-page__wrapper">
-        <div class="champions-page__heading-wrapper">
+        <div class="champions-page__heading-wrapper heading-wrapper">
           <page-heading>Teamfight Tactics Champions List</page-heading>
           <search-bar></search-bar>
         </div>
+        <divider />
         <div class="champions-page__champion-grid">
           <div
             v-for="champion in champions"
@@ -25,6 +28,7 @@
 <script>
 import PageHeading from '@/components/atoms/PageHeading.vue'
 import SearchBar from '@/components/atoms/SearchBar.vue'
+import Divider from '@/components/atoms/Divider.vue'
 import ChampionIcon from '@/components/atoms/ChampionIcon.vue'
 import ChampionFilters from '@/components/organisms/ChampionFilters.vue'
 
@@ -34,7 +38,8 @@ export default {
     PageHeading,
     SearchBar,
     ChampionIcon,
-    ChampionFilters
+    ChampionFilters,
+    Divider
   },
   computed: mapState(['champions'])
 }
@@ -42,20 +47,11 @@ export default {
 
 <style lang="scss" scoped>
 .champions-page {
-  background: $gray;
-  padding: 3rem 0 0;
-  &__inner {
-    display: flex;
-    justify-content: space-between;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
   &__wrapper {
     padding: 0 0 0 3rem;
     border-left: 1px solid $border-color;
   }
   &__heading-wrapper {
-    padding-bottom: 2rem;
     display: flex;
     justify-content: space-between;
   }

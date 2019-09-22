@@ -10,6 +10,7 @@ export default {}
 
 <style lang="scss" scoped>
 .page-heading {
+  color: $textwhite;
   font-size: 2.1rem;
   letter-spacing: 0.1rem;
   color: $textwhite;

@@ -1,6 +1,6 @@
 <template>
-  <li @click="openList" :class="['filter-list', {'filter-list--open' : isOpen}]">
-    <div class="filter-list__wrapper">
+  <li :class="['filter-list', {'filter-list--open' : isOpen}]">
+    <div class="filter-list__wrapper" @click="openList">
       <p class="filter-list__title">{{name}}</p>
       <img src="@/assets/icons/chevron.svg" alt="arrow" class="filter-list__chevron-icon" />
     </div>
@@ -77,18 +77,10 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 0;
+    padding: 0.5rem 0;
+    margin: 0.8rem 0;
     cursor: pointer;
-    &::before {
-      content: '';
-      position: absolute;
-      background: $lightblue;
-      height: 100%;
-      width: 0.4rem;
-      transition: all 0.4s;
-      transform: scaleX(0);
-      transform-origin: left;
-    }
+    @include blue-rect;
   }
   &__title {
     text-transform: capitalize;
@@ -107,6 +99,9 @@ export default {
   }
   &--open {
     .filter-list {
+      &__title {
+        color: $textwhite;
+      }
       &__chevron-icon {
         transform: rotate(0);
       }

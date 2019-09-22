@@ -30,7 +30,7 @@ export default {
   padding: 0.55rem 0;
   cursor: pointer;
   &:first-of-type {
-    padding-top: 1.5rem;
+    padding-top: 1.2rem;
   }
   &::after {
     content: '';

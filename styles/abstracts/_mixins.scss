@@ -5,3 +5,18 @@
     color: $textwhite;
   }
 }
+
+@mixin blue-rect {
+  position: relative;
+  &::before {
+    content: '';
+    position: absolute;
+    background: $lightblue;
+    height: 100%;
+    width: 0.4rem;
+    transition: all 0.4s;
+    transform: scaleX(0);
+    transform-origin: left;
+    bottom: 0;
+  }
+}
