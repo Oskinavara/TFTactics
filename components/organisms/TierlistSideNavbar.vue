@@ -10,15 +10,6 @@
   </div>
 </template>
 
-<script>
-import Disclaimer from '@/components/atoms/Disclaimer.vue'
-export default {
-  components: {
-    Disclaimer
-  }
-}
-</script>
-
 <style lang="scss" scoped>
 .tierlist-side-navbar {
   margin-bottom: 4rem;
@@ -36,6 +27,7 @@ export default {
 }
 .active-link {
   transform: translateX(2rem);
+
   color: $textwhite;
   &::before {
     transform: scaleX(1) translateX(-2rem);

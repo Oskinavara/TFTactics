@@ -17,7 +17,6 @@
 
 <script>
 import BaseButton from '@/components/atoms/BaseButton.vue'
-import FilterListItem from '@/components/atoms/FilterListItem.vue'
 import PageHeading from '@/components/atoms/PageHeading.vue'
 import Divider from '@/components/atoms/Divider.vue'
 import FilterList from '@/components/molecules/pages/FilterList.vue'

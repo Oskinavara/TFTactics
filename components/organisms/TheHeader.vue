@@ -11,7 +11,6 @@
 
 <script>
 import NavBar from '@/components/molecules/Header/NavBar.vue'
-import SearchBar from '@/components/atoms/SearchBar.vue'
 export default {
   components: {
     NavBar
