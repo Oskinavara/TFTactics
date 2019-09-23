@@ -6,10 +6,6 @@
   </div>
 </template>
 
-<script>
-export default {}
-</script>
-
 <style lang="scss" scoped>
 .base-button {
   &__button {

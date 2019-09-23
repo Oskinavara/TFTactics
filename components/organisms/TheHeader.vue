@@ -32,7 +32,6 @@ export default {
     align-items: center;
     max-width: 1200px;
     margin: auto;
-    // height: 100%;
   }
   &__logo {
     height: 2.6rem;
