@@ -14,7 +14,7 @@ export default {
     TheHeader,
     TheFooter
   },
-  created() {
+  mounted() {
     this.$store.dispatch('fetchData', 'champions')
     this.$store.dispatch('fetchData', 'items')
     this.$store.dispatch('fetchData', 'classes')

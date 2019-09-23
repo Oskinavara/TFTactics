@@ -1,7 +1,10 @@
 <template>
-  <h2 class="page-heading">
-    <slot></slot>
-  </h2>
+  <div class="page-heading">
+    <h2 class="page-heading__heading">
+      <slot name="text"></slot>
+    </h2>
+    <slot name="content"></slot>
+  </div>
 </template>
 
 <script>
@@ -10,10 +13,16 @@ export default {}
 
 <style lang="scss" scoped>
 .page-heading {
-  color: $textwhite;
-  font-size: 2.1rem;
-  letter-spacing: 0.1rem;
-  color: $textwhite;
-  font-family: 'Sofia Pro Light';
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  &__heading {
+    color: $textwhite;
+    font-size: 2.1rem;
+    letter-spacing: 0.1rem;
+    color: $textwhite;
+    font-family: 'Sofia Pro Light';
+    line-height: 3.5rem;
+  }
 }
 </style>

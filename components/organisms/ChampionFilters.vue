@@ -1,9 +1,11 @@
 <template>
   <div class="champion-filters">
-    <div class="champion-filters__heading-wrapper">
-      <page-heading>Filters</page-heading>
-      <base-button>Reset</base-button>
-    </div>
+    <page-heading>
+      <template v-slot:text>Filters</template>
+      <template v-slot:content>
+        <base-button>Reset</base-button>
+      </template>
+    </page-heading>
     <divider />
     <ul class="champion-filters__filter-title">
       <filter-list name="cost" :content="costArray" :iconSize="15" />
@@ -49,10 +51,7 @@ export default {
 .champion-filters {
   width: 100%;
   margin: 0 2rem 0 0;
-  &__heading-wrapper {
-    display: flex;
-    justify-content: space-between;
-  }
+
   &__filter-title {
     color: $textgray;
     list-style: none;

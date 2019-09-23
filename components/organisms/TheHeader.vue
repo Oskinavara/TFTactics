@@ -1,7 +1,9 @@
 <template>
   <header class="the-header">
     <div class="the-header__inner">
-      <img src="~/assets/icons/logo.svg" alt="main logo" class="the-header__logo" />
+      <nuxt-link to="/">
+        <img src="~/assets/icons/logo.svg" alt="main logo" class="the-header__logo" />
+      </nuxt-link>
       <nav-bar />
     </div>
   </header>
@@ -9,13 +11,10 @@
 
 <script>
 import NavBar from '@/components/molecules/Header/NavBar.vue'
-import ChampionIcon from '@/components/atoms/ChampionIcon.vue'
 import SearchBar from '@/components/atoms/SearchBar.vue'
 export default {
   components: {
-    NavBar,
-    ChampionIcon,
-    SearchBar
+    NavBar
   }
 }
 </script>
@@ -23,13 +22,17 @@ export default {
 <style lang="scss" scoped>
 .the-header {
   background-color: $dark-gray;
-  padding: 1.7rem 1.8rem;
+  padding: 0 1.8rem;
   border-bottom: 1px solid $border-color;
+  height: 6rem;
+
   &__inner {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     max-width: 1200px;
     margin: auto;
+    // height: 100%;
   }
   &__logo {
     height: 2.6rem;

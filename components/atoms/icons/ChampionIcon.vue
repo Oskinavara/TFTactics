@@ -63,8 +63,8 @@ export default {
 
 <style lang="scss" scoped>
 .champion-icon {
-  height: 45px;
-  width: 45px;
+  height: 4.5rem;
+  width: 4.5rem;
   margin: auto;
   cursor: pointer;
   &__image {

@@ -2,7 +2,9 @@
   <div class="tierlist-champions-page page">
     <div class="tierlist-champions-page__inner inner">
       <div class="tierlist-champions-page__sidebar sidebar">
-        <page-heading>Lists</page-heading>
+        <page-heading>
+          <template v-slot:text>Lists</template>
+        </page-heading>
         <divider />
         <tierlist-side-navbar />
         <divider />

@@ -85,6 +85,7 @@ export default {
   }
   &__title {
     text-transform: capitalize;
+    transition: all 0.3s;
   }
   &__list {
     max-height: 0;
