@@ -7,11 +7,16 @@
       :alt="championAlt"
       :class="['champion-icon__image', borderColor,  hover ? 'border-active' : '']"
     />
+    <champion-tooltip v-show="true" :champion="champion" />
   </div>
 </template>
 
 <script>
+import ChampionTooltip from '@/components/atoms/tooltips/ChampionTooltip.vue'
 export default {
+  components: {
+    ChampionTooltip
+  },
   props: {
     champion: {
       type: Object,
@@ -67,11 +72,15 @@ export default {
   width: 4.5rem;
   margin: auto;
   cursor: pointer;
+  position: relative;
   &__image {
     height: 100%;
     width: 100%;
     transition: all 0.3s;
     border: 1px solid;
+  }
+  &__tooltip {
+    position: absolute;
   }
 }
 .border-active {

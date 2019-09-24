@@ -21,8 +21,7 @@ const createStore = () => {
         )
         commit('fetchData', { data, category })
       }
-    },
-    getters: {}
+    }
   })
 }
 

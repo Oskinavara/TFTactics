@@ -13,13 +13,23 @@
         </page-heading>
         <divider />
         <div class="champions-page__champion-grid">
-          <div
-            v-for="champion in champions"
-            :key="champion.key"
-            class="champions-page__champion-block"
-          >
-            <champion-icon :champion="champion" v-size="55" />
-            <p class="champions-page__champion-name">{{champion.name}}</p>
+          <div class="champions-page__champion-block">
+            <!-- v-for="champion in champions"
+            :key="champion.key"-->
+            <champion-icon :champion="champions.Mordekaiser" v-size="55" />
+            <p class="champions-page__champion-name">{{champions.Mordekaiser.name}}</p>
+          </div>
+          <div class="champions-page__champion-block">
+            <!-- v-for="champion in champions"
+            :key="champion.key"-->
+            <champion-icon :champion="champions.Gnar" v-size="55" />
+            <p class="champions-page__champion-name">{{champions.Gnar.name}}</p>
+          </div>
+          <div class="champions-page__champion-block">
+            <!-- v-for="champion in champions"
+            :key="champion.key"-->
+            <champion-icon :champion="champions.Swain" v-size="55" />
+            <p class="champions-page__champion-name">{{champions.Swain.name}}</p>
           </div>
         </div>
       </div>
@@ -43,7 +53,9 @@ export default {
     ChampionFilters,
     Divider
   },
-  computed: mapState(['champions'])
+  computed: {
+    ...mapState(['champions'])
+  }
 }
 </script>
 

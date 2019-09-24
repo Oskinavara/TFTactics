@@ -5,7 +5,7 @@
       @mouseleave="toggleHover"
       :src="itemUrl"
       :alt="itemAlt"
-      :class="['item-icon__image', borderColor,  hover ? 'border-active' : '']"
+      :class="['item-icon__image',  hover ? 'border-active' : '']"
     />
   </div>
 </template>
