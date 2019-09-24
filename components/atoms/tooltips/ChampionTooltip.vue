@@ -1,33 +1,46 @@
 <template>
   <div class="champion-tooltip">
-    <div class="champion-tooltip__title">
-      <img :src="championUrl" :alt="championAlt" class="champion-tooltip__icon" />
-      {{champion.name}}
-    </div>
-    <div class="champion-tooltip__origins">
-      <div
-        class="champion-tooltip__origin-wrapper"
-        v-for="origin in championOriginList"
-        :key="origin"
-      >
-        <img :src="championOriginUrl(origin)" alt class="champion-tooltip__origin-icon" />
-        <p class="champion-tooltip__origin-name">{{origin}}</p>
+    <div class="champion-tooltip__wrapper">
+      <div class="champion-tooltip__title">
+        <img :src="championUrl" :alt="championAlt" class="champion-tooltip__icon" />
+        {{champion.name}}
+      </div>
+      <div class="champion-tooltip__origins">
+        <div
+          class="champion-tooltip__origin-wrapper"
+          v-for="origin in championOriginList"
+          :key="origin"
+        >
+          <img :src="championOriginUrl(origin)" alt class="champion-tooltip__origin-icon" />
+          <p class="champion-tooltip__origin-name">{{origin}}</p>
+        </div>
+      </div>
+      <div class="champion-tooltip__cost">
+        <img
+          src="https://rerollcdn.com/ui/icon-gold.svg"
+          alt="gold icon"
+          class="champion-tooltip__gold-icon"
+        />
+        {{champion.cost}}
       </div>
     </div>
-    <div class="champion-tooltip__cost">
+    <div class="champion-tooltip__items">
+      Items:
       <img
-        src="https://rerollcdn.com/ui/icon-gold.svg"
-        alt="gold icon"
-        class="champion-tooltip__gold-icon"
+        :src="itemUrl(item)"
+        :alt="itemAlt(item)"
+        v-for="item in champion.items"
+        :key="item"
+        class="champion-tooltip__item-icon"
       />
-      {{champion.cost}}
     </div>
-    <div class="champion-tooltip__items"></div>
   </div>
 </template>
 
 <script>
 import ChampionIcon from '@/components/atoms/icons/ChampionIcon.vue'
+import { mapState } from 'vuex'
+
 export default {
   components: {
     ChampionIcon
@@ -39,6 +52,7 @@ export default {
     }
   },
   computed: {
+    ...mapState(['items']),
     championUrl() {
       return `https://rerollcdn.com/characters/${this.champion.key}.png`
     },
@@ -53,6 +67,19 @@ export default {
     championOriginUrl(origin) {
       let originLowerCase = origin.toLowerCase()
       return `https://rerollcdn.com/icons/${originLowerCase}.png`
+    },
+    itemUrl(item) {
+      let itemCapitalized = this.items[item].name
+        .split('.')
+        .join('')
+        .split("'")
+        .join('')
+        .split(' ')
+        .join('')
+      return `https://rerollcdn.com/items/${itemCapitalized}.png`
+    },
+    itemAlt(item) {
+      return `${this.items[item].name} splash art`
     }
   }
 }
@@ -60,15 +87,16 @@ export default {
 
 <style lang="scss" scoped>
 .champion-tooltip {
-  display: grid;
-  grid-template: 9rem 3rem / 1fr 1fr 0.3fr;
-  z-index: 10000;
-  background: green;
+  z-index: 1;
   position: absolute;
   border: 1px solid $border-color;
   top: -12rem;
   left: 50%;
   transform: translateX(-50%);
+  &__wrapper {
+    display: flex;
+    min-height: 10rem;
+  }
   &__title {
     grid-area: 1 / 1 / 2 / 2;
     display: flex;
@@ -79,11 +107,13 @@ export default {
     font-size: 1.6rem;
     font-family: 'Sofia Pro Medium';
     background: $dark-gray;
+    padding: 0 1rem;
   }
 
   &__icon {
     height: 4.5rem;
     width: 4.5rem;
+    margin-bottom: 0.5rem;
   }
   &__name {
     color: white;
@@ -97,7 +127,7 @@ export default {
     flex-direction: column;
     justify-content: center;
     background: $dark-gray;
-    padding: 1rem 2rem;
+    padding: 0rem 1rem;
   }
   &__origin-wrapper {
     display: flex;
@@ -126,6 +156,20 @@ export default {
     height: 1.3rem;
     opacity: 0.54;
     margin-right: 0.5rem;
+  }
+  &__items {
+    background: $gray;
+    width: 100%;
+    color: $textgray;
+    border-top: 1px solid $border-color;
+    display: flex;
+    padding: 1rem 1rem;
+    line-height: 1.8rem;
+  }
+  &__item-icon {
+    height: 2.2rem;
+    width: 2.2rem;
+    margin: 0 0.5rem;
   }
 }
 </style>
