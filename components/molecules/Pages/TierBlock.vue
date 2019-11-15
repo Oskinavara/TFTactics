@@ -4,7 +4,7 @@
       {{tier}}
     </div>
     <div class="tier-block__container">
-      <slot name="content"/>
+      <slot/>
     </div>
   </div>
 </template>

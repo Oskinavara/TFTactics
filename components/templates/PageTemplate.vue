@@ -20,17 +20,7 @@
         </page-heading>
         <divider></divider>
         <div class="tierlist-page__tierlist">
-          <slot name="tiers" />
-          <!-- <tier-block v-for="(tier, index) in tiers" :key="index" :tier="tier">
-            <template v-slot:tier>{{tier}}</template>
-            <template v-slot:content>
-              <origin-icon
-                v-for="origin in tierlist.classes[index + 1]"
-                :key="origin"
-                :origin="classes[origin]"
-              />
-            </template>
-          </tier-block> -->
+          <slot/>
         </div>
       </div>
     </div>

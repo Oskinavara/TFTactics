@@ -10,19 +10,19 @@ const createStore = () => {
       tierlist: {}
     },
     mutations: {
-      fetchData(state, payload) {
-        state[payload.category] = payload.data
+      fetchData(state, {category, data}) {
+        state[category] = data;
       }
     },
     actions: {
       async fetchData({ commit }, category) {
         const data = await this.$axios.$get(
           `https://tft-nuxt-db.firebaseio.com/${category}.json`
-        )
-        commit('fetchData', { data, category })
+        );
+        commit('fetchData', { data, category });
       }
     }
   })
 }
 
-export default createStore
+export default createStore;

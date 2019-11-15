@@ -42,7 +42,6 @@ export default {
     },
     openList() {
       this.isOpen = !this.isOpen
-      console.log(this.content.length * this.listItemHeight)
     }
   },
   mounted() {

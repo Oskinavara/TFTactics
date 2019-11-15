@@ -15,11 +15,8 @@ export default {
     TheFooter
   },
   mounted() {
-    this.$store.dispatch('fetchData', 'champions')
-    this.$store.dispatch('fetchData', 'items')
-    this.$store.dispatch('fetchData', 'classes')
-    this.$store.dispatch('fetchData', 'origins')
-    this.$store.dispatch('fetchData', 'tierlist')
+    Object.keys(this.$store.state)
+    .map(category => this.$store.dispatch('fetchData', category));
   }
 }
 </script>

@@ -1,5 +1,18 @@
 <template>
-  <div class="tierlist-page page">
+  <page-template :tiers="tiers">
+    <tier-block 
+      v-for="(tier, index) in tiers" 
+      :key="index" 
+      :tier="tier"
+    >
+      <item-icon 
+        v-for="item in tierlist.items[index + 1]"
+        :key="item" 
+        :item="items[item]"
+      />
+    </tier-block>
+  </page-template>
+  <!-- <div class="tierlist-page page">
     <div class="tierlist-page__inner inner">
       <div class="tierlist-page__sidebar sidebar">
         <page-heading>
@@ -28,18 +41,14 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 </template>
 
 <script>
-import TierlistSideNavbar from '@/components/organisms/TierlistSideNavbar.vue'
-import ChampionFilters from '@/components/organisms/ChampionFilters.vue'
+import PageTemplate from '@/components/templates/PageTemplate.vue'
 import TierBlock from '@/components/molecules/pages/TierBlock.vue'
-import Divider from '@/components/atoms/Divider.vue'
-import SearchBar from '@/components/atoms/SearchBar.vue'
 import ItemIcon from '@/components/atoms/icons/ItemIcon.vue'
-import PageHeading from '@/components/atoms/PageHeading.vue'
-import Disclaimer from '@/components/atoms/Disclaimer.vue'
+
 import { mapState } from 'vuex'
 
 export default {
@@ -49,25 +58,10 @@ export default {
     }
   },
   components: {
-    ChampionFilters,
-    TierlistSideNavbar,
-    Divider,
-    PageHeading,
-    Disclaimer,
+    PageTemplate,
     TierBlock,
     ItemIcon,
-    SearchBar
   },
   computed: mapState(['items', 'tierlist'])
 }
 </script>
-
-<style lang="scss" scoped>
-.tierlist-page {
-  &__main {
-    width: calc(100% - 30rem);
-    padding: 0 0 0 3rem;
-    border-left: 1px solid $border-color;
-  }
-}
-</style>

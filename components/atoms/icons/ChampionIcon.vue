@@ -5,7 +5,7 @@
       @mouseleave="toggleHover"
       :src="championUrl"
       :alt="championAlt"
-      :class="['champion-icon__image', borderColor,  hover ? 'border-active' : '']"
+      :class="['champion-icon__image', borderColor,  {'border-active': hover}]"
     />
     <champion-tooltip v-show="hover" :champion="champion" />
   </div>
