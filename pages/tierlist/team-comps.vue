@@ -1,7 +1,7 @@
 <template>
-  <div class="tierlist-champions-page page">
-    <div class="tierlist-champions-page__inner inner">
-      <div class="tierlist-champions-page__sidebar sidebar">
+  <div class="tierlist-page page">
+    <div class="tierlist-page__inner inner">
+      <div class="tierlist-page__sidebar sidebar">
         <page-heading>
           <template v-slot:text>Lists</template>
         </page-heading>

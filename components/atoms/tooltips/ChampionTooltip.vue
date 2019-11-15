@@ -68,6 +68,9 @@ export default {
       let originLowerCase = origin.toLowerCase()
       return `https://rerollcdn.com/icons/${originLowerCase}.png`
     },
+    championOriginAlt(origin) {
+      return `${origin} splash art`
+    },
     itemUrl(item) {
       let itemCapitalized = this.items[item].name
         .split('.')
@@ -87,10 +90,10 @@ export default {
 
 <style lang="scss" scoped>
 .champion-tooltip {
-  z-index: 1;
+  z-index: 10000;
   position: absolute;
   border: 1px solid $border-color;
-  top: -12rem;
+  top: -16rem;
   left: 50%;
   transform: translateX(-50%);
   &__wrapper {
@@ -98,7 +101,6 @@ export default {
     min-height: 10rem;
   }
   &__title {
-    grid-area: 1 / 1 / 2 / 2;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -121,7 +123,6 @@ export default {
   &__origins {
     border-left: 1px solid $border-color;
     border-right: 1px solid $border-color;
-    grid-area: 1 / 2 / 1 / 3;
     display: flex;
     align-items: top;
     flex-direction: column;
@@ -142,6 +143,8 @@ export default {
   &__origin-name {
     color: $textwhite;
     line-height: 1.4rem;
+    font-weight: 10;
+    font-family: 'Sofia Pro Light';
   }
   &__cost {
     display: flex;

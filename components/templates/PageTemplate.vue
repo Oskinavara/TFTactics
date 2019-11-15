@@ -7,29 +7,30 @@
         </page-heading>
         <divider />
         <tierlist-side-navbar />
-        <champion-filters />
+        <slot name="championFilters"></slot>
         <divider />
         <disclaimer />
       </div>
       <div class="tierlist-page__main">
         <page-heading>
-          <template v-slot:text>Teamfight Tactics Champion Tier List</template>
+          <template v-slot:text>Teamfight Tactics Class Tier List</template>
           <template v-slot:content>
             <search-bar />
           </template>
         </page-heading>
         <divider></divider>
         <div class="tierlist-page__tierlist">
-          <tier-block v-for="(tier, index) in tiers" :key="index" :tier="tier">
+          <slot name="tiers" />
+          <!-- <tier-block v-for="(tier, index) in tiers" :key="index" :tier="tier">
             <template v-slot:tier>{{tier}}</template>
             <template v-slot:content>
-              <champion-icon
-                v-for="champion in tierlist.champions[index + 1]"
-                :key="champion"
-                :champion="champions[champion]"
+              <origin-icon
+                v-for="origin in tierlist.classes[index + 1]"
+                :key="origin"
+                :origin="classes[origin]"
               />
             </template>
-          </tier-block>
+          </tier-block> -->
         </div>
       </div>
     </div>
@@ -42,16 +43,17 @@ import ChampionFilters from '@/components/organisms/ChampionFilters.vue'
 import TierBlock from '@/components/molecules/pages/TierBlock.vue'
 import Divider from '@/components/atoms/Divider.vue'
 import SearchBar from '@/components/atoms/SearchBar.vue'
-import ChampionIcon from '@/components/atoms/icons/ChampionIcon.vue'
+import OriginIcon from '@/components/atoms/icons/OriginIcon.vue'
 import PageHeading from '@/components/atoms/PageHeading.vue'
 import Disclaimer from '@/components/atoms/Disclaimer.vue'
+import PageTemplate from '@/components/templates/PageTemplate.vue'
 import { mapState } from 'vuex'
-
 export default {
-  data() {
-    return {
-      tiers: ['s', 'a', 'b', 'c', 'd', 'e']
-    }
+  props: {
+    tiers: {
+      type: Array,
+      required: true
+    },
   },
   components: {
     ChampionFilters,
@@ -60,10 +62,9 @@ export default {
     PageHeading,
     Disclaimer,
     TierBlock,
-    ChampionIcon,
+    OriginIcon,
     SearchBar
   },
-  computed: mapState(['champions', 'tierlist'])
 }
 </script>
 

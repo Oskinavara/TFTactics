@@ -7,10 +7,12 @@
       :alt="itemAlt"
       :class="['item-icon__image',  hover ? 'border-active' : '']"
     />
+    <item-tooltip v-show="hover" :item="item" />
   </div>
 </template>
 
 <script>
+import ItemTooltip from '@/components/atoms/tooltips/ItemTooltip.vue'
 export default {
   props: {
     item: {
@@ -18,12 +20,14 @@ export default {
       required: true
     }
   },
+  components: {
+    ItemTooltip
+  },
   data() {
     return {
       hover: false
     }
   },
-
   methods: {
     toggleHover() {
       this.hover = !this.hover
@@ -53,12 +57,13 @@ export default {
   height: 4.5rem;
   width: 4.5rem;
   margin: auto;
+  position: relative;
   cursor: pointer;
   &__image {
     height: 100%;
     width: 100%;
     transition: all 0.3s;
-    border: 1px solid;
+    border: 1px solid $border-color;
   }
 }
 .border-active {

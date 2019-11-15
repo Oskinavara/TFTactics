@@ -1,10 +1,10 @@
 <template>
   <div class="tier-block">
     <div :class="['tier-block__tier', tierColor]">
-      <slot name="tier"></slot>
+      {{tier}}
     </div>
     <div class="tier-block__container">
-      <slot name="content"></slot>
+      <slot name="content"/>
     </div>
   </div>
 </template>

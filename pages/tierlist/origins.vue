@@ -1,7 +1,7 @@
 <template>
-  <div class="tierlist-champions-page page">
-    <div class="tierlist-champions-page__inner inner">
-      <div class="tierlist-champions-page__sidebar sidebar">
+  <div class="tierlist-page page">
+    <div class="tierlist-page__inner inner">
+      <div class="tierlist-page__sidebar sidebar">
         <page-heading>
           <template v-slot:text>Lists</template>
         </page-heading>
@@ -10,7 +10,7 @@
         <divider />
         <disclaimer />
       </div>
-      <div class="tierlist-champions-page__main">
+      <div class="tierlist-page__main">
         <page-heading>
           <template v-slot:text>Teamfight Tactics Origin Tier List</template>
           <template v-slot:content>
@@ -18,7 +18,7 @@
           </template>
         </page-heading>
         <divider></divider>
-        <div class="tierlist-champions-page__tierlist">
+        <div class="tierlist-page__tierlist">
           <tier-block v-for="(tier, index) in tiers" :key="index" :tier="tier">
             <template v-slot:tier>{{tier}}</template>
             <template v-slot:content>
@@ -67,7 +67,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.tierlist-champions-page {
+.tierlist-page {
   &__main {
     width: calc(100% - 30rem);
     padding: 0 0 0 3rem;

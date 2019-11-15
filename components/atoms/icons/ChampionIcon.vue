@@ -7,7 +7,7 @@
       :alt="championAlt"
       :class="['champion-icon__image', borderColor,  hover ? 'border-active' : '']"
     />
-    <champion-tooltip v-show="true" :champion="champion" />
+    <champion-tooltip v-show="hover" :champion="champion" />
   </div>
 </template>
 

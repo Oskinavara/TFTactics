@@ -1,7 +1,21 @@
   <template>
-  <div class="tierlist-champions-page page">
-    <div class="tierlist-champions-page__inner inner">
-      <div class="tierlist-champions-page__sidebar sidebar">
+    <page-template :tiers="tiers">
+      <template v-slot:tiers>
+        <tier-block v-for="(tier, index) in tiers" :key="index" :tier="tier">
+          <template v-slot:content>
+            <origin-icon
+              v-for="origin in tierlist.classes[index + 1]"
+              :key="origin"
+              :origin="classes[origin]"
+            />
+          </template>
+        </tier-block>
+      </template>
+      
+    </page-template>
+  <!-- <div class="tierlist-page page">
+    <div class="tierlist-page__inner inner">
+      <div class="tierlist-page__sidebar sidebar">
         <page-heading>
           <template v-slot:text>Lists</template>
         </page-heading>
@@ -10,7 +24,7 @@
         <divider />
         <disclaimer />
       </div>
-      <div class="tierlist-champions-page__main">
+      <div class="tierlist-page__main">
         <page-heading>
           <template v-slot:text>Teamfight Tactics Class Tier List</template>
           <template v-slot:content>
@@ -18,7 +32,7 @@
           </template>
         </page-heading>
         <divider></divider>
-        <div class="tierlist-champions-page__tierlist">
+        <div class="tierlist-page__tierlist">
           <tier-block v-for="(tier, index) in tiers" :key="index" :tier="tier">
             <template v-slot:tier>{{tier}}</template>
             <template v-slot:content>
@@ -32,18 +46,13 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 </template>
 
-  <script>
-import TierlistSideNavbar from '@/components/organisms/TierlistSideNavbar.vue'
-import ChampionFilters from '@/components/organisms/ChampionFilters.vue'
+<script>
+import PageTemplate from '@/components/templates/PageTemplate.vue'
 import TierBlock from '@/components/molecules/pages/TierBlock.vue'
-import Divider from '@/components/atoms/Divider.vue'
-import SearchBar from '@/components/atoms/SearchBar.vue'
-import OriginIcon from '@/components/atoms/icons/OriginIcon.vue'
-import PageHeading from '@/components/atoms/PageHeading.vue'
-import Disclaimer from '@/components/atoms/Disclaimer.vue'
+
 import { mapState } from 'vuex'
 
 export default {
@@ -53,21 +62,15 @@ export default {
     }
   },
   components: {
-    ChampionFilters,
-    TierlistSideNavbar,
-    Divider,
-    PageHeading,
-    Disclaimer,
-    TierBlock,
-    OriginIcon,
-    SearchBar
+    PageTemplate,
+    TierBlock
   },
   computed: mapState(['classes', 'tierlist'])
 }
 </script>
 
-  <style lang="scss" scoped>
-.tierlist-champions-page {
+<style lang="scss" scoped>
+.tierlist-page {
   &__main {
     width: calc(100% - 30rem);
     padding: 0 0 0 3rem;
