@@ -6,10 +6,11 @@
       class="search-bar__icon"
     />
     <input
-      v-model="userInput"
+      :value="userInput"
+      @input="emitValue"
       type="text" 
       placeholder="Search by name, origin, or class..." 
-      class="search-bar__input" 
+      class="search-bar__input"
     />
   </div>
 </template>
@@ -19,6 +20,12 @@ export default {
   data() {
     return {
       userInput: ''
+    }
+  },
+  methods: {
+    emitValue() {
+      this.userInput = event.target.value;
+      this.$bus.$emit('valueChanged', this.userInput);
     }
   },
 }

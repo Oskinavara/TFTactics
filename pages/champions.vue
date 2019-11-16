@@ -8,14 +8,14 @@
         <page-heading>
           <template v-slot:text>Teamfight Tactics Champions List</template>
           <template v-slot:content>
-            <search-bar></search-bar>
+            <search-bar />
           </template>
         </page-heading>
         <divider />
         <div class="champions-page__champion-grid">
           <div
             class="champions-page__champion-block"
-            v-for="champion in champions"
+            v-for="champion in filteredChampions"
             :key="champion.key"
           >
             <champion-icon :champion="champion" v-size="55" />
@@ -44,7 +44,30 @@ export default {
     Divider
   },
   computed: {
-    ...mapState(['champions'])
+    ...mapState(['champions']),
+    filteredChampions() {
+      if (this.inputValue !== '') {
+        let newChampions = Object.keys(this.champions)
+          .filter(x => x.includes(this.inputValue))
+          .reduce(
+            (newChampions, current) => ((newChampions[current] = this.champions[current]), newChampions), {}
+          )
+        return newChampions
+      } else return this.champions
+    }
+  },
+  data() {
+    return {
+      inputValue: ''
+    }
+  },
+  methods: {
+    updateValue(data) {
+      this.inputValue = data
+    }
+  },
+  mounted() {
+    this.$bus.$on('valueChanged', this.updateValue)
   }
 }
 </script>
@@ -55,15 +78,15 @@ export default {
     padding: 0 0 0 3rem;
     border-left: 1px solid $border-color;
   }
-
   &__champion-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(9.4rem, 3fr));
+    display: flex;
+    flex-wrap: wrap;
     padding-top: 2rem;
     width: 83rem;
   }
   &__champion-block {
-    margin-bottom: 3rem;
+    padding: 3rem 3rem;
+    position: relative;
     &:hover .champions-page__champion-name {
       color: $textwhite;
     }
@@ -74,6 +97,10 @@ export default {
     color: $textgray;
     padding-top: 0.3rem;
     transition: all 0.3s;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
   }
 }
 </style>
