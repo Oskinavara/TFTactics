@@ -1,9 +1,9 @@
 <template>
   <div class="page-heading">
     <h2 class="page-heading__heading">
-      <slot name="text"></slot>
+      <slot/>
     </h2>
-    <slot name="content"></slot>
+    <slot name="content"/>
   </div>
 </template>
 

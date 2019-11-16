@@ -3,7 +3,7 @@
     <div class="tierlist-page__inner inner">
       <div class="tierlist-page__sidebar sidebar">
         <page-heading>
-          <template v-slot:text>Lists</template>
+          Lists
         </page-heading>
         <divider />
         <tierlist-side-navbar />
@@ -13,7 +13,7 @@
       </div>
       <div class="tierlist-page__main">
         <page-heading>
-          <template v-slot:text>Teamfight Tactics Class Tier List</template>
+          Teamfight Tactics Class Tier List
           <template v-slot:content>
             <search-bar />
           </template>

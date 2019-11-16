@@ -2,11 +2,11 @@
   <div class="champions-page page">
     <div class="champions-page__inner inner">
       <div class="champions-page__sidebar sidebar">
-        <champion-filters></champion-filters>
+        <champion-filters/>
       </div>
       <div class="champions-page__wrapper">
         <page-heading>
-          <template v-slot:text>Teamfight Tactics Champions List</template>
+          Teamfight Tactics Champions List
           <template v-slot:content>
             <search-bar />
           </template>
@@ -29,7 +29,6 @@
 <script>
 import PageHeading from '@/components/atoms/PageHeading.vue'
 import SearchBar from '@/components/atoms/SearchBar.vue'
-import Divider from '@/components/atoms/Divider.vue'
 import ChampionIcon from '@/components/atoms/icons/ChampionIcon.vue'
 import ChampionFilters from '@/components/organisms/ChampionFilters.vue'
 import searchLogic from '../logic/searchLogic.js'
@@ -41,7 +40,6 @@ export default {
     SearchBar,
     ChampionIcon,
     ChampionFilters,
-    Divider
   },
   computed: {
     ...mapState(['champions']),
