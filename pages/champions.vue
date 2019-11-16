@@ -11,11 +11,10 @@
             <search-bar />
           </template>
         </page-heading>
-        <divider />
         <div class="champions-page__champion-grid">
           <div
             class="champions-page__champion-block"
-            v-for="champion in filteredData"
+            v-for="champion in champions"
             :key="champion.key"
           >
             <champion-icon :champion="champion" v-size="55" />
@@ -33,7 +32,7 @@ import SearchBar from '@/components/atoms/SearchBar.vue'
 import Divider from '@/components/atoms/Divider.vue'
 import ChampionIcon from '@/components/atoms/icons/ChampionIcon.vue'
 import ChampionFilters from '@/components/organisms/ChampionFilters.vue'
-import searchLogic from '@/logic/searchLogic.js'
+import searchLogic from '../logic/searchLogic.js'
 
 import { mapState } from 'vuex'
 export default {
@@ -47,7 +46,7 @@ export default {
   computed: {
     ...mapState(['champions']),
   },
-  mixins: [searchLogic(champions)],
+  // mixins: [searchLogic(this.champions)],
 }
 </script>
 
@@ -64,7 +63,7 @@ export default {
     width: 83rem;
   }
   &__champion-block {
-    padding: 3rem 3rem;
+    padding: 0 2.4rem 6rem;
     position: relative;
     &:hover .champions-page__champion-name {
       color: $textwhite;
