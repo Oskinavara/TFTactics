@@ -14,7 +14,7 @@
         <div class="champions-page__champion-grid">
           <div
             class="champions-page__champion-block"
-            v-for="champion in champions"
+            v-for="champion in filteredChampions"
             :key="champion.key"
           >
             <champion-icon :champion="champion" v-size="55" />
@@ -31,7 +31,7 @@ import PageHeading from '@/components/atoms/PageHeading.vue'
 import SearchBar from '@/components/atoms/SearchBar.vue'
 import ChampionIcon from '@/components/atoms/icons/ChampionIcon.vue'
 import ChampionFilters from '@/components/organisms/ChampionFilters.vue'
-import searchLogic from '../logic/searchLogic.js'
+import searchLogic from '@/logic/searchLogic.js'
 
 import { mapState } from 'vuex'
 export default {
@@ -41,10 +41,24 @@ export default {
     ChampionIcon,
     ChampionFilters,
   },
+
   computed: {
-    ...mapState(['champions']),
+    ...mapState(['champions']), 
+    filteredChampions() {
+      if (this.inputValue === '') {
+        return this.champions
+      }
+      else {
+        let filteredChampions = 
+          Object.keys(this.champions)
+          .filter(champion => this.champions[champion].name.toUpperCase().includes(this.inputValue.toUpperCase()))
+          .reduce((filteredChampions, current) => ((filteredChampions[current] = this.champions[current]), filteredChampions), {})
+        return filteredChampions
+      }
+    }
   },
-  // mixins: [searchLogic(this.champions)],
+  
+  mixins: [searchLogic], 
 }
 </script>
 

@@ -25,7 +25,7 @@ export default {
   methods: {
     emitValue() {
       this.userInput = event.target.value;
-      this.$bus.$emit('valueChanged', this.userInput);
+      this.$bus.$emit('value-changed', this.userInput);
     }
   },
 }
