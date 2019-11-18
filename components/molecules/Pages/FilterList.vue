@@ -8,6 +8,7 @@
       <filter-list-item
         v-for="item in content"
         :key="item"
+        :item="item"
         :iconSize="iconSize"
         :icon="iconUrl(item)"
       >{{item}}</filter-list-item>

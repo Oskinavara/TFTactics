@@ -14,11 +14,11 @@
         <div class="champions-page__champion-grid">
           <div
             class="champions-page__champion-block"
-            v-for="champion in filteredChampions"
+            v-for="champion in filteredChampions(Object.keys(champions))"
             :key="champion.key"
           >
-            <champion-icon :champion="champion" v-size="55" />
-            <p class="champions-page__champion-name">{{champion.name}}</p>
+            <champion-icon :champion="champions[champion]" v-size="55" />
+            <p class="champions-page__champion-name">{{champions[champion].name}}</p>
           </div>
         </div>
       </div>
@@ -32,6 +32,8 @@ import SearchBar from '@/components/atoms/SearchBar.vue'
 import ChampionIcon from '@/components/atoms/icons/ChampionIcon.vue'
 import ChampionFilters from '@/components/organisms/ChampionFilters.vue'
 import searchLogic from '@/logic/searchLogic.js'
+import filterChampions from '@/logic/filterChampions.js'
+
 
 import { mapState } from 'vuex'
 export default {
@@ -41,24 +43,13 @@ export default {
     ChampionIcon,
     ChampionFilters,
   },
-
   computed: {
-    ...mapState(['champions']), 
-    filteredChampions() {
-      if (this.inputValue === '') {
-        return this.champions
-      }
-      else {
-        let filteredChampions = 
-          Object.keys(this.champions)
-          .filter(champion => this.champions[champion].name.toUpperCase().includes(this.inputValue.toUpperCase()))
-          .reduce((filteredChampions, current) => ((filteredChampions[current] = this.champions[current]), filteredChampions), {})
-        return filteredChampions
-      }
-    }
+    ...mapState({
+      champions: state => state.apiData.champions,
+      filters: state => state.filters
+    }),
   },
-  
-  mixins: [searchLogic], 
+  mixins: [searchLogic, filterChampions],
 }
 </script>
 

@@ -8,14 +8,18 @@
         :alt="originAlt"
         class="origin-icon__image"
       />
-      <!-- :class="['origin-icon__image', borderColor,  hover ? 'border-active' : '']"  -->
       <p class="origin-icon__text">{{origin.name}}</p>
     </div>
+    <origin-tooltip v-show="hover" :origin="origin"/>
   </div>
 </template>
 
 <script>
+import OriginTooltip from '@/components/atoms/tooltips/OriginTooltip.vue'
 export default {
+  components: {
+    OriginTooltip,
+  },
   props: {
     origin: {
       type: Object,

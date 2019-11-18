@@ -3,7 +3,7 @@
     <div class="tierlist-page__inner inner">
       <div class="tierlist-page__sidebar sidebar">
         <page-heading>
-          <template v-slot:text>Lists</template>
+          Lists
         </page-heading>
         <divider />
         <tierlist-side-navbar />

@@ -1,10 +1,20 @@
 <template>
   <div class="base-button">
-    <button class="base-button__button">
+    <button class="base-button__button" @click="clearFilters">
       <slot>Reset</slot>
     </button>
   </div>
 </template>
+
+<script>
+export default {
+  methods: {
+    clearFilters() {
+      this.$store.dispatch('initFilters');
+    }
+  },
+}
+</script>
 
 <style lang="scss" scoped>
 .base-button {

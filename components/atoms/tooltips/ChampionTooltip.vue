@@ -52,7 +52,9 @@ export default {
     }
   },
   computed: {
-    ...mapState(['items']),
+    ...mapState({
+      items: state => state.apiData.items
+    }),
     championUrl() {
       return `https://rerollcdn.com/characters/${this.champion.key}.png`
     },

@@ -1,5 +1,8 @@
 <template>
-  <li class="filter-list-item">
+  <li 
+    @click="applyFilter(item)"
+    :class="['filter-list-item', {'filter-list-item--active' : isActive(item)}]" 
+  >
     <img :src="icon" alt="gold icon" class="filter-list-item__icon" v-size="iconSize" />
     <p class="filter-list-item__text">
       <slot></slot>
@@ -17,8 +20,27 @@ export default {
     iconSize: {
       type: Number,
       default: 24
+    },
+    item: {
+      type: [Number, String],
+      required: true
     }
-  }
+  },
+  methods: {
+    applyFilter(filter) {
+      this.$store.dispatch('toggleFilter', filter)
+    },
+    isActive(filter) {
+      let filters = this.$store.state.filters
+      for(let category in filters){
+        if(filters[category].includes(filter)){
+          return true
+        }  
+      }
+      return false
+    }
+  },
+
 }
 </script>
 
@@ -40,7 +62,7 @@ export default {
     position: absolute;
     background: transparent;
     border-radius: 50%;
-    border: 2px solid $textgray;
+    border: 2px solid hsla(0,0%,100%,.25);
     top: 50%;
     right: 0;
     transform: translateY(-50%);
@@ -48,7 +70,7 @@ export default {
   }
   &:hover {
     &::after {
-      border: 2px solid $textwhite;
+      border: 2px solid $textgray;
     }
   }
   &__icon {
@@ -56,6 +78,7 @@ export default {
     width: 1.5rem;
     opacity: 0.54;
     margin-right: 1rem;
+    transition: all 0.3s;
   }
   &__text {
     display: inline-block;
@@ -66,6 +89,21 @@ export default {
     color: $textwhite;
     line-height: 2rem;
     text-transform: capitalize;
+  }
+
+  &--active{
+    &::after{
+      border: 2px solid $lightblue;
+      background-color: $lightblue;
+    }    
+    &:hover{
+      &::after{
+        border: 2px solid $lightblue;
+      }
+    }
+    .filter-list-item__icon{
+      opacity: 1;
+    }
   }
 }
 </style>

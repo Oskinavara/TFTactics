@@ -1,28 +1,28 @@
 <template>
-  <page-template :tiers="tiers">
-    <template v-slot:championFilters>
-      <champion-filters/>
+  <tierlist-template :tiers="tiers" v-if="tierlist.champions">
+    <template v-slot:title>
+      Teamfight Tactics Champion Tier List
     </template>
-    <tier-block 
-      v-for="(tier, index) in tiers" 
-      :key="index" 
-      :tier="tier"
-    >
+    <template v-slot:championFilters>
+      <champion-filters />
+    </template>
+    <tier-block v-for="(tier, index) in tiers" :key="index" :tier="tier">
       <champion-icon
-        v-for="champion in filteredChampions(index)"
+        v-for="champion in filteredChampions(tierlist.champions[index])"
         :key="champion"
         :champion="champions[champion]"
       />
     </tier-block>
-  </page-template>
+  </tierlist-template>
 </template>
 
 <script>
-import PageTemplate from '@/components/templates/PageTemplate.vue'
+import TierlistTemplate from '@/components/templates/TierlistTemplate.vue'
 import TierBlock from '@/components/molecules/pages/TierBlock.vue'
 import ChampionIcon from '@/components/atoms/icons/ChampionIcon.vue'
 import ChampionFilters from '@/components/organisms/ChampionFilters.vue'
 import searchLogic from '@/logic/searchLogic.js'
+import filterChampions from '@/logic/filterChampions.js'
 
 import { mapState } from 'vuex'
 
@@ -33,28 +33,18 @@ export default {
     }
   },
   components: {
-    PageTemplate,
+    TierlistTemplate,
     TierBlock,
     ChampionIcon,
     ChampionFilters
   },
   computed: {
-    ...mapState(['champions', 'tierlist']),
-    
+    ...mapState({
+      champions: state => state.apiData.champions, 
+      tierlist: state => state.apiData.tierlist,
+      filters: state => state.filters   
+    })
   },
-  methods: {
-    filteredChampions(index) {
-      if(this.inputValue === ''){
-        return this.tierlist.champions[index + 1];
-      }
-      // let filteredChampions = this.tierlist.champions;
-      // filteredChampions.shift();
-      // for(tier in filteredChampions){
-      //   tier.filter(champion => champion.includes(this.inputValue))
-      // }
-      // return filteredChampions
-    }
-  },
-  mixins: [searchLogic],
+  mixins: [searchLogic, filterChampions],
 }
 </script>

@@ -15,7 +15,7 @@ export default {
     TheFooter
   },
   mounted() {
-    Object.keys(this.$store.state)
+    Object.keys(this.$store.state.apiData)
     .map(category => this.$store.dispatch('fetchData', category));
   }
 }

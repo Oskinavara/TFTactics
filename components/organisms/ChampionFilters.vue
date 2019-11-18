@@ -1,7 +1,7 @@
 <template>
   <div class="champion-filters">
     <page-heading>
-      <template v-slot:text>Filters</template>
+      <template>Filters</template>
       <template v-slot:content>
         <base-button>Reset</base-button>
       </template>
@@ -9,8 +9,8 @@
     <divider />
     <ul class="champion-filters__filter-title">
       <filter-list name="cost" :content="costArray" :iconSize="15" />
-      <filter-list name="origin" :content="originsArray" />
-      <filter-list name="class" :content="classesArray" />
+      <filter-list name="origin" :content="originArray" />
+      <filter-list name="class" :content="classArray" />
     </ul>
   </div>
 </template>
@@ -20,7 +20,7 @@ import BaseButton from '@/components/atoms/BaseButton.vue'
 import PageHeading from '@/components/atoms/PageHeading.vue'
 import Divider from '@/components/atoms/Divider.vue'
 import FilterList from '@/components/molecules/pages/FilterList.vue'
-import { mapState } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 
 export default {
   components: {
@@ -29,20 +29,13 @@ export default {
     PageHeading,
     Divider
   },
-  data() {
-    return {
-      costArray: [1, 2, 3, 4, 5]
-    }
-  },
   computed: {
-    ...mapState(['classes', 'origins']),
-    originsArray() {
-      return Object.keys(this.origins)
-    },
-    classesArray() {
-      return Object.keys(this.classes)
-    }
-  }
+    ...mapGetters([
+      'costArray', 
+      'originArray', 
+      'classArray'
+    ])
+  },
 }
 </script>
 

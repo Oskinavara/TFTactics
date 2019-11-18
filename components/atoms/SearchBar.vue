@@ -8,10 +8,14 @@
     <input
       :value="userInput"
       @input="emitValue"
-      type="text" 
+      type="search" 
       placeholder="Search by name, origin, or class..." 
       class="search-bar__input"
     />
+
+    <div class="search-bar__cancel">
+      <div class="search-bar__cancel-icon"/>
+    </div>
   </div>
 </template>
 
@@ -26,13 +30,14 @@ export default {
     emitValue() {
       this.userInput = event.target.value;
       this.$bus.$emit('value-changed', this.userInput);
-    }
+    },
   },
 }
 </script>
 <style lang="scss" scoped>
 .search-bar {
   display: flex;
+  position: relative;
   align-items: center;
   padding: 0.5rem 1rem;
   border: 1px solid $border-color;
@@ -53,13 +58,20 @@ export default {
     background: transparent;
     outline: none;
     border: none;
-    width: 80%;
+    width: 110%;
     color: white;
     caret-color: white;
+    overflow: visible;
     &::placeholder {
       color: $textgray;
       font-family: 'Sofia Pro Medium';
       font-size: 1.4rem;
+    }
+    &::-webkit-search-cancel-button{
+      position: absolute;
+      right: 0;
+      cursor: pointer;
+      background-color: green;
     }
   }
 }

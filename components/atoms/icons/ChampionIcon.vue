@@ -35,6 +35,13 @@ export default {
     }
   },
   computed: {
+    showTooltip() {
+      if(this.hover){
+        setTimeout(() => {
+          return true
+        }, 300);
+      }
+    },
     championUrl() {
       return `https://rerollcdn.com/characters/${this.champion.key}.png`
     },

@@ -3,7 +3,7 @@
     <div class="item-tooltip__title">
       <img :src="itemUrl" :alt="itemAlt" class="item-tooltip__icon" />
       <div class="item-tooltip__title-wrapper">
-        <div class="item-tooltip__name">{{item.name}}</div>
+        <h2 class="item-tooltip__name">{{item.name}}</h2>
         <div class="item-tooltip__stats">
           <div class="item-tooltip__stat" v-for="stat in this.item.stats" :key="stat.name">
             <img
@@ -41,7 +41,9 @@ export default {
     }
   },
   computed: {
-    ...mapState(['items']),
+    ...mapState({
+      items: state => state.apiData.items
+    }),
     itemUrl() {
       let itemCapitalized = this.item.name
         .split('.')
@@ -112,6 +114,8 @@ export default {
   &__name {
     color: white;
     font-family: 'Sofia Pro Light';
+    font-size: 1.6rem;
+    font-weight: normal;
   }
   &__stats {
     display: flex;
