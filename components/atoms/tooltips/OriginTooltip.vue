@@ -35,5 +35,7 @@
 </script>
 
 <style lang="scss" scoped>
-
+.origin-tooltip{
+  
+}
 </style>
