@@ -63,6 +63,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+  .search-bar{
+    margin: 3rem 0;
+  }
 
 </style>
