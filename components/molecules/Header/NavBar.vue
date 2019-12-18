@@ -32,6 +32,7 @@ export default {
 .nav-bar {
   display: flex;
   align-items: center;
+
   &__wrapper {
     position: relative;
     z-index: 10000;
@@ -39,6 +40,7 @@ export default {
       bottom: -1.8rem;
     }
   }
+
   &__nav-link {
     height: 100%;
     line-height: 6rem;
@@ -46,7 +48,7 @@ export default {
     text-decoration: none;
     color: $textgray;
     padding: 0 2rem;
-    font-family: 'Sofia Pro Medium';
+    font-weight: 600;
     @include hover-lighten;
     &::after {
       content: '';
@@ -61,28 +63,30 @@ export default {
       pointer-events: none;
     }
   }
+
   &__sub-menu {
     background: $dark-gray;
     border: 1px solid $border-color;
     position: absolute;
     top: 6rem;
-    // z-index: 1000;
+    white-space: nowrap;
     -webkit-animation: none;
     -moz-animation: none;
     -o-animation: none;
     animation: none;
   }
+
   &__sub-link {
     display: block;
     text-decoration: none;
-    color: $textgray;
-    padding: 1rem 8rem 1rem 3rem;
+    color: $textwhite;
+    font-weight: 600;
+    padding: 1rem 6rem 1rem 3rem;
     @include hover-lighten;
   }
 }
 .active-link {
   color: $textwhite;
-
   &::after {
     transform: scaleX(1);
   }

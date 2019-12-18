@@ -32,6 +32,7 @@ export default {
     max-width: 1200px;
     margin: auto;
   }
+  
   &__logo {
     height: 2.6rem;
   }

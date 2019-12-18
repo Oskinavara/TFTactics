@@ -16,10 +16,11 @@
   padding: 1rem;
   border: 1px solid $orange-accent;
   margin: 2rem 0;
+
   &__text {
     color: $textwhite;
-    font-family: 'Sofia Pro Light';
   }
+  
   &__link {
     color: #6287a7;
     text-decoration: none;

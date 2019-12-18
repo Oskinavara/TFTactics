@@ -22,13 +22,10 @@ export default {
 </script>
 <style lang="scss" >
 html {
-  font-family: 'Sofia Pro Medium';
   font-size: 62.5%;
   word-spacing: 1px;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
 }
 
 body {
@@ -41,8 +38,10 @@ body {
 *::after,
 *::before {
   box-sizing: inherit;
-  font-family: 'Sofia Pro Medium';
+  font-family: 'Sofia Pro';
   margin: 0;
   padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 </style>

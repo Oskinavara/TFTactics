@@ -83,32 +83,40 @@ export default {
     @include blue-rect;
     @include hover-lighten;
   }
+
   &__title {
     text-transform: capitalize;
     transition: all 0.3s;
+    font-weight: 600;
   }
+
   &__list {
     max-height: 0;
     transition: all 0.4s;
     overflow: hidden;
   }
+
   &__chevron-icon {
     height: 1.1rem;
     width: 1.1rem;
     transform: rotate(180deg);
     transition: all 0.4s;
   }
+
   &--open {
     .filter-list {
       &__title {
         color: $textwhite;
       }
+
       &__chevron-icon {
         transform: rotate(0);
       }
+
       &__wrapper::before {
         transform: scaleX(1);
       }
+      
       &__title {
         transform: translateX(2rem);
       }

@@ -1,8 +1,8 @@
 <template>
   <div class="item-tooltip">
-    <div class="item-tooltip__title">
+    <div class="item-tooltip__heading">
       <img :src="itemUrl" :alt="itemAlt" class="item-tooltip__icon" />
-      <div class="item-tooltip__title-wrapper">
+      <div class="item-tooltip__heading-wrapper">
         <h2 class="item-tooltip__name">{{item.name}}</h2>
         <div class="item-tooltip__stats">
           <div class="item-tooltip__stat" v-for="stat in this.item.stats" :key="stat.name">
@@ -97,7 +97,8 @@ export default {
   left: 50%;
   transform: translateX(-50%);
   min-width: 20rem;
-  &__title {
+
+  &__heading {
     display: flex;
     align-items: center;
     justify-content: left;
@@ -105,6 +106,7 @@ export default {
     font-size: 1.6rem;
     background: $dark-gray;
   }
+
   &__icon {
     height: 4.5rem;
     width: 4.5rem;
@@ -113,19 +115,22 @@ export default {
 
   &__name {
     color: white;
-    font-family: 'Sofia Pro Light';
+    font-weight: 400;
     font-size: 1.6rem;
     font-weight: normal;
   }
+
   &__stats {
     display: flex;
   }
+
   &__stat {
-    font-family: 'Sofia Pro Light';
+    font-weight: 400;
     display: flex;
     align-items: center;
     margin-right: 0.8rem;
   }
+
   &__stat-icon {
     height: 1.5rem;
     width: 1.5rem;
@@ -133,7 +138,7 @@ export default {
   }
   &__description {
     color: $textwhite;
-    font-family: 'Sofia Pro Medium';
+    font-weight: 600;
     font-size: 1.4rem;
     white-space: nowrap;
     background: $dark-gray;
@@ -143,16 +148,18 @@ export default {
     display: flex;
     text-overflow: ellipsis;
   }
+
   &__recipes {
     display: flex;
     flex-wrap: nowrap;
     color: $textgray;
-    font-family: 'Sofia Pro Light';
     align-items: center;
+    font-weight: 400;
     padding: 0.3rem 0.7rem;
     font-size: 1.4rem;
     background: $gray;
   }
+  
   &__recipe-icon {
     height: 2.5rem;
     width: 2.5rem;

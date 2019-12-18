@@ -1,16 +1,12 @@
 <template>
-  <div>
-    <div class="origin-icon">
-      <img
-        @mouseover="toggleHover"
-        @mouseleave="toggleHover"
-        :src="originUrl"
-        :alt="originAlt"
-        class="origin-icon__image"
-      />
-      <p class="origin-icon__text">{{origin.name}}</p>
-    </div>
-    <origin-tooltip v-show="hover" :origin="origin"/>
+  <div class="origin-icon">
+    <img     
+      :src="originUrl"
+      :alt="originAlt"
+      class="origin-icon__image"
+    />
+    <p class="origin-icon__text">{{origin ? origin.name : ''}}</p>
+    <origin-tooltip :origin="origin"/>
   </div>
 </template>
 
@@ -20,29 +16,20 @@ export default {
   components: {
     OriginTooltip,
   },
+  
   props: {
     origin: {
       type: Object,
       required: true
     }
   },
-  data() {
-    return {
-      hover: false
-    }
-  },
 
-  methods: {
-    toggleHover() {
-      this.hover = !this.hover
-    }
-  },
   computed: {
     originUrl() {
-      return `https://rerollcdn.com/icons/${this.origin.key}.png`
+      return this.origin ? `https://rerollcdn.com/icons/${this.origin.key}.png` : ''
     },
     originAlt() {
-      return `${this.origin.key} splash art`
+      return this.origin ? `${this.origin.key} splash art` : ''
     }
   }
 }
@@ -54,6 +41,7 @@ export default {
   width: 9rem;
   margin: auto;
   position: relative;
+
   &__image {
     height: 3rem;
     width: 3rem;
@@ -63,10 +51,17 @@ export default {
     left: 50%;
     transform: translateX(-50%);
   }
+  
   &__text {
     text-align: center;
     font-size: 1.4rem;
     color: $textgray;
+  }
+
+  &:hover{
+    .origin-tooltip{
+      display: block;
+    }
   }
 }
 </style>

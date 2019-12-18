@@ -23,6 +23,7 @@ export default {
     padding: 0 2rem;
     background: transparent;
     font-size: 1.4rem;
+    font-weight: 600;
     line-height: 1.5;
     min-height: 35px;
     border: 1px solid $border-color;

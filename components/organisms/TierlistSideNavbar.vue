@@ -13,6 +13,7 @@
 <style lang="scss" scoped>
 .tierlist-side-navbar {
   margin-bottom: 4rem;
+
   &__nav-link {
     text-decoration: none;
     color: $textgray;
@@ -25,9 +26,9 @@
     @include hover-lighten;
   }
 }
+
 .active-link {
   transform: translateX(2rem);
-
   color: $textwhite;
   &::before {
     transform: scaleX(1) translateX(-2rem);

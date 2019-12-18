@@ -17,12 +17,14 @@ export default {
   components: {
     ChampionTooltip
   },
+
   props: {
     champion: {
       type: Object,
       required: true
     }
   },
+
   data() {
     return {
       hover: false
@@ -34,6 +36,7 @@ export default {
       this.hover = !this.hover
     }
   },
+
   computed: {
     showTooltip() {
       if(this.hover){
@@ -43,10 +46,10 @@ export default {
       }
     },
     championUrl() {
-      return `https://rerollcdn.com/characters/${this.champion.key}.png`
+      return this.champion ? `https://rerollcdn.com/characters/${this.champion.key}.png` : ''
     },
     championAlt() {
-      return `${this.champion.key} splash art`
+      return this.champion ? `${this.champion.key} splash art` : ''
     },
     borderColor() {
       switch (this.champion.cost) {
@@ -80,31 +83,35 @@ export default {
   margin: auto;
   cursor: pointer;
   position: relative;
+
   &__image {
     height: 100%;
     width: 100%;
     transition: all 0.3s;
     border: 1px solid;
   }
-  &__tooltip {
-    position: absolute;
-  }
 }
+
 .border-active {
   border: 1px solid $orange-accent !important;
 }
+
 .border-common {
   border-color: $common;
 }
+
 .border-uncommon {
   border-color: $uncommon;
 }
+
 .border-rare {
   border-color: $rare;
 }
+
 .border-epic {
   border-color: $epic;
 }
+
 .border-legendary {
   border-color: $legendary;
 }

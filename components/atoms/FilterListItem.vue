@@ -73,24 +73,6 @@ export default {
       border: 2px solid $textgray;
     }
   }
-  &__icon {
-    height: 1.35rem;
-    width: 1.5rem;
-    opacity: 0.54;
-    margin-right: 1rem;
-    transition: all 0.3s;
-  }
-  &__text {
-    display: inline-block;
-    position: relative;
-    bottom: 0.5rem;
-    font-family: 'Sofia Pro ExtraLight';
-    font-weight: 800;
-    color: $textwhite;
-    line-height: 2rem;
-    text-transform: capitalize;
-  }
-
   &--active{
     &::after{
       border: 2px solid $lightblue;
@@ -101,9 +83,28 @@ export default {
         border: 2px solid $lightblue;
       }
     }
+
     .filter-list-item__icon{
       opacity: 1;
     }
+  }
+
+  &__icon {
+    height: 1.35rem;
+    width: 1.5rem;
+    opacity: 0.54;
+    margin-right: 1rem;
+    transition: all 0.3s;
+  }
+
+  &__text {
+    display: inline-block;
+    position: relative;
+    bottom: 0.5rem;
+    font-weight: 400;
+    color: $textwhite;
+    line-height: 2rem;
+    text-transform: capitalize;
   }
 }
 </style>

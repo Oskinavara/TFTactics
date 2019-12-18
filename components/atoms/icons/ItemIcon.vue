@@ -59,6 +59,7 @@ export default {
   margin: auto;
   position: relative;
   cursor: pointer;
+
   &__image {
     height: 100%;
     width: 100%;
@@ -66,6 +67,7 @@ export default {
     border: 1px solid $border-color;
   }
 }
+
 .border-active {
   border: 1px solid $orange-accent !important;
 }

@@ -12,12 +12,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  
   &__heading {
     color: $textwhite;
     font-size: 2.1rem;
     letter-spacing: 0.1rem;
     color: $textwhite;
-    font-family: 'Sofia Pro Light';
+    font-weight: 600;
     line-height: 3.5rem;
   }
 }

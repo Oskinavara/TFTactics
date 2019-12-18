@@ -18,10 +18,12 @@
   background: $dark-gray;
   border-top: 2px solid $border-color;
   margin-top: 8rem;
+
   &__inner {
     max-width: 1200px;
     margin: 0 auto;
   }
+
   &__navbar {
     margin: 0 auto;
     width: 40%;
@@ -29,15 +31,17 @@
     justify-content: space-between;
     padding: 3rem 0;
   }
+
   &__link {
     font-size: 1.6rem;
     text-decoration: none;
     color: $textgray;
-    font-family: 'Sofia Pro Medium';
+    font-weight: 600;
     font-weight: 100;
     transition: all 0.3s;
     @include hover-lighten;
   }
+  
   &__about {
     color: $textwhite;
     font-size: 1.4rem;
@@ -45,7 +49,7 @@
     border-top: 1px solid $border-color;
     padding: 3rem 0;
     line-height: 3rem;
-    font-family: 'Sofia Pro Light';
+    font-weight: 400;
   }
 }
 </style>

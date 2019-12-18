@@ -48,11 +48,13 @@ export default {
   &:focus-within {
     border: 1px solid $orange-accent;
   }
+
   &__icon {
     height: 12px;
     width: 12px;
     margin-right: 1rem;
   }
+  
   &__input {
     appearance: none;
     background: transparent;
@@ -64,7 +66,7 @@ export default {
     overflow: visible;
     &::placeholder {
       color: $textgray;
-      font-family: 'Sofia Pro Medium';
+      font-weight: 600;
       font-size: 1.4rem;
     }
     &::-webkit-search-cancel-button{

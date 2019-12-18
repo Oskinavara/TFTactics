@@ -78,6 +78,7 @@ export default {
     color: $textgray;
     padding-top: 0.3rem;
     transition: all 0.3s;
+    font-weight: 600;
     position: absolute;
     left: 50%;
     transform: translateX(-50%);

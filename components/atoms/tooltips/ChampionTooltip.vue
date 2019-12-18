@@ -1,7 +1,7 @@
 <template>
   <div class="champion-tooltip">
     <div class="champion-tooltip__wrapper">
-      <div class="champion-tooltip__title">
+      <div class="champion-tooltip__heading">
         <img :src="championUrl" :alt="championAlt" class="champion-tooltip__icon" />
         {{champion.name}}
       </div>
@@ -45,12 +45,14 @@ export default {
   components: {
     ChampionIcon
   },
+
   props: {
     champion: {
       type: Object,
       required: true
     }
   },
+
   computed: {
     ...mapState({
       items: state => state.apiData.items
@@ -65,6 +67,7 @@ export default {
       return this.champion.origin.concat(this.champion.class)
     }
   },
+
   methods: {
     championOriginUrl(origin) {
       let originLowerCase = origin.toLowerCase()
@@ -98,18 +101,21 @@ export default {
   top: -16rem;
   left: 50%;
   transform: translateX(-50%);
+  max-width: 500px;
+
   &__wrapper {
     display: flex;
     min-height: 10rem;
   }
-  &__title {
+
+  &__heading {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     color: $textwhite;
     font-size: 1.6rem;
-    font-family: 'Sofia Pro Medium';
+    font-weight: 600;
     background: $dark-gray;
     padding: 0 1rem;
   }
@@ -119,9 +125,11 @@ export default {
     width: 4.5rem;
     margin-bottom: 0.5rem;
   }
+
   &__name {
     color: white;
   }
+
   &__origins {
     border-left: 1px solid $border-color;
     border-right: 1px solid $border-color;
@@ -132,22 +140,26 @@ export default {
     background: $dark-gray;
     padding: 0rem 1rem;
   }
+
   &__origin-wrapper {
     display: flex;
     align-items: center;
     margin: 0.5rem 0;
   }
+
   &__origin-icon {
     height: 2rem;
     width: 2rem;
     margin-right: 1rem;
   }
+
   &__origin-name {
     color: $textwhite;
     line-height: 1.4rem;
     font-weight: 10;
-    font-family: 'Sofia Pro Light';
+    font-weight: 400;
   }
+
   &__cost {
     display: flex;
     align-items: center;
@@ -156,12 +168,14 @@ export default {
     color: $textwhite;
     padding: 0 1rem;
   }
+
   &__gold-icon {
     width: 1.3rem;
     height: 1.3rem;
     opacity: 0.54;
     margin-right: 0.5rem;
   }
+
   &__items {
     background: $gray;
     width: 100%;
@@ -171,6 +185,7 @@ export default {
     padding: 1rem 1rem;
     line-height: 1.8rem;
   }
+
   &__item-icon {
     height: 2.2rem;
     width: 2.2rem;
