@@ -25,10 +25,20 @@
           <item-icon :item="selectedItem"/>
           {{selectedItem.name}}
         </div>
-        <custom-table :colNames="colNames" :content="baseItems">
-          <div slot-scope="{items}">
-            {{items}}
-          </div>
+        <custom-table :colNames="colNames">
+          <tr v-for="(row, index) in rowNumber" :key="index">
+            <th>
+              <item-icon :item="selectedItem"/>
+              <item-icon :item="baseItems[Object.keys(baseItems)[index]]"/>
+            </th>
+            <th>
+              <!-- <item-icon :item="combinedItem()"/> -->
+              <p>{{items.bloodthirster.bonus}}</p>
+            </th>
+            <th>
+              {{'A'}}
+            </th>
+          </tr>
         </custom-table>
       </div>
     </div>
@@ -81,6 +91,30 @@ export default {
         {name: 'Base Items', content: this.baseItems},
         {name: 'Combined Items', content: this.combinedItems}
       ]
+    },
+    rowNumber() {
+      if(this.selectedItem){
+        return this.selectedItem.depth === 1 ? 8 : 1; 
+      }
+    },
+    
+  },
+
+  methods: {
+    combinedItem() {
+      // let currentItem = this.items.bloodthirster
+      // let items = {...this.combinedItems};
+      // for(let item in items){
+      //   if(!items[item].buildsFrom.includes(this.selectedItem)){
+      //     delete items[item];
+      //   }
+      // }
+      // for(let item in items){
+      //   if(!items[item].buildsFrom.includes(currentItem)){
+      //     delete items[item];
+      //   }
+      // }
+      // return items;
     }
   },
   
@@ -99,8 +133,28 @@ export default {
     }
   },
 
-  mounted () {
+  created () {
     this.selectedItem = this.items.bfsword;
+    
+    let currentItem = this.items.spatula
+      let items = {...this.combinedItems};
+      
+      for(let item in items){
+        if(!items[item].buildsFrom.includes(this.selectedItem.key)){
+          delete items[item];
+        }
+      }
+      
+      for(let item in items){
+        if(!items[item].buildsFrom.includes(currentItem.key)){
+          delete items[item];
+        }
+      }
+
+      console.log(items);
+      
+      
+    
   },
 }
 </script>
@@ -128,6 +182,12 @@ export default {
 
     .search-bar{
       margin: 2rem 0;
+    }
+
+    th .item-icon{
+      width: 3.5rem;
+      height: 3.5rem;
+      margin-right: 1rem;
     }
   }
 

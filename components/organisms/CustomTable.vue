@@ -1,32 +1,15 @@
 <template>
-  <table class="custom-table">
-    <thead class="custom-table__head">
-      <tr class="custom-table__row">
-        <th 
-          class="custom-table__cell custom-table__cell--header" 
-          v-for="(name,index) in colNames" 
-          :key="index"
-        >
+  <table>
+    <thead>
+      <tr>
+        <th v-for="(name,index) in colNames" :key="index">
           {{name}}
         </th>
       </tr>
     </thead>
 
-    <tbody class="custom-table__body">
-      <tr class="custom-table__row" 
-        v-for="(tableRow, index) in content" 
-        :key="index"
-      >
-        <th 
-          v-for="(tableCell,index2) in colNames" 
-          :key="index2"
-          class="custom-table__cell"
-        >
-          <slot>
-            {{tableCell}}
-          </slot>
-        </th>
-      </tr>
+    <tbody>
+      <slot/>
     </tbody>
   </table>
 </template>
@@ -63,33 +46,36 @@
 </script>
 
 <style lang="scss" scoped>
-  .custom-table{
+  table{
     width: 100%;
     border-collapse: collapse;
     border-left: 1px solid $border-color;
     border-right: 1px solid $border-color;
 
-    &__head{
-      min-width: 100%;
+    thead{
       border: 1px solid $border-color;
     }
 
-    &__row{
+    tr{
+      width: 100%;
       border-bottom: 1px solid $border-color;
+      display: flex;
+      justify-content: space-between;
     }
 
-    &__cell{
+    td, th{
       padding: 1rem;
+      display: flex;
       &:not(:last-of-type){
         text-align: left;
       }
       &:last-of-type{
         text-align: center;
       }
-      &--header{
-        color: $textgray;
-        font-weight: 600;
-      }
+    }
+    th{
+      color: $textgray;
+      font-weight: 600;
     }
   }
 </style>
