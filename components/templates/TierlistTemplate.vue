@@ -14,7 +14,7 @@
       <div class="tierlist-page__main">
         <page-heading>
           <slot name="title"/>
-          <template v-slot:content>
+          <template #content>
             <search-bar />
           </template>
         </page-heading>

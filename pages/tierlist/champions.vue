@@ -1,9 +1,9 @@
 <template>
   <tierlist-template :tiers="tiers" v-if="tierlist.champions">
-    <template v-slot:title>
+    <template #title>
       Teamfight Tactics Champion Tier List
     </template>
-    <template v-slot:championFilters>
+    <template #championFilters>
       <champion-filters />
     </template>
     <tier-block v-for="(tier, index) in tiers" :key="index" :tier="tier">

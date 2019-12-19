@@ -2,7 +2,7 @@
   <div class="champion-filters">
     <page-heading>
       <template>Filters</template>
-      <template v-slot:content>
+      <template #content>
         <base-button>Reset</base-button>
       </template>
     </page-heading>

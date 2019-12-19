@@ -1,6 +1,6 @@
 <template>
   <tierlist-template :tiers="tiers" v-if="tierlist.origins">
-    <template v-slot:title>
+    <template #title>
       Teamfight Tactics Origin Tier List
     </template>
     <tier-block 

@@ -1,6 +1,6 @@
 <template>
   <tierlist-template :tiers="tiers" v-if="tierlist.classes">
-    <template v-slot:title>
+    <template #title>
       Teamfight Tactics Class Tier List
     </template>
     <tier-block 

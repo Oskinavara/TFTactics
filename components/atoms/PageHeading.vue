@@ -16,9 +16,9 @@
   &__heading {
     color: $textwhite;
     font-size: 2.1rem;
-    letter-spacing: 0.1rem;
+    letter-spacing: 0.02rem;
     color: $textwhite;
-    font-weight: 600;
+    font-weight: 800;
     line-height: 3.5rem;
   }
 }

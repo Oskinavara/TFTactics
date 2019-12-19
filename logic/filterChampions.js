@@ -5,12 +5,12 @@ export default {
   methods: {
     filteredChampions(array) {        
       return this.filterDataBySearch(
-          this.filterChampionsByCost(
-            this.filterChampionsByOrigin(
-              this.filterChampionsByClass(array)
-            ) 
-          )
-        );
+        this.filterChampionsByCost(
+          this.filterChampionsByOrigin(
+            this.filterChampionsByClass(array)
+          ) 
+        )
+      );
     },
     filterDataBySearch(array) {
       if (!this.inputValue) {

@@ -7,7 +7,7 @@
       <div class="champions-page__wrapper">
         <page-heading>
           Teamfight Tactics Champions List
-          <template v-slot:content>
+          <template #content>
             <search-bar />
           </template>
         </page-heading>
