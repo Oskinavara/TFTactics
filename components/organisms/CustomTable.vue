@@ -2,7 +2,7 @@
   <table>
     <thead>
       <tr>
-        <th v-for="(name,index) in colNames" :key="index">
+        <th v-for="(name,index) in columnNames" :key="index">
           {{name}}
         </th>
       </tr>
@@ -22,7 +22,7 @@
         default: 3,
         required: false
       },
-      colNames: {
+      columnNames: {
         type: Array,
         required: true
       },
