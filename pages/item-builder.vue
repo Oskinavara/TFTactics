@@ -26,19 +26,6 @@
           {{selectedItem.name}}
         </div>
         <custom-table :columns="columns" :tableData="filteredCombinedItems">
-          <!-- <tr v-for="(combinedItem, index) in filteredCombinedItems" :key="index">
-            <th>
-              <item-icon :item="firstItem"/>
-              <item-icon :item="secondItem(combinedItem)"/>
-            </th>
-            <th>
-              <item-icon :item="combinedItem"/>
-              <p>{{combinedItem.bonus}}</p>
-            </th>
-            <th>
-              {{'A'}}
-            </th>
-          </tr> -->
           <template v-slot:[columns[0].name]="{row}">
             <item-icon :item="firstItem"/>
             <item-icon :item="secondItem(row)"/>
@@ -48,7 +35,7 @@
             <p class="item-builder__bonus">{{row.bonus}}</p>
           </template>
           <template v-slot:[columns[2].name]="{row}">
-            Halo 3
+            <tier-square :tier="itemTier(row)"/>
           </template>
         </custom-table>
       </div>
@@ -64,6 +51,7 @@ import ItemIcon from '@/components/atoms/icons/ItemIcon.vue';
 import Divider from '@/components/atoms/Divider.vue';
 import CustomTable from '@/components/organisms/CustomTable.vue';
 import ItemListing from '@/components/molecules/Pages/ItemListing.vue';
+import TierSquare from '@/components/atoms/TierSquare.vue';
 export default {
   name: 'ItemBuilder',
 
@@ -79,7 +67,8 @@ export default {
     ItemListing,
     ItemIcon,
     CustomTable,
-    Divider
+    Divider,
+    TierSquare
   },
 
   computed: {
@@ -123,15 +112,18 @@ export default {
       return [
         {
           name: 'Recipe',
-          width: 6
+          width: 6,
+          position: 'flex-start'
         },
         {
           name: 'Combines Into',
-          width: 22
+          width: 22,
+          position: 'flex-start'
         },
         {
           name: 'Tier',
-          width: 4
+          width: 4,
+          position: 'center'
         }
       ];
     },
@@ -164,16 +156,26 @@ export default {
         return this.items[item.buildsFrom[1]]
       }
       else return this.items[item.buildsFrom[0]]
+    },
+    itemTier(item) {
+      let tiers = ['s', 'a', 'b', 'c', 'd', '?'];
+      for(let tier in this.tierlist){
+        if (this.tierlist[tier].includes(item.key)){
+          return tiers[tier];
+        }
+      }
     }
   },
 
   created () {
     this.selectedItem = this.items.bfsword;
   },
+
 }
 </script>
 
 <style lang="scss" scoped>
+
   .item-builder{
     &__wrapper{
       width: calc(100% - 30rem);
@@ -207,14 +209,22 @@ export default {
     th{
       font-size: 1.4rem;
     }
+    
     td {
       .item-icon{
         width: 3.5rem;
         height: 3.5rem;
         margin: 0 1rem 0 0;
       }
+
+      .tier-square{
+        width: 2.5rem;
+        min-height: 2.5rem;
+        border-radius: 0.25rem;
+        font-size: 1.5rem;
+        font-weight: 600;
+      }
     }
-    
   }
 
 </style>

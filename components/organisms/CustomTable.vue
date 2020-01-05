@@ -45,7 +45,9 @@
       cellStyles(index) {
         return {
           width: `${this.columns[index].width}rem`,
-          flex: `${this.columns[index].width} 0 auto`
+          flex: `${this.columns[index].width} 0 auto`,
+          display: 'flex',
+          justifyContent: this.columns[index].position
         }
       }
     },
