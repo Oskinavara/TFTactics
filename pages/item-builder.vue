@@ -25,8 +25,8 @@
           <item-icon :item="selectedItem"/>
           {{selectedItem.name}}
         </div>
-        <custom-table :columnNames="columnNames">
-          <tr v-for="(combinedItem, index) in filteredCombinedItems" :key="index">
+        <custom-table :columns="columns" :tableData="filteredCombinedItems">
+          <!-- <tr v-for="(combinedItem, index) in filteredCombinedItems" :key="index">
             <th>
               <item-icon :item="firstItem"/>
               <item-icon :item="secondItem(combinedItem)"/>
@@ -38,7 +38,18 @@
             <th>
               {{'A'}}
             </th>
-          </tr>
+          </tr> -->
+          <template v-slot:[columns[0].name]="{row}">
+            <item-icon :item="firstItem"/>
+            <item-icon :item="secondItem(row)"/>
+          </template>
+          <template v-slot:[columns[1].name]="{row}">
+            <item-icon :item="row"/>
+            <p class="item-builder__bonus">{{row.bonus}}</p>
+          </template>
+          <template v-slot:[columns[2].name]="{row}">
+            Halo 3
+          </template>
         </custom-table>
       </div>
     </div>
@@ -58,7 +69,7 @@ export default {
 
   data() {
     return {
-      selectedItem: null
+      selectedItem: null,
     }
   },
 
@@ -73,7 +84,8 @@ export default {
 
   computed: {
     ...mapState({
-      items: state => state.apiData.items
+      items: state => state.apiData.items,
+      tierlist: state => state.apiData.tierlist.items
     }),
     baseItems() {
       let items = {...this.items}
@@ -107,8 +119,21 @@ export default {
       }
       return items
     },
-    columnNames() {
-      return ['Recipe', 'Combines into', 'Tier'];
+    columns() {
+      return [
+        {
+          name: 'Recipe',
+          width: 6
+        },
+        {
+          name: 'Combines Into',
+          width: 22
+        },
+        {
+          name: 'Tier',
+          width: 4
+        }
+      ];
     },
     itemListings() {
       return [
@@ -169,15 +194,27 @@ export default {
       }
     }
 
+    &__bonus{
+      font-size: 1.5rem;
+      margin-left: 1rem;
+      color: $white;
+    }
+
     .search-bar{
       margin: 2rem 0;
     }
 
-    th .item-icon{
-      width: 3.5rem;
-      height: 3.5rem;
-      margin-right: 1rem;
+    th{
+      font-size: 1.4rem;
     }
+    td {
+      .item-icon{
+        width: 3.5rem;
+        height: 3.5rem;
+        margin: 0 1rem 0 0;
+      }
+    }
+    
   }
 
 </style>

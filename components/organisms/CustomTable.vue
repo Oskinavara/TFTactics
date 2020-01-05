@@ -2,14 +2,29 @@
   <table>
     <thead>
       <tr>
-        <th v-for="(name,index) in columnNames" :key="index">
-          {{name}}
+        <th 
+          v-for="(column,index) in columns" 
+          :key="index" 
+          :style="cellStyles(index)"
+        >
+          {{column.name}}
         </th>
       </tr>
     </thead>
 
-    <tbody>
+    <!-- <tbody>
       <slot/>
+    </tbody> -->
+    <tbody>
+      <tr v-for="(row, index) in tableData" :key="index">
+        <td 
+          v-for="(column, index2) in columns" 
+          :key="column.name" 
+          :style="cellStyles(index2)"
+        >
+          <slot :name="column.name" :row="row"/>
+        </td>
+      </tr>
     </tbody>
   </table>
 </template>
@@ -17,29 +32,21 @@
 <script>
   export default {
     props: {
-      colNumber: {
-        type: Number,
-        default: 3,
-        required: false
-      },
-      columnNames: {
+      columns: {
         type: Array,
         required: true
       },
-      content: {
-        type: Object
+      tableData: {
+        required: true
       }
     },
     
-    computed: {
-      tableTest() {
-        return [
-          {icons: 'aishfiuasf', description: 'lorem ipsum asfdsafasfasfaf', tier: 'a'},
-          {icons: 'aishfiuasf', description: 'lorem ipsum asfdsafasfasfaf', tier: 'b'},
-          {icons: 'aishfiuasf', description: 'lorem ipsum asfdsafasfasfaf', tier: 'c'},
-          {icons: 'aishfiuasf', description: 'lorem ipsum asfdsafasfasfaf', tier: 'd'},
-          {icons: 'aishfiuasf', description: 'lorem ipsum asfdsafasfasfaf', tier: 'e'},
-          ]
+    methods: {
+      cellStyles(index) {
+        return {
+          width: `${this.columns[index].width}rem`,
+          flex: `${this.columns[index].width} 0 auto`
+        }
       }
     },
   }
@@ -60,12 +67,12 @@
       width: 100%;
       border-bottom: 1px solid $border-color;
       display: flex;
-      justify-content: space-between;
     }
 
-    td, th{
+    th, td{
       padding: 1rem;
       display: flex;
+      align-items: center;
       &:not(:last-of-type){
         text-align: left;
       }
