@@ -1,6 +1,6 @@
 <template>
   <div class="champion-icon">
-    <nuxt-link :to="`/champions/${champion.key.toLowerCase()}`">
+    <nuxt-link :to="`/champions/${champion.key}`">
       <img
         @mouseover="toggleHover"
         @mouseleave="toggleHover"
