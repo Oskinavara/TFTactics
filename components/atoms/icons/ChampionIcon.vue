@@ -1,12 +1,14 @@
 <template>
   <div class="champion-icon">
-    <img
-      @mouseover="toggleHover"
-      @mouseleave="toggleHover"
-      :src="championUrl"
-      :alt="championAlt"
-      :class="['champion-icon__image', borderColor,  {'border-active': hover}]"
-    />
+    <nuxt-link :to="`/champions/${champion.key.toLowerCase()}`">
+      <img
+        @mouseover="toggleHover"
+        @mouseleave="toggleHover"
+        :src="championUrl"
+        :alt="championAlt"
+        :class="['champion-icon__image', borderColor,  {'border-active': hover}]"
+      />
+    </nuxt-link>
     <champion-tooltip v-show="hover" :champion="champion" />
   </div>
 </template>

@@ -1,10 +1,13 @@
 <template>
   <div class="item-listing">
-    <div class="item-listing__heading-wrapper">
+    <!-- <div class="item-listing__heading-wrapper">
       <h3 class="item-listing__heading">
         <slot/>
       </h3>
-    </div>
+    </div> -->
+    <heading-underlined>
+      <slot/>
+    </heading-underlined>
     <div class="item-listing__content">
       <item-icon 
         v-for="item in items" 
@@ -19,10 +22,12 @@
 
 <script>
   import ItemIcon from '@/components/atoms/icons/ItemIcon.vue';
+  import HeadingUnderlined from '@/components/atoms/HeadingUnderlined.vue';
 
   export default {
     components: {
       ItemIcon,
+      HeadingUnderlined
     },
 
     props: {
