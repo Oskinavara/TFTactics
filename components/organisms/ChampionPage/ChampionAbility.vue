@@ -11,7 +11,7 @@
             <h2>{{champion.ability.name}}</h2>
             <h4>{{champion.ability.type}}</h4>
           </div>
-          <div class="champion-ability__mana">
+          <div class="champion-ability__mana" v-if="champion.ability.manaCost">
             <img src="https://rerollcdn.com/ui/icon-mana.svg" alt="mana icon" class="champion-ability__mana-icon">
             <span>
               <b>{{ champion.ability.manaStart }}</b>

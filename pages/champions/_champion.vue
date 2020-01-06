@@ -44,7 +44,7 @@
             Synergies
           </heading-underlined>
           <ul class="champion-page__synergies">
-            <li 
+            <!-- <li 
               v-for="synergy in champion.origin"
               :key="synergy"
               class="champion-page__synergy" 
@@ -59,8 +59,22 @@
                 :key="icon.name"
                 :champion="icon"
               />
-            </li>
-            <li 
+            </li> -->
+            <champion-synergy 
+              v-for="origin in champion.origin"
+              :key="origin"
+              type="origin" 
+              :origin="origins[origin.toLowerCase()]"
+              :champion="champion"
+            />
+            <champion-synergy 
+              v-for="origin in champion.class"
+              :key="origin"
+              type="class" 
+              :origin="classes[origin.toLowerCase()]"
+              :champion="champion"
+            />
+            <!-- <li 
               v-for="synergy in champion.class"
               :key="synergy"
               class="champion-page__synergy" 
@@ -75,7 +89,7 @@
                 :key="icon.name"
                 :champion="icon"
               />
-            </li>
+            </li> -->
           </ul>
         </section>
       </div>
@@ -91,6 +105,7 @@ import ChampionAbility from '@/components/organisms/ChampionPage/ChampionAbility
 import ChampionOrigin from '@/components/organisms/ChampionPage/ChampionOrigin.vue';
 import ItemIcon from '@/components/atoms/icons/ItemIcon.vue';
 import ChampionIcon from '@/components/atoms/icons/ChampionIcon.vue';
+import ChampionSynergy from '@/components/molecules/ChampionSynergy.vue';
 import iconUrls from '@/logic/iconUrls.js';
 
 
@@ -103,7 +118,8 @@ import iconUrls from '@/logic/iconUrls.js';
       ChampionIcon,
       ChampionStats,
       ChampionAbility,
-      ChampionOrigin
+      ChampionOrigin,
+      ChampionSynergy
     },
 
     mixins: [iconUrls],
