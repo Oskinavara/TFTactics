@@ -12,10 +12,14 @@
 
 <script>
 import OriginTooltip from '@/components/atoms/tooltips/OriginTooltip.vue'
+import iconUrls from '@/logic/iconUrls.js'
+
 export default {
   components: {
     OriginTooltip,
   },
+
+  mixins: [iconUrls],
   
   props: {
     origin: {
@@ -24,14 +28,14 @@ export default {
     }
   },
 
-  computed: {
-    originUrl() {
-      return this.origin ? `https://rerollcdn.com/icons/${this.origin.key}.png` : ''
-    },
-    originAlt() {
-      return this.origin ? `${this.origin.key} splash art` : ''
-    }
-  }
+  // computed: {
+  //   originUrl() {
+  //     return this.origin ? `https://rerollcdn.com/icons/${this.origin.key}.png` : ''
+  //   },
+  //   originAlt() {
+  //     return this.origin ? `${this.origin.key} splash art` : ''
+  //   }
+  // }
 }
 </script>
 

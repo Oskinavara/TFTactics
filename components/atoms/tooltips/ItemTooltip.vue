@@ -32,6 +32,7 @@
 
 <script>
 import { mapState } from 'vuex'
+import iconUrls from '@/logic/iconUrls.js';
 
 export default {
   props: {
@@ -40,23 +41,13 @@ export default {
       required: true
     }
   },
+
+  mixins: [iconUrls],
+  
   computed: {
     ...mapState({
       items: state => state.apiData.items
     }),
-    itemUrl() {
-      let itemCapitalized = this.item.name
-        .split('.')
-        .join('')
-        .split("'")
-        .join('')
-        .split(' ')
-        .join('')
-      return `https://rerollcdn.com/items/${itemCapitalized}.png`
-    },
-    itemAlt() {
-      return `${this.item.name} splash art`
-    },
     recipeText() {
       return this.item.depth === 2 ? 'Recipe:' : 'Into:'
     },

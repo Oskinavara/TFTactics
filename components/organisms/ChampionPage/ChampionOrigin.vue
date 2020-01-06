@@ -21,6 +21,8 @@
 
 <script>
 import { mapState } from 'vuex';
+import iconUrls from '@/logic/iconUrls.js'
+
   export default {
     props: {
       origin: {
@@ -32,18 +34,7 @@ import { mapState } from 'vuex';
       }
     },
 
-    computed: {
-      ...mapState({
-        origins: state => state.apiData.origins,
-        classes: state => state.apiData.classes
-      }),
-      originUrl() {
-        return this.origin ? `https://rerollcdn.com/icons/${this.origin.key}.png` : ''
-      },
-      originAlt() {
-        return this.origin ? `${this.origin.key} splash art` : ''
-      }
-    }
+    mixins: [iconUrls],
 
   }
 </script>

@@ -49,7 +49,7 @@ export default {
   list-style: none;
   position: relative;
   width: 30rem;
-  padding: 0.55rem 0;
+  padding: 0.75rem 0;
   cursor: pointer;
   &:first-of-type {
     padding-top: 1.2rem;

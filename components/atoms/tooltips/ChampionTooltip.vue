@@ -27,8 +27,8 @@
     <div class="champion-tooltip__items">
       Items:
       <img
-        :src="itemUrl(item)"
-        :alt="itemAlt(item)"
+        :src="tooltipUrl(item)"
+        :alt="tooltipAlt(item)"
         v-for="item in champion.items"
         :key="item"
         class="champion-tooltip__item-icon"
@@ -39,6 +39,8 @@
 
 <script>
 import ChampionIcon from '@/components/atoms/icons/ChampionIcon.vue'
+import iconUrls from '@/logic/iconUrls.js';
+
 import { mapState } from 'vuex'
 
 export default {
@@ -46,6 +48,8 @@ export default {
     ChampionIcon
   },
 
+  mixins: [iconUrls],
+  
   props: {
     champion: {
       type: Object,
@@ -57,12 +61,6 @@ export default {
     ...mapState({
       items: state => state.apiData.items
     }),
-    championUrl() {
-      return `https://rerollcdn.com/characters/${this.champion.key}.png`
-    },
-    championAlt() {
-      return `${this.champion.key} splash art`
-    },
     championOriginList() {
       return this.champion.origin.concat(this.champion.class)
     }
@@ -76,7 +74,7 @@ export default {
     championOriginAlt(origin) {
       return `${origin} splash art`
     },
-    itemUrl(item) {
+    tooltipUrl(item) {
       let itemCapitalized = this.items[item].name
         .split('.')
         .join('')
@@ -86,7 +84,7 @@ export default {
         .join('')
       return `https://rerollcdn.com/items/${itemCapitalized}.png`
     },
-    itemAlt(item) {
+    tooltipAlt(item) {
       return `${this.items[item].name} splash art`
     }
   }
