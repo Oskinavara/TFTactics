@@ -53,7 +53,7 @@ export default {
     Disclaimer,
     TierBlock,
     OriginIcon,
-    SearchBar
+    SearchBar,
   },
 }
 </script>
