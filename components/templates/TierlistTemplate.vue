@@ -6,7 +6,7 @@
           Lists
         </page-heading>
         <divider />
-        <tierlist-side-navbar />
+        <side-navbar />
         <slot name="championFilters"></slot>
         <divider />
         <disclaimer />
@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import TierlistSideNavbar from '@/components/organisms/TierlistSideNavbar.vue'
+import SideNavbar from '@/components/organisms/SideNavbar.vue'
 import ChampionFilters from '@/components/organisms/ChampionFilters.vue'
 import TierBlock from '@/components/molecules/pages/TierBlock.vue'
 import Divider from '@/components/atoms/Divider.vue'
@@ -47,7 +47,7 @@ export default {
   },
   components: {
     ChampionFilters,
-    TierlistSideNavbar,
+    SideNavbar,
     Divider,
     PageHeading,
     Disclaimer,

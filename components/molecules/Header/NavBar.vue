@@ -1,9 +1,9 @@
 <template>
   <div class="nav-bar">
     <nuxt-link to="/champions" class="nav-bar__nav-link">Champions</nuxt-link>
-    <div class="nav-bar__wrapper" @mouseover="hover = true" @mouseleave="hover = false">
+    <div class="nav-bar__wrapper" @mouseover="hoverFirst = true" @mouseleave="hoverFirst = false">
       <nuxt-link to="/tierlist" class="nav-bar__nav-link">Tier Lists</nuxt-link>
-      <div class="nav-bar__sub-menu" v-show="hover">
+      <div class="nav-bar__sub-menu" v-show="hoverFirst">
         <nuxt-link to="/tierlist/champions" class="nav-bar__sub-link">Champions</nuxt-link>
         <nuxt-link to="/tierlist/team-comps" class="nav-bar__sub-link">Team Comps</nuxt-link>
         <nuxt-link to="/tierlist/origins" class="nav-bar__sub-link">Origins</nuxt-link>
@@ -13,7 +13,16 @@
     </div>
     <nuxt-link to="/item-builder" class="nav-bar__nav-link">Item Builder</nuxt-link>
     <nuxt-link to="/team-builder" class="nav-bar__nav-link">Team Builder</nuxt-link>
-    <nuxt-link to="/database" class="nav-bar__nav-link">Database</nuxt-link>
+    <div class="nav-bar__wrapper" @mouseover="hoverSecond = true" @mouseleave="hoverSecond = false">
+      <nuxt-link to="/champions" class="nav-bar__nav-link">Database</nuxt-link>
+      <div class="nav-bar__sub-menu" v-show="hoverSecond">
+        <nuxt-link to="/db/champions" class="nav-bar__sub-link">Champions</nuxt-link>
+        <nuxt-link to="/db/champion-stats" class="nav-bar__sub-link">Champion Stats</nuxt-link>
+        <nuxt-link to="/db/origins" class="nav-bar__sub-link">Origins</nuxt-link>
+        <nuxt-link to="/db/classes" class="nav-bar__sub-link">Classes</nuxt-link>
+        <nuxt-link to="/db/items" class="nav-bar__sub-link">Items</nuxt-link>
+      </div>
+    </div>
     <nuxt-link to="/patch-notes" class="nav-bar__nav-link">Patch Notes</nuxt-link>
   </div>
 </template>
@@ -22,7 +31,8 @@
 export default {
   data() {
     return {
-      hover: false
+      hoverFirst: false,
+      hoverSecond: false
     }
   }
 }
