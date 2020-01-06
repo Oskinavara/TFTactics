@@ -13,6 +13,8 @@
 
 <script>
 import ItemTooltip from '@/components/atoms/tooltips/ItemTooltip.vue'
+import iconUrls from '@/logic/iconUrls.js';
+
 export default {
   props: {
     item: {
@@ -20,35 +22,24 @@ export default {
       required: true
     }
   },
+
+  mixins: [iconUrls],
+
   components: {
     ItemTooltip
   },
+
   data() {
     return {
       hover: false
     }
   },
+
   methods: {
     toggleHover() {
       this.hover = !this.hover
     }
   },
-  computed: {
-    itemUrl() {
-      let url = this.item.name
-      let newUrl = url
-        .split('.')
-        .join('')
-        .split("'")
-        .join('')
-        .split(' ')
-        .join('')
-      return `https://rerollcdn.com/items/${newUrl}.png`
-    },
-    itemAlt() {
-      return `${this.item.key} splash art`
-    }
-  }
 }
 </script>
 

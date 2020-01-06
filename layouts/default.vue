@@ -45,4 +45,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
   color: $textwhite;
 }
+
+h2{
+  font-size: 2.1rem;
+}
+
+h4{
+  font-size: 1.6rem;
+}
 </style>

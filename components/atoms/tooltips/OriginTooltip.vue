@@ -35,6 +35,8 @@
 
 <script>
   import ChampionIcon from '@/components/atoms/icons/ChampionIcon.vue';
+  import iconUrls from '@/logic/iconUrls.js'
+
   import { mapState } from 'vuex';
   export default {
     props: {
@@ -44,6 +46,8 @@
       },
     },
 
+    mixins: [iconUrls],
+
     components: {
       ChampionIcon,
     },
@@ -52,12 +56,6 @@
       ...mapState({
         champions: state => state.apiData.champions
       }),
-      originUrl() {
-        return this.origin ? `https://rerollcdn.com/icons/${this.origin.key}.png` : ''
-      },
-      originAlt() {
-        return this.origin ? `${this.origin.key} splash art` : ''
-      },
       originChampions() {
         let champions = {...this.champions};
         for(let champion in champions){

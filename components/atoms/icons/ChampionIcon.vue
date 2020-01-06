@@ -15,10 +15,13 @@
 
 <script>
 import ChampionTooltip from '@/components/atoms/tooltips/ChampionTooltip.vue'
+import iconUrls from '@/logic/iconUrls.js';
 export default {
   components: {
     ChampionTooltip
   },
+
+  mixins: [iconUrls],
 
   props: {
     champion: {
@@ -47,12 +50,7 @@ export default {
         }, 300);
       }
     },
-    championUrl() {
-      return this.champion ? `https://rerollcdn.com/characters/${this.champion.key}.png` : ''
-    },
-    championAlt() {
-      return this.champion ? `${this.champion.key} splash art` : ''
-    },
+    
     borderColor() {
       switch (this.champion.cost) {
         case 1:

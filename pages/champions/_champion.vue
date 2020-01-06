@@ -10,23 +10,88 @@
             {{`Teamfight Tactics ${champion.name}`}}
           </h2>
         </div>
-        <section class="champion-page__section">
+        <section>
           <heading-underlined>
             Item Build
           </heading-underlined>
           <div class="champion-page__item-wrapper">
-            <item-icon v-for="item in champion.items" :key="item" :item="items[item]"/>
+            <item-icon 
+              v-for="item in champion.items" 
+              :key="item" 
+              :item="items[item]"
+            />
           </div>
         </section>
-        <section class="champion-page__section">
-          <heading-underlined>
-            Stats
-          </heading-underlined>
-        </section>
+        <champion-stats :champion="champion"/>
 
       </div>
-      <div class="champion-page__wrapper">
-        
+      <div class="champion-page__main">
+        <champion-ability :champion="champion"/>
+        <champion-origin 
+          :origin="origins[origin.toLowerCase()]"
+          :key="origin"
+          v-for="origin in champion.origin"
+          type="Origin"
+        />
+        <champion-origin 
+          :origin="classes[origin.toLowerCase()]"
+          :key="origin"
+          v-for="origin in champion.class"
+          type="Class"
+        />
+        <section>
+          <heading-underlined>
+            Synergies
+          </heading-underlined>
+          <ul class="champion-page__synergies">
+            <!-- <li 
+              v-for="synergy in champion.origin"
+              :key="synergy"
+              class="champion-page__synergy" 
+            >
+              <img 
+                :src="originSrc(synergy)" 
+                :alt="`${synergy} icon`" 
+                class="champion-page__synergy-icon"
+              >
+              <champion-icon 
+                v-for="icon in originSynergyChampions(synergy)"
+                :key="icon.name"
+                :champion="icon"
+              />
+            </li> -->
+            <champion-synergy 
+              v-for="origin in champion.origin"
+              :key="origin"
+              type="origin" 
+              :origin="origins[origin.toLowerCase()]"
+              :champion="champion"
+            />
+            <champion-synergy 
+              v-for="origin in champion.class"
+              :key="origin"
+              type="class" 
+              :origin="classes[origin.toLowerCase()]"
+              :champion="champion"
+            />
+            <!-- <li 
+              v-for="synergy in champion.class"
+              :key="synergy"
+              class="champion-page__synergy" 
+            >
+              <img 
+                :src="originSrc(synergy)" 
+                :alt="`${synergy} icon`" 
+                class="champion-page__synergy-icon"
+              >
+              <champion-icon 
+                v-for="icon in classSynergyChampions(synergy)"
+                :key="icon.name"
+                :champion="icon"
+              />
+            </li> -->
+          </ul>
+        </section>
       </div>
     </div>
   </div>
@@ -35,27 +100,65 @@
 <script>
 import { mapState } from 'vuex'
 import HeadingUnderlined from '@/components/atoms/HeadingUnderlined.vue';
+import ChampionStats from '@/components/organisms/ChampionPage/ChampionStats.vue';
+import ChampionAbility from '@/components/organisms/ChampionPage/ChampionAbility.vue';
+import ChampionOrigin from '@/components/organisms/ChampionPage/ChampionOrigin.vue';
 import ItemIcon from '@/components/atoms/icons/ItemIcon.vue';
+import ChampionIcon from '@/components/atoms/icons/ChampionIcon.vue';
+import ChampionSynergy from '@/components/molecules/ChampionSynergy.vue';
+import iconUrls from '@/logic/iconUrls.js';
+
 
   export default {
     name: 'ChampionPage',
 
     components: {
       HeadingUnderlined,
-      ItemIcon
+      ItemIcon,
+      ChampionIcon,
+      ChampionStats,
+      ChampionAbility,
+      ChampionOrigin,
+      ChampionSynergy
     },
+
+    mixins: [iconUrls],
 
     computed: {
       ...mapState({
         champions: state => state.apiData.champions,
-        items: state => state.apiData.items
+        items: state => state.apiData.items,
+        origins: state => state.apiData.origins,
+        classes: state => state.apiData.classes,
       }),
       champion() {
         return this.champions[this.$route.params.champion];
       },
-      championUrl() {
-        return this.champion ? `https://rerollcdn.com/characters/${this.champion.key}.png` : ''
+      
+    //   originUrl() {
+    //   return this.origin ? `https://rerollcdn.com/icons/${this.origin.key}.png` : ''
+    // },
+    // originAlt() {
+    //   return this.origin ? `${this.origin.key} splash art` : ''
+    // },
+      
+    },
+    methods: {
+      originSrc(origin) {
+        return `https://rerollcdn.com/icons/${origin.toLowerCase()}.png`
       },
+      
+    },
+
+    created () {
+      let arg = 'Demon'
+      let champions = {...this.champions}
+      for(let champion in champions){
+        if (!champions[champion].origin.includes(arg)) {
+          delete champions[champion]
+        }
+      }
+        console.log(champions)
     },
   }
 </script>
@@ -82,18 +185,49 @@ import ItemIcon from '@/components/atoms/icons/ItemIcon.vue';
       margin: 0 auto 4rem auto;
     }
 
+    .heading-underlined__text{
+      font-size: 2.1rem;
+      padding-bottom: 2rem;
+    }
+
     &__item-wrapper{
       display: flex;
-      padding: 2rem 0;
+      padding: 2rem 0 1.5rem 0;
 
       .item-icon{
         margin: 0 1rem;
+        height: 4rem;
+        width: 4rem;
       }
     }
 
-    .heading-underlined__text{
-      font-size: 2.1rem;
-      padding-bottom: 1.5rem;
+    &__main{
+      width: calc(100% - 30rem);
+      padding: 0 0 0 3rem;
+      border-left: 1px solid $border-color;
+    }
+
+    &__synergies{
+      list-style-type: none;
+      padding-top: 3rem;
+    }
+
+    &__synergy{
+      display: flex;
+      align-items: center;
+      margin-bottom: 3rem;
+
+      &-icon{
+        height: 3.2rem;
+        width: 3rem;
+        margin-right: 2rem;
+      }
+
+      .champion-icon{
+        margin: 0 1.5rem;
+        height: 5rem;
+        width: 5rem;
+      }
     }
   }
 </style>
