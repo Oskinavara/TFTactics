@@ -17,7 +17,7 @@
             v-for="champion in filteredChampions(Object.keys(champions))"
             :key="champion.key"
           >
-            <champion-icon :champion="champions[champion]" v-size="55" />
+            <champion-icon :champion="champions[champion]"/>
             <p class="champions-page__champion-name">{{champions[champion].name}}</p>
           </div>
         </div>
@@ -70,6 +70,11 @@ export default {
     position: relative;
     &:hover .champions-page__champion-name {
       color: $textwhite;
+    }
+
+    .champion-icon {
+      height: 5.5rem;
+      width: 5.5rem;
     }
   }
   &__champion-name {
