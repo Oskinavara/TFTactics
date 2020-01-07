@@ -39,17 +39,18 @@
 
 <script>
 import ChampionIcon from '@/components/atoms/icons/ChampionIcon.vue'
-import iconUrls from '@/logic/iconUrls.js';
-
+import iconUrls from '@/logic/iconUrls.js'
 import { mapState } from 'vuex'
 
 export default {
+  name: 'ChampionTooltip',
+
   components: {
     ChampionIcon
   },
 
   mixins: [iconUrls],
-  
+
   props: {
     champion: {
       type: Object,

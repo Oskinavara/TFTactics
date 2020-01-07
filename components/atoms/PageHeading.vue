@@ -1,9 +1,9 @@
-<template>
+<template functional>
   <div class="page-heading">
     <h2 class="page-heading__heading">
-      <slot/>
+      <slot />
     </h2>
-    <slot name="content"/>
+    <slot name="content" />
   </div>
 </template>
 
@@ -12,7 +12,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  
+
   &__heading {
     color: $textwhite;
     font-size: 2.1rem;

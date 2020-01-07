@@ -2,7 +2,7 @@
   <div class="champions-page page">
     <div class="champions-page__inner inner">
       <div class="champions-page__sidebar sidebar">
-        <champion-filters/>
+        <champion-filters />
       </div>
       <div class="champions-page__wrapper">
         <page-heading>
@@ -11,14 +11,14 @@
             <search-bar />
           </template>
         </page-heading>
-          <filter-tags/>
+        <filter-tags />
         <div class="champions-page__champion-grid">
           <div
             class="champions-page__champion-block"
             v-for="champion in filteredChampions(Object.keys(champions))"
             :key="champion.key"
           >
-            <champion-icon :champion="champions[champion]"/>
+            <champion-icon :champion="champions[champion]" />
             <p class="champions-page__champion-name">{{champions[champion].name}}</p>
           </div>
         </div>
@@ -35,9 +35,11 @@ import ChampionFilters from '@/components/organisms/ChampionFilters.vue'
 import searchLogic from '@/logic/searchLogic.js'
 import filterChampions from '@/logic/filterChampions.js'
 import FilterTags from '@/components/molecules/FilterTags.vue'
-
 import { mapState } from 'vuex'
+
 export default {
+  name: 'ChampionsPage',
+
   components: {
     PageHeading,
     SearchBar,
@@ -45,13 +47,15 @@ export default {
     ChampionFilters,
     FilterTags
   },
+
   computed: {
     ...mapState({
       champions: state => state.apiData.champions,
       filters: state => state.filters
-    }),
+    })
   },
-  mixins: [searchLogic, filterChampions],
+
+  mixins: [searchLogic, filterChampions]
 }
 </script>
 

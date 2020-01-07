@@ -60,6 +60,7 @@ export default {
     padding: 0 2rem;
     font-weight: 600;
     @include hover-lighten;
+
     &::after {
       content: '';
       position: absolute;
@@ -95,6 +96,7 @@ export default {
     @include hover-lighten;
   }
 }
+
 .active-link {
   color: $textwhite;
   &::after {

@@ -6,13 +6,13 @@ export default {
   },
   methods: {
     updateValue(newValue) {
-      this.inputValue = newValue;
+      this.inputValue = newValue
     }
   },
   mounted() {
-    this.$bus.$on('value-changed', this.updateValue);
+    this.$bus.$on('value-changed', this.updateValue)
   },
   beforeDestroy() {
-    this.$bus.$off('value-changed');
+    this.$bus.$off('value-changed')
   }
 }

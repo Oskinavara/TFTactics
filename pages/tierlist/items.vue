@@ -1,16 +1,10 @@
 <template>
   <tierlist-template :tiers="tiers" v-if="tierlist.items">
-    <template #title>
-      Teamfight Tactics Item Tier List
-    </template>
-    <tier-block 
-      v-for="(tier, index) in tiers" 
-      :key="index" 
-      :tier="tier"
-    >
-      <item-icon 
+    <template #title>Teamfight Tactics Item Tier List</template>
+    <tier-block v-for="(tier, index) in tiers" :key="index" :tier="tier">
+      <item-icon
         v-for="item in filterDataBySearch(tierlist.items[index])"
-        :key="item" 
+        :key="item"
         :item="items[item]"
       />
     </tier-block>
@@ -23,26 +17,30 @@ import TierBlock from '@/components/molecules/pages/TierBlock.vue'
 import ItemIcon from '@/components/atoms/icons/ItemIcon.vue'
 import searchLogic from '@/logic/searchLogic.js'
 import filterChampions from '@/logic/filterChampions.js'
-
 import { mapState } from 'vuex'
 
 export default {
+  name: 'TierlistItems',
+
   data() {
     return {
       tiers: ['s', 'a', 'b', 'c', 'd', '?']
     }
   },
+
   components: {
     TierlistTemplate,
     TierBlock,
-    ItemIcon,
+    ItemIcon
   },
+
   computed: {
     ...mapState({
       items: state => state.apiData.items,
       tierlist: state => state.apiData.tierlist
-    })  
+    })
   },
-  mixins: [searchLogic, filterChampions],
+
+  mixins: [searchLogic, filterChampions]
 }
 </script>

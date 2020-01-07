@@ -13,9 +13,11 @@
 
 <script>
 import ItemTooltip from '@/components/atoms/tooltips/ItemTooltip.vue'
-import iconUrls from '@/logic/iconUrls.js';
+import iconUrls from '@/logic/iconUrls.js'
 
 export default {
+  name: 'ItemIcon',
+
   props: {
     item: {
       type: Object,
@@ -39,7 +41,7 @@ export default {
     toggleHover() {
       this.hover = !this.hover
     }
-  },
+  }
 }
 </script>
 

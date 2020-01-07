@@ -2,9 +2,7 @@
   <div class="database-page page">
     <div class="database-page__inner inner">
       <div class="database-page__sidebar sidebar">
-        <page-heading>
-          Lists
-        </page-heading>
+        <page-heading>Lists</page-heading>
         <divider />
         <tierlist-side-navbar />
         <slot name="championFilters"></slot>
@@ -13,14 +11,14 @@
       </div>
       <div class="database-page__main">
         <page-heading>
-          <slot name="title"/>
+          <slot name="title" />
           <template #content>
             <search-bar />
           </template>
         </page-heading>
         <divider></divider>
         <div class="database-page__tierlist">
-          <slot/>
+          <slot />
         </div>
       </div>
     </div>
@@ -28,11 +26,8 @@
 </template>
 
 <script>
-  export default {
-    
-  }
+export default {}
 </script>
 
 <style lang="scss" scoped>
-
 </style>

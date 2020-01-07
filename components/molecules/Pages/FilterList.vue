@@ -116,7 +116,7 @@ export default {
       &__wrapper::before {
         transform: scaleX(1);
       }
-      
+
       &__title {
         transform: translateX(2rem);
       }

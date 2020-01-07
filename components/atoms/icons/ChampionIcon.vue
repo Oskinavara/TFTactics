@@ -15,8 +15,11 @@
 
 <script>
 import ChampionTooltip from '@/components/atoms/tooltips/ChampionTooltip.vue'
-import iconUrls from '@/logic/iconUrls.js';
+import iconUrls from '@/logic/iconUrls.js'
+
 export default {
+  name: 'ChampionIcon',
+
   components: {
     ChampionTooltip
   },
@@ -44,13 +47,13 @@ export default {
 
   computed: {
     showTooltip() {
-      if(this.hover){
+      if (this.hover) {
         setTimeout(() => {
           return true
-        }, 300);
+        }, 300)
       }
     },
-    
+
     borderColor() {
       switch (this.champion.cost) {
         case 1:

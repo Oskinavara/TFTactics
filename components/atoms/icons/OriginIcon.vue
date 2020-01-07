@@ -1,12 +1,8 @@
 <template>
   <div class="origin-icon">
-    <img     
-      :src="originUrl"
-      :alt="originAlt"
-      class="origin-icon__image"
-    />
+    <img :src="originUrl" :alt="originAlt" class="origin-icon__image" />
     <p class="origin-icon__text">{{origin ? origin.name : ''}}</p>
-    <origin-tooltip :origin="origin"/>
+    <origin-tooltip :origin="origin" />
   </div>
 </template>
 
@@ -15,27 +11,20 @@ import OriginTooltip from '@/components/atoms/tooltips/OriginTooltip.vue'
 import iconUrls from '@/logic/iconUrls.js'
 
 export default {
+  name: 'OriginIcon',
+
   components: {
-    OriginTooltip,
+    OriginTooltip
   },
 
   mixins: [iconUrls],
-  
+
   props: {
     origin: {
       type: Object,
       required: true
     }
-  },
-
-  // computed: {
-  //   originUrl() {
-  //     return this.origin ? `https://rerollcdn.com/icons/${this.origin.key}.png` : ''
-  //   },
-  //   originAlt() {
-  //     return this.origin ? `${this.origin.key} splash art` : ''
-  //   }
-  // }
+  }
 }
 </script>
 
@@ -55,15 +44,15 @@ export default {
     left: 50%;
     transform: translateX(-50%);
   }
-  
+
   &__text {
     text-align: center;
     font-size: 1.4rem;
     color: $textgray;
   }
 
-  &:hover{
-    .origin-tooltip{
+  &:hover {
+    .origin-tooltip {
       display: block;
     }
   }

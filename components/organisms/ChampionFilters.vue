@@ -23,6 +23,8 @@ import FilterList from '@/components/molecules/pages/FilterList.vue'
 import { mapState, mapGetters } from 'vuex'
 
 export default {
+  name: 'ChampionsFilters',
+
   components: {
     BaseButton,
     FilterList,
@@ -30,12 +32,8 @@ export default {
     Divider
   },
   computed: {
-    ...mapGetters([
-      'costArray', 
-      'originArray', 
-      'classArray'
-    ])
-  },
+    ...mapGetters(['costArray', 'originArray', 'classArray'])
+  }
 }
 </script>
 

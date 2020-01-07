@@ -1,5 +1,5 @@
 import Vuex from 'vuex'
-import VuexPersistence from 'vuex-persist';
+import VuexPersistence from 'vuex-persist'
 
 const createStore = () => {
   return new Vuex.Store({
@@ -17,7 +17,7 @@ const createStore = () => {
         class: []
       }
     },
-    
+
     mutations: {
       fetchData(state, { category, data }) {
         state.apiData[category] = data
@@ -27,14 +27,16 @@ const createStore = () => {
           cost: [],
           origin: [],
           class: []
-        };
+        }
       },
-      toggleFilter(state, {filter, getters}) {
-        for(let category in state.filters){          
-          if(getters[`${category}Array`].includes(filter)){
-            state.filters[category].includes(filter) ?
-            state.filters[category] = state.filters[category].filter(x => x !== filter) :
-            state.filters[category].push(filter);
+      toggleFilter(state, { filter, getters }) {
+        for (let category in state.filters) {
+          if (getters[`${category}Array`].includes(filter)) {
+            state.filters[category].includes(filter)
+              ? (state.filters[category] = state.filters[category].filter(
+                  x => x !== filter
+                ))
+              : state.filters[category].push(filter)
           }
         }
       }
@@ -42,14 +44,16 @@ const createStore = () => {
 
     actions: {
       async fetchData({ commit }, category) {
-        const data = await this.$axios.$get(`https://tft-nuxt-db.firebaseio.com/${category}.json`)
+        const data = await this.$axios.$get(
+          `https://tft-nuxt-db.firebaseio.com/${category}.json`
+        )
         commit('fetchData', { data, category })
       },
-      initFilters({commit}) {
-        commit('initFilters');
+      initFilters({ commit }) {
+        commit('initFilters')
       },
-      toggleFilter({commit, getters}, filter) {
-        commit('toggleFilter', {filter, getters})
+      toggleFilter({ commit, getters }, filter) {
+        commit('toggleFilter', { filter, getters })
       }
     },
 

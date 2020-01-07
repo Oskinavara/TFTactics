@@ -1,4 +1,4 @@
-<template>
+<template functional>
   <div class="side-navbar">
     <div class="side-navbar__navbar">
       <nuxt-link to="/tierlist/champions" class="side-navbar__nav-link">Champions</nuxt-link>

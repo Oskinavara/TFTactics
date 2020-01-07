@@ -8,11 +8,13 @@
 
 <script>
 export default {
+  name: 'BaseButton',
+
   methods: {
     clearFilters() {
-      this.$store.dispatch('initFilters');
+      this.$store.dispatch('initFilters')
     }
-  },
+  }
 }
 </script>
 
@@ -29,6 +31,7 @@ export default {
     border: 1px solid $border-color;
     transition: all 0.3s;
     cursor: pointer;
+
     &:hover {
       border-color: $orange-accent;
     }

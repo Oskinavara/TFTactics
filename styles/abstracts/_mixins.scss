@@ -1,5 +1,6 @@
 @mixin hover-lighten {
   transition: all 0.3s;
+
   &:hover,
   &:active {
     color: $white;
@@ -8,6 +9,7 @@
 
 @mixin blue-rect {
   position: relative;
+
   &::before {
     content: '';
     position: absolute;
@@ -20,4 +22,3 @@
     bottom: 0;
   }
 }
-

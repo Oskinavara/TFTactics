@@ -1,31 +1,27 @@
 <template>
   <div class="origin-tooltip">
     <div class="origin-tooltip__heading">
-      <img :src="originUrl" :alt="originAlt" class="origin-tooltip__icon">
+      <img :src="originUrl" :alt="originAlt" class="origin-tooltip__icon" />
       {{origin ? origin.name : ''}}
     </div>
     <div class="origin-tooltip__content">
-    <p class="origin-tooltip__description" v-if="origin.description">{{origin.description}}</p>
-      <div 
-        v-for="bonus in origin.bonuses" 
-        :key="bonus.needed"
-        class="origin-tooltip__bonus" 
-      >
+      <p class="origin-tooltip__description" v-if="origin.description">{{origin.description}}</p>
+      <div v-for="bonus in origin.bonuses" :key="bonus.needed" class="origin-tooltip__bonus">
         <div class="origin-tooltip__bonus-number">{{bonus.needed}}</div>
         <p class="origin-tooltip__bonus-description">{{bonus.effect}}</p>
       </div>
     </div>
     <div class="origin-tooltip__champions">
       Champions:
-      <champion-icon 
-        v-for="champion in originChampions" 
-        :key="champion.name" 
+      <champion-icon
+        v-for="champion in originChampions"
+        :key="champion.name"
         :champion="champion"
         class="origin-tooltip__champion"
       />
-      <champion-icon 
-        v-for="champion in classChampions" 
-        :key="champion.name" 
+      <champion-icon
+        v-for="champion in classChampions"
+        :key="champion.name"
         :champion="champion"
         class="origin-tooltip__champion"
       />
@@ -34,52 +30,54 @@
 </template>
 
 <script>
-  import ChampionIcon from '@/components/atoms/icons/ChampionIcon.vue';
-  import iconUrls from '@/logic/iconUrls.js'
+import ChampionIcon from '@/components/atoms/icons/ChampionIcon.vue'
+import iconUrls from '@/logic/iconUrls.js'
+import { mapState } from 'vuex'
 
-  import { mapState } from 'vuex';
-  export default {
-    props: {
-      origin: {
-        type: Object,
-        required: true
-      },
-    },
+export default {
+  name: 'OriginTooltip',
 
-    mixins: [iconUrls],
+  props: {
+    origin: {
+      type: Object,
+      required: true
+    }
+  },
 
-    components: {
-      ChampionIcon,
-    },
+  mixins: [iconUrls],
 
-    computed: {
-      ...mapState({
-        champions: state => state.apiData.champions
-      }),
-      originChampions() {
-        let champions = {...this.champions};
-        for(let champion in champions){
-          if(!champions[champion].origin.includes(this.origin.name)){
-            delete champions[champion]
-          }
-        };
-        return champions
-      },
-      classChampions() {
-        let champions = {...this.champions};
-        for(let champion in champions){
-          if(!champions[champion].class.includes(this.origin.name)){
-            delete champions[champion]
-          }
-        };
-        return champions
+  components: {
+    ChampionIcon
+  },
+
+  computed: {
+    ...mapState({
+      champions: state => state.apiData.champions
+    }),
+    originChampions() {
+      let champions = { ...this.champions }
+      for (let champion in champions) {
+        if (!champions[champion].origin.includes(this.origin.name)) {
+          delete champions[champion]
+        }
       }
+      return champions
     },
+    classChampions() {
+      let champions = { ...this.champions }
+      for (let champion in champions) {
+        if (!champions[champion].class.includes(this.origin.name)) {
+          delete champions[champion]
+        }
+      }
+      return champions
+    }
   }
+}
 </script>
 
 <style lang="scss" scoped>
-.origin-tooltip{
+.origin-tooltip {
   z-index: 10000;
   position: absolute;
   display: none;
@@ -89,11 +87,11 @@
   width: max-content;
   max-width: 500px;
 
-  &:hover{
+  &:hover {
     display: none !important;
   }
 
-  &__heading{
+  &__heading {
     display: flex;
     align-items: center;
     color: $white;
@@ -104,7 +102,7 @@
     border-bottom: 1px solid $border-color;
   }
 
-  &__icon{
+  &__icon {
     height: 2.5rem;
     min-height: 2.5rem;
     width: 2.5rem;
@@ -112,22 +110,22 @@
     margin-right: 0.5rem;
   }
 
-  &__content{
+  &__content {
     border-bottom: 1px solid $border-color;
     padding: 0.5rem 0;
     background: $dark-gray;
   }
 
-  &__description{
+  &__description {
     color: $textwhite;
     padding: 1rem 1rem;
   }
 
-  &__bonus{
+  &__bonus {
     display: flex;
     padding: 0.5rem 1rem;
 
-    &-number{
+    &-number {
       border: 1px solid $border-color;
       border-radius: 50%;
       height: 2.5rem;
@@ -141,29 +139,27 @@
       margin-right: 1rem;
     }
 
-    &-description{
+    &-description {
       line-height: 2.5rem;
       color: $textwhite;
     }
   }
 
-  &__champions{
+  &__champions {
     color: $textgray;
     display: flex;
     justify-content: flex-start;
     padding: 1rem;
     background: $gray;
-    
   }
 
-  &__champion{
+  &__champion {
     width: 2.5rem;
     height: 2.5rem;
     margin: 0 0.25rem;
-    &:first-of-type{
+    &:first-of-type {
       margin-left: 1rem;
     }
   }
-
 }
 </style>

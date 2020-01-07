@@ -32,9 +32,11 @@
 
 <script>
 import { mapState } from 'vuex'
-import iconUrls from '@/logic/iconUrls.js';
+import iconUrls from '@/logic/iconUrls.js'
 
 export default {
+  name: 'ItemTooltip',
+
   props: {
     item: {
       type: Object,
@@ -43,7 +45,7 @@ export default {
   },
 
   mixins: [iconUrls],
-  
+
   computed: {
     ...mapState({
       items: state => state.apiData.items
@@ -60,13 +62,7 @@ export default {
 
   methods: {
     itemUrlRecipe(item) {
-      let itemCapitalized = this.items[item].name
-        .split('.')
-        .join('')
-        .split("'")
-        .join('')
-        .split(' ')
-        .join('')
+      let itemCapitalized = this.items[item].name.replace(/([. '])+/g, '')
       return `https://rerollcdn.com/items/${itemCapitalized}.png`
     },
     statUrl(stat) {
@@ -150,7 +146,7 @@ export default {
     font-size: 1.4rem;
     background: $gray;
   }
-  
+
   &__recipe-icon {
     height: 2.5rem;
     width: 2.5rem;

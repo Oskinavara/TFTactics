@@ -2,9 +2,7 @@
   <div class="tierlist-page page">
     <div class="tierlist-page__inner inner">
       <div class="tierlist-page__sidebar sidebar">
-        <page-heading>
-          Lists
-        </page-heading>
+        <page-heading>Lists</page-heading>
         <divider />
         <side-navbar />
         <divider />
@@ -22,6 +20,8 @@ import PageHeading from '@/components/atoms/PageHeading.vue'
 import Disclaimer from '@/components/atoms/Disclaimer.vue'
 
 export default {
+  name: 'TierlistTeamComps',
+
   components: {
     ChampionFilters,
     SideNavbar,

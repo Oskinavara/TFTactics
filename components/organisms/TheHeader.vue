@@ -12,6 +12,8 @@
 <script>
 import NavBar from '@/components/molecules/Header/NavBar.vue'
 export default {
+  name: 'Header',
+
   components: {
     NavBar
   }
@@ -32,7 +34,7 @@ export default {
     max-width: 1200px;
     margin: auto;
   }
-  
+
   &__logo {
     height: 2.6rem;
   }

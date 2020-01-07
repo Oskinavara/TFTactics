@@ -2,9 +2,7 @@
   <div class="tierlist-page page">
     <div class="tierlist-page__inner inner">
       <div class="tierlist-page__sidebar sidebar">
-        <page-heading>
-          Lists
-        </page-heading>
+        <page-heading>Lists</page-heading>
         <divider />
         <side-navbar />
         <slot name="championFilters"></slot>
@@ -13,14 +11,14 @@
       </div>
       <div class="tierlist-page__main">
         <page-heading>
-          <slot name="title"/>
+          <slot name="title" />
           <template #content>
             <search-bar />
           </template>
         </page-heading>
         <divider></divider>
         <div class="tierlist-page__tierlist">
-          <slot/>
+          <slot />
         </div>
       </div>
     </div>
@@ -38,13 +36,17 @@ import PageHeading from '@/components/atoms/PageHeading.vue'
 import Disclaimer from '@/components/atoms/Disclaimer.vue'
 import TierlistTemplate from '@/components/templates/TierlistTemplate.vue'
 import { mapState } from 'vuex'
+
 export default {
+  name: 'TierlistTemplate',
+
   props: {
     tiers: {
       type: Array,
       required: true
-    },
+    }
   },
+
   components: {
     ChampionFilters,
     SideNavbar,
@@ -53,8 +55,8 @@ export default {
     Disclaimer,
     TierBlock,
     OriginIcon,
-    SearchBar,
-  },
+    SearchBar
+  }
 }
 </script>
 
