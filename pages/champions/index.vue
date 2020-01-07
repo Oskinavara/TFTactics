@@ -81,6 +81,7 @@ export default {
     .champion-icon {
       height: 5.5rem;
       width: 5.5rem;
+      margin: auto;
     }
   }
   &__champion-name {

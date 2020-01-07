@@ -83,7 +83,6 @@ export default {
 .champion-icon {
   height: 4.5rem;
   width: 4.5rem;
-  margin: auto;
   cursor: pointer;
   position: relative;
 

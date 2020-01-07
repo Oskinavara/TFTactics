@@ -4,7 +4,7 @@
       <div class="tierlist-page__sidebar sidebar">
         <page-heading>Lists</page-heading>
         <divider />
-        <side-navbar />
+        <side-navbar :routes="routes" />
         <slot name="championFilters"></slot>
         <divider />
         <disclaimer />
@@ -34,11 +34,16 @@ import SearchBar from '@/components/atoms/SearchBar.vue'
 import OriginIcon from '@/components/atoms/icons/OriginIcon.vue'
 import PageHeading from '@/components/atoms/PageHeading.vue'
 import Disclaimer from '@/components/atoms/Disclaimer.vue'
-import TierlistTemplate from '@/components/templates/TierlistTemplate.vue'
 import { mapState } from 'vuex'
 
 export default {
   name: 'TierlistTemplate',
+
+  data() {
+    return {
+      routes: ['Champions', 'Team Comps', 'Origins', 'Classes', 'Items']
+    }
+  },
 
   props: {
     tiers: {

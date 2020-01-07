@@ -40,7 +40,15 @@ export default {
         width: `${this.columns[index].width}rem`,
         flex: `${this.columns[index].width} 0 auto`,
         display: 'flex',
-        justifyContent: this.columns[index].position
+        justifyContent: this.columns[index].direction
+          ? 'center'
+          : this.columns[index].position,
+        flexDirection: this.columns[index].direction
+          ? this.columns[index].direction
+          : '',
+        alignItems: this.columns[index].direction
+          ? this.columns[index].position
+          : ''
       }
     }
   }
@@ -56,6 +64,13 @@ table {
 
   thead {
     border: 1px solid $border-color;
+    border-bottom: 0 !important;
+  }
+
+  tbody {
+    tr:nth-of-type(odd) {
+      background: $dark-gray;
+    }
   }
 
   tr {
@@ -69,11 +84,18 @@ table {
     padding: 1rem;
     display: flex;
     align-items: center;
+
+    &:first-of-type {
+      padding-left: 2rem;
+    }
+
     &:not(:last-of-type) {
       text-align: left;
     }
+
     &:last-of-type {
       text-align: center;
+      padding-right: 2rem;
     }
   }
 

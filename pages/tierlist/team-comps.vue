@@ -1,5 +1,5 @@
 <template>
-  <div class="tierlist-page page">
+  <!-- <div class="tierlist-page page">
     <div class="tierlist-page__inner inner">
       <div class="tierlist-page__sidebar sidebar">
         <page-heading>Lists</page-heading>
@@ -9,7 +9,7 @@
         <disclaimer />
       </div>
     </div>
-  </div>
+  </div>-->
 </template>
 
 <script>

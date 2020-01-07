@@ -52,7 +52,24 @@ export default {
 
   data() {
     return {
-      selectedItem: null
+      selectedItem: null,
+      columns: [
+        {
+          name: 'Recipe',
+          width: 6,
+          position: 'flex-start'
+        },
+        {
+          name: 'Combines Into',
+          width: 22,
+          position: 'flex-start'
+        },
+        {
+          name: 'Tier',
+          width: 4,
+          position: 'center'
+        }
+      ]
     }
   },
 
@@ -102,25 +119,6 @@ export default {
         }
       }
       return items
-    },
-    columns() {
-      return [
-        {
-          name: 'Recipe',
-          width: 6,
-          position: 'flex-start'
-        },
-        {
-          name: 'Combines Into',
-          width: 22,
-          position: 'flex-start'
-        },
-        {
-          name: 'Tier',
-          width: 4,
-          position: 'center'
-        }
-      ]
     },
     itemListings() {
       return [
