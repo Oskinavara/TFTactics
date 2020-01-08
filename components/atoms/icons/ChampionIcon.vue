@@ -6,7 +6,7 @@
         @mouseleave="toggleHover"
         :src="championUrl"
         :alt="championAlt"
-        :class="['champion-icon__image', borderColor,  {'border-active': hover}]"
+        :class="['champion-icon__image', borderColor]"
       />
     </nuxt-link>
     <champion-tooltip v-show="hover" :champion="champion" />
@@ -15,13 +15,15 @@
 
 <script>
 import ChampionTooltip from '@/components/atoms/tooltips/ChampionTooltip.vue'
-import iconUrls from '@/logic/iconUrls.js';
+import iconUrls from '@/logic/iconUrls.js'
+import showTooltip from '@/logic/showTooltip.js'
+
 export default {
   components: {
     ChampionTooltip
   },
 
-  mixins: [iconUrls],
+  mixins: [iconUrls, showTooltip],
 
   props: {
     champion: {
@@ -30,27 +32,7 @@ export default {
     }
   },
 
-  data() {
-    return {
-      hover: false
-    }
-  },
-
-  methods: {
-    toggleHover() {
-      this.hover = !this.hover
-    }
-  },
-
   computed: {
-    showTooltip() {
-      if(this.hover){
-        setTimeout(() => {
-          return true
-        }, 300);
-      }
-    },
-    
     borderColor() {
       switch (this.champion.cost) {
         case 1:
@@ -89,12 +71,16 @@ export default {
     width: 100%;
     transition: all 0.3s;
     border: 1px solid;
+
+    &:hover {
+      border: 1px solid $orange-accent;
+    }
   }
 }
 
-.border-active {
-  border: 1px solid $orange-accent !important;
-}
+// .border-active {
+//   border: 1px solid $orange-accent !important;
+// }
 
 .border-common {
   border-color: $common;
