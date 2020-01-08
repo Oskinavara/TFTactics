@@ -80,7 +80,6 @@ export default {
 .origin-tooltip {
   z-index: 10000;
   position: absolute;
-  display: none;
   left: 50%;
   transform: translate(-50%, 0);
   border: 1px solid $border-color;

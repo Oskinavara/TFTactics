@@ -1,14 +1,27 @@
 <template>
   <div class="origin-icon">
+<<<<<<< HEAD
     <img :src="originUrl" :alt="originAlt" class="origin-icon__image" />
     <p class="origin-icon__text">{{origin ? origin.name : ''}}</p>
     <origin-tooltip :origin="origin" />
+=======
+    <img
+      @mouseover="toggleHover"
+      @mouseleave="toggleHover"
+      :src="originUrl"
+      :alt="originAlt"
+      class="origin-icon__image"
+    />
+    <p class="origin-icon__text">{{origin ? origin.name : ''}}</p>
+    <origin-tooltip v-show="hover" :origin="origin" />
+>>>>>>> master
   </div>
 </template>
 
 <script>
 import OriginTooltip from '@/components/atoms/tooltips/OriginTooltip.vue'
 import iconUrls from '@/logic/iconUrls.js'
+import showTooltip from '@/logic/showTooltip.js'
 
 export default {
   name: 'OriginIcon',
@@ -17,7 +30,11 @@ export default {
     OriginTooltip
   },
 
+<<<<<<< HEAD
   mixins: [iconUrls],
+=======
+  mixins: [iconUrls, showTooltip],
+>>>>>>> master
 
   props: {
     origin: {
@@ -43,6 +60,7 @@ export default {
     position: relative;
     left: 50%;
     transform: translateX(-50%);
+    border: 1px solid transparent;
   }
 
   &__text {
@@ -50,11 +68,14 @@ export default {
     font-size: 1.4rem;
     color: $textgray;
   }
+<<<<<<< HEAD
 
   &:hover {
     .origin-tooltip {
       display: block;
     }
   }
+=======
+>>>>>>> master
 }
 </style>

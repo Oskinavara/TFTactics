@@ -61,6 +61,32 @@ table {
   border-collapse: collapse;
   border-left: 1px solid $border-color;
   border-right: 1px solid $border-color;
+<<<<<<< HEAD
+=======
+
+  thead {
+    border: 1px solid $border-color;
+    border-bottom: 0 !important;
+  }
+
+  tbody {
+    tr {
+      &:nth-of-type(odd) {
+        background: $dark-gray;
+      }
+
+      &:hover {
+        background: $dark-blue;
+      }
+    }
+  }
+
+  tr {
+    width: 100%;
+    border-collapse: collapse;
+    border-left: 1px solid $border-color;
+    border-right: 1px solid $border-color;
+>>>>>>> master
 
   thead {
     border: 1px solid $border-color;
