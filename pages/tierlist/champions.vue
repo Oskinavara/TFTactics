@@ -1,9 +1,5 @@
 <template>
-  <tierlist-template :tiers="tiers" v-if="tierlist.champions">
-    <template #title>Teamfight Tactics Champion Tier List</template>
-    <template #championFilters>
-      <champion-filters />
-    </template>
+  <div>
     <filter-tags />
     <tier-block v-for="(tier, index) in tiers" :key="index" :tier="tier">
       <champion-icon
@@ -12,7 +8,7 @@
         :champion="champions[champion]"
       />
     </tier-block>
-  </tierlist-template>
+  </div>
 </template>
 
 <script>
@@ -27,6 +23,8 @@ import { mapState } from 'vuex'
 
 export default {
   name: 'TierlistChampions',
+
+  layout: 'tierlist',
 
   data() {
     return {

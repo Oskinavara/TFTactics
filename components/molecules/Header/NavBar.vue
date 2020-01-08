@@ -2,7 +2,10 @@
   <div class="nav-bar">
     <nuxt-link to="/champions" class="nav-bar__nav-link">Champions</nuxt-link>
     <div class="nav-bar__wrapper">
-      <nuxt-link to="/tierlist" class="nav-bar__nav-link">Tier Lists</nuxt-link>
+      <nuxt-link
+        :to="{path: '/tierlist', name: 'tierlist', params: {heading: 'Champions'}}"
+        class="nav-bar__nav-link"
+      >Tier Lists</nuxt-link>
       <div class="nav-bar__sub-menu">
         <nuxt-link to="/tierlist/champions" class="nav-bar__sub-link">Champions</nuxt-link>
         <nuxt-link to="/tierlist/team-comps" class="nav-bar__sub-link">Team Comps</nuxt-link>

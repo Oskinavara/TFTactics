@@ -1,6 +1,5 @@
 <template>
-  <tierlist-template :tiers="tiers" v-if="tierlist.origins">
-    <template #title>Teamfight Tactics Origin Tier List</template>
+  <div>
     <tier-block v-for="(tier, index) in tiers" :key="index" :tier="tier">
       <origin-icon
         v-for="origin in filterDataBySearch(tierlist.origins[index])"
@@ -8,7 +7,7 @@
         :origin="origins[origin]"
       />
     </tier-block>
-  </tierlist-template>
+  </div>
 </template>
 
 <script>
@@ -21,6 +20,8 @@ import { mapState } from 'vuex'
 
 export default {
   name: 'TierlistOrigins',
+
+  layout: 'tierlist',
 
   data() {
     return {

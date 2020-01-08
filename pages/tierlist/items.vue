@@ -1,6 +1,5 @@
 <template>
-  <tierlist-template :tiers="tiers" v-if="tierlist.items">
-    <template #title>Teamfight Tactics Item Tier List</template>
+  <div>
     <tier-block v-for="(tier, index) in tiers" :key="index" :tier="tier">
       <item-icon
         v-for="item in filterDataBySearch(tierlist.items[index])"
@@ -8,7 +7,7 @@
         :item="items[item]"
       />
     </tier-block>
-  </tierlist-template>
+  </div>
 </template>
 
 <script>
@@ -21,6 +20,8 @@ import { mapState } from 'vuex'
 
 export default {
   name: 'TierlistItems',
+
+  layout: 'tierlist',
 
   data() {
     return {

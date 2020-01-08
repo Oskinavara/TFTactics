@@ -1,15 +1,5 @@
 <template>
-  <!-- <div class="tierlist-page page">
-    <div class="tierlist-page__inner inner">
-      <div class="tierlist-page__sidebar sidebar">
-        <page-heading>Lists</page-heading>
-        <divider />
-        <side-navbar />
-        <divider />
-        <disclaimer />
-      </div>
-    </div>
-  </div>-->
+  <div />
 </template>
 
 <script>
@@ -21,6 +11,8 @@ import Disclaimer from '@/components/atoms/Disclaimer.vue'
 
 export default {
   name: 'TierlistTeamComps',
+
+  layout: 'tierlist',
 
   components: {
     ChampionFilters,
