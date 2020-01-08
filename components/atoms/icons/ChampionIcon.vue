@@ -79,10 +79,6 @@ export default {
   }
 }
 
-// .border-active {
-//   border: 1px solid $orange-accent !important;
-// }
-
 .border-common {
   border-color: $common;
 }

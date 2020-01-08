@@ -1,10 +1,5 @@
 <template>
   <div class="origin-icon">
-<<<<<<< HEAD
-    <img :src="originUrl" :alt="originAlt" class="origin-icon__image" />
-    <p class="origin-icon__text">{{origin ? origin.name : ''}}</p>
-    <origin-tooltip :origin="origin" />
-=======
     <img
       @mouseover="toggleHover"
       @mouseleave="toggleHover"
@@ -14,7 +9,6 @@
     />
     <p class="origin-icon__text">{{origin ? origin.name : ''}}</p>
     <origin-tooltip v-show="hover" :origin="origin" />
->>>>>>> master
   </div>
 </template>
 
@@ -30,11 +24,7 @@ export default {
     OriginTooltip
   },
 
-<<<<<<< HEAD
-  mixins: [iconUrls],
-=======
   mixins: [iconUrls, showTooltip],
->>>>>>> master
 
   props: {
     origin: {
@@ -68,14 +58,5 @@ export default {
     font-size: 1.4rem;
     color: $textgray;
   }
-<<<<<<< HEAD
-
-  &:hover {
-    .origin-tooltip {
-      display: block;
-    }
-  }
-=======
->>>>>>> master
 }
 </style>

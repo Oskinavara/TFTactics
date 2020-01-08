@@ -14,10 +14,7 @@
 <script>
 import ItemTooltip from '@/components/atoms/tooltips/ItemTooltip.vue'
 import iconUrls from '@/logic/iconUrls.js'
-<<<<<<< HEAD
-=======
 import showTooltip from '@/logic/showTooltip.js'
->>>>>>> master
 
 export default {
   name: 'ItemIcon',
@@ -33,21 +30,6 @@ export default {
 
   components: {
     ItemTooltip
-<<<<<<< HEAD
-  },
-
-  data() {
-    return {
-      hover: false
-    }
-  },
-
-  methods: {
-    toggleHover() {
-      this.hover = !this.hover
-    }
-=======
->>>>>>> master
   }
 }
 </script>
