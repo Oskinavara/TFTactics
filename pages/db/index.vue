@@ -6,7 +6,9 @@
 export default {
   mounted() {
     this.$router.push('/db/champions')
-  }
+  },
+
+  layout: 'database'
 }
 </script>
 

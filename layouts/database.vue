@@ -6,7 +6,7 @@
         <div class="sidebar sidebar">
           <page-heading>Lists</page-heading>
           <divider />
-          <side-navbar :routes="routes" />
+          <side-navbar parentRoute="db" :routes="routes" />
         </div>
         <div class="main">
           <page-heading>
@@ -27,6 +27,7 @@
 <script>
 import TheHeader from '../components/organisms/TheHeader'
 import TheFooter from '../components/organisms/TheFooter'
+import SideNavbar from '../components/organisms/SideNavbar'
 import PageHeading from '@/components/atoms/PageHeading.vue'
 import Divider from '@/components/atoms/Divider.vue'
 import SearchBar from '@/components/atoms/SearchBar.vue'
@@ -37,13 +38,14 @@ export default {
     TheFooter,
     PageHeading,
     Divider,
-    SearchBar
+    SearchBar,
+    SideNavbar
   },
 
   data() {
     return {
       routes: ['Champions', 'Champion Stats', 'Origins', 'Classes', 'Items'],
-      pageHeading: ''
+      pageHeading: 'Champions'
     }
   },
 
@@ -53,5 +55,9 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+.database-description {
+  line-height: 2em;
+  margin: 2rem 0;
+}
 </style>

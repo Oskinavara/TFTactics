@@ -1,50 +1,48 @@
 <template>
   <div class="database-champions">
-    <database-template>
-      <template #title>Teamfight Tactics Champions Synergy List</template>
-      <template
-        #description
-      >Find a list of all the Champions in Teamfight Tactics with their corresponding Origins, Classes, and cost.</template>
-      <custom-table :columns="columns" :tableData="champions">
-        <template v-slot:[columns[0].name]="{row}">
-          <champion-icon :champion="row" />
-          <span>{{row.name}}</span>
-        </template>
-        <template v-slot:[columns[1].name]="{row}">
-          <div
-            :class="['origin-wrapper', {'origin-wrapper--margin': row.origin.length > 1}]"
-            v-for="origin in row.origin"
-            :key="origin"
-          >
-            <img :src="iconSrc(origin)" :alt="`${origin} splash art`" class="origin-icon" />
-            <span>{{origin}}</span>
-          </div>
-        </template>
-        <template v-slot:[columns[2].name]="{row}">
-          <div class="origin-wrapper" v-for="origin in row.class" :key="origin">
-            <img :src="iconSrc(origin)" :alt="`${origin} splash art`" class="origin-icon" />
-            <span>{{origin}}</span>
-          </div>
-        </template>
-        <template v-slot:[columns[3].name]="{row}">
-          <div class="gold-wrapper">
-            <img src="https://rerollcdn.com/ui/icon-gold.svg" alt="gold icon" class="gold-icon" />
-            <span>{{row.cost}}</span>
-          </div>
-        </template>
-      </custom-table>
-    </database-template>
+    <p
+      class="database-description"
+    >Find a list of all the Champions in Teamfight Tactics with their corresponding Origins, Classes, and cost.</p>
+    <custom-table :columns="columns" :tableData="champions">
+      <template v-slot:[columns[0].name]="{row}">
+        <champion-icon :champion="row" />
+        <span>{{row.name}}</span>
+      </template>
+      <template v-slot:[columns[1].name]="{row}">
+        <div
+          :class="['origin-wrapper', {'origin-wrapper--margin': row.origin.length > 1}]"
+          v-for="origin in row.origin"
+          :key="origin"
+        >
+          <img :src="iconSrc(origin)" :alt="`${origin} splash art`" class="origin-icon" />
+          <span>{{origin}}</span>
+        </div>
+      </template>
+      <template v-slot:[columns[2].name]="{row}">
+        <div class="origin-wrapper" v-for="origin in row.class" :key="origin">
+          <img :src="iconSrc(origin)" :alt="`${origin} splash art`" class="origin-icon" />
+          <span>{{origin}}</span>
+        </div>
+      </template>
+      <template v-slot:[columns[3].name]="{row}">
+        <div class="gold-wrapper">
+          <img src="https://rerollcdn.com/ui/icon-gold.svg" alt="gold icon" class="gold-icon" />
+          <span>{{row.cost}}</span>
+        </div>
+      </template>
+    </custom-table>
   </div>
 </template>
 
 <script>
-import DatabaseTemplate from '@/components/templates/DatabaseTemplate.vue'
 import CustomTable from '@/components/organisms/CustomTable.vue'
 import ChampionIcon from '@/components/atoms/icons/ChampionIcon.vue'
 import { mapState } from 'vuex'
 
 export default {
   name: 'DatabaseChampions',
+
+  layout: 'database',
 
   data() {
     return {
@@ -76,7 +74,6 @@ export default {
   },
 
   components: {
-    DatabaseTemplate,
     ChampionIcon,
     CustomTable
   },

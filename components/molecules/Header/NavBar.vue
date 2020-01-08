@@ -17,7 +17,10 @@
     <nuxt-link to="/item-builder" class="nav-bar__nav-link">Item Builder</nuxt-link>
     <nuxt-link to="/team-builder" class="nav-bar__nav-link">Team Builder</nuxt-link>
     <div class="nav-bar__wrapper">
-      <nuxt-link to="/db" class="nav-bar__nav-link">Database</nuxt-link>
+      <nuxt-link
+        :to="{path: '/db', name: 'db', params: {heading: 'Champions'}}"
+        class="nav-bar__nav-link"
+      >Database</nuxt-link>
       <div class="nav-bar__sub-menu">
         <nuxt-link to="/db/champions" class="nav-bar__sub-link">Champions</nuxt-link>
         <nuxt-link to="/db/champion-stats" class="nav-bar__sub-link">Champion Stats</nuxt-link>

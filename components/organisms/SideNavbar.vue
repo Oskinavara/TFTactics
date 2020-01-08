@@ -3,7 +3,7 @@
     <nuxt-link
       v-for="item in routes"
       :key="item"
-      :to="{path: `/tierlist/${route(item)}`, name: `tierlist-${route(item)}`, params: {heading: item}}"
+      :to="{path: `/${parentRoute}/${route(item)}`, name: `${parentRoute}-${route(item)}`, params: {heading: item}}"
       class="side-navbar__link"
     >
       <span>{{item}}</span>
@@ -19,6 +19,10 @@ export default {
     routes: {
       type: Array,
       required: true
+    },
+    parentRoute: {
+      type: String,
+      default: 'tierlist'
     }
   },
 

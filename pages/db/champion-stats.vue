@@ -1,73 +1,71 @@
 <template>
   <div class="database-champion-stats">
-    <database-template>
-      <template #title>Teamfight Tactics Champions Synergy List</template>
-      <template
-        #description
-      >Find a list of all the Champion stats in Teamfight Tactics including health, range, and dps.</template>
-      <div class="database-champion-stats__category-wrapper">
-        <div
-          class="database-champion-stats__category"
-          :class="{'database-champion-stats__category--active' : currentCategory === category}"
-          v-for="category in Object.keys(columns)"
-          @click="currentCategory = category"
-        >{{category}}</div>
-      </div>
-      <custom-table
-        :columns="columns.offense"
-        :tableData="champions"
-        v-if="currentCategory === 'offense'"
-      >
-        <template v-slot:[columns.offense[0].name]="{row}">
-          <router-link :to="`/champions/${row.key}`" class="database-champion-stats__champion-link">
-            <champion-icon :champion="row" />
-            <span>{{row.name}}</span>
-          </router-link>
-        </template>
-        <template v-slot:[columns.offense[1].name]="{row}">
-          <span>{{row.stats.offense.dps}}</span>
-        </template>
-        <template v-slot:[columns.offense[2].name]="{row}">
-          <span>{{row.stats.offense.attackSpeed}}</span>
-        </template>
-        <template v-slot:[columns.offense[3].name]="{row}">
-          <span>{{row.stats.offense.damage}}</span>
-        </template>
-        <template v-slot:[columns.offense[4].name]="{row}">
-          <span>{{row.stats.offense.range}}</span>
-        </template>
-      </custom-table>
-
-      <custom-table :columns="columns.defense" :tableData="champions" v-else>
-        <template v-slot:[columns.defense[0].name]="{row}">
+    <p
+      class="database-description"
+    >Find a list of all the Champion stats in Teamfight Tactics including health, range, and dps.</p>
+    <div class="database-champion-stats__category-wrapper">
+      <div
+        class="database-champion-stats__category"
+        :class="{'database-champion-stats__category--active' : currentCategory === category}"
+        v-for="category in Object.keys(columns)"
+        @click="currentCategory = category"
+      >{{category}}</div>
+    </div>
+    <custom-table
+      :columns="columns.offense"
+      :tableData="champions"
+      v-if="currentCategory === 'offense'"
+    >
+      <template v-slot:[columns.offense[0].name]="{row}">
+        <router-link :to="`/champions/${row.key}`" class="database-champion-stats__champion-link">
           <champion-icon :champion="row" />
           <span>{{row.name}}</span>
-        </template>
-        <template v-slot:[columns.defense[1].name]="{row}">
-          <span>{{row.stats.defense.health}}</span>
-        </template>
-        <template v-slot:[columns.defense[2].name]="{row}">
-          <span>{{row.ability.manaCost ? row.ability.manaCost : 0}}</span>
-        </template>
-        <template v-slot:[columns.defense[3].name]="{row}">
-          <span>{{row.stats.defense.armor}}</span>
-        </template>
-        <template v-slot:[columns.defense[4].name]="{row}">
-          <span>{{row.stats.defense.magicResist}}</span>
-        </template>
-      </custom-table>
-    </database-template>
+        </router-link>
+      </template>
+      <template v-slot:[columns.offense[1].name]="{row}">
+        <span>{{row.stats.offense.dps}}</span>
+      </template>
+      <template v-slot:[columns.offense[2].name]="{row}">
+        <span>{{row.stats.offense.attackSpeed}}</span>
+      </template>
+      <template v-slot:[columns.offense[3].name]="{row}">
+        <span>{{row.stats.offense.damage}}</span>
+      </template>
+      <template v-slot:[columns.offense[4].name]="{row}">
+        <span>{{row.stats.offense.range}}</span>
+      </template>
+    </custom-table>
+
+    <custom-table :columns="columns.defense" :tableData="champions" v-else>
+      <template v-slot:[columns.defense[0].name]="{row}">
+        <champion-icon :champion="row" />
+        <span>{{row.name}}</span>
+      </template>
+      <template v-slot:[columns.defense[1].name]="{row}">
+        <span>{{row.stats.defense.health}}</span>
+      </template>
+      <template v-slot:[columns.defense[2].name]="{row}">
+        <span>{{row.ability.manaCost ? row.ability.manaCost : 0}}</span>
+      </template>
+      <template v-slot:[columns.defense[3].name]="{row}">
+        <span>{{row.stats.defense.armor}}</span>
+      </template>
+      <template v-slot:[columns.defense[4].name]="{row}">
+        <span>{{row.stats.defense.magicResist}}</span>
+      </template>
+    </custom-table>
   </div>
 </template>
 
 <script>
-import DatabaseTemplate from '@/components/templates/DatabaseTemplate.vue'
 import CustomTable from '@/components/organisms/CustomTable.vue'
 import ChampionIcon from '@/components/atoms/icons/ChampionIcon.vue'
 import { mapState } from 'vuex'
 
 export default {
   name: 'DatabaseChampions',
+
+  layout: 'database',
 
   data() {
     return {
@@ -132,7 +130,6 @@ export default {
   },
 
   components: {
-    DatabaseTemplate,
     ChampionIcon,
     CustomTable
   },

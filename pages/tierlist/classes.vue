@@ -11,7 +11,6 @@
 </template>
 
 <script>
-import TierlistTemplate from '@/components/templates/TierlistTemplate.vue'
 import TierBlock from '@/components/molecules/pages/TierBlock.vue'
 import OriginIcon from '@/components/atoms/icons/OriginIcon.vue'
 import filterChampions from '@/logic/filterChampions.js'
@@ -30,7 +29,6 @@ export default {
   },
 
   components: {
-    TierlistTemplate,
     TierBlock,
     OriginIcon
   },
