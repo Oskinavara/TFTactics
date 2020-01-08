@@ -82,24 +82,8 @@ table {
   tr {
     width: 100%;
     border-collapse: collapse;
-    border-left: 1px solid $border-color;
-    border-right: 1px solid $border-color;
-  }
-
-  thead {
     border: 1px solid $border-color;
-    border-bottom: 0 !important;
-  }
-
-  tbody {
-    tr:nth-of-type(odd) {
-      background: $dark-gray;
-    }
-  }
-
-  tr {
-    width: 100%;
-    border-bottom: 1px solid $border-color;
+    border-top: none;
     display: flex;
   }
 
