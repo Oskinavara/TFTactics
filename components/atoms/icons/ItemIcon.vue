@@ -5,7 +5,7 @@
       @mouseleave="toggleHover"
       :src="itemUrl"
       :alt="itemAlt"
-      :class="['item-icon__image',  hover ? 'border-active' : '']"
+      :class="['item-icon__image']"
     />
     <item-tooltip v-show="hover" :item="item" />
   </div>
@@ -13,7 +13,8 @@
 
 <script>
 import ItemTooltip from '@/components/atoms/tooltips/ItemTooltip.vue'
-import iconUrls from '@/logic/iconUrls.js';
+import iconUrls from '@/logic/iconUrls.js'
+import showTooltip from '@/logic/showTooltip.js'
 
 export default {
   props: {
@@ -23,23 +24,11 @@ export default {
     }
   },
 
-  mixins: [iconUrls],
+  mixins: [iconUrls, showTooltip],
 
   components: {
     ItemTooltip
-  },
-
-  data() {
-    return {
-      hover: false
-    }
-  },
-
-  methods: {
-    toggleHover() {
-      this.hover = !this.hover
-    }
-  },
+  }
 }
 </script>
 
@@ -56,10 +45,10 @@ export default {
     width: 100%;
     transition: all 0.3s;
     border: 1px solid $border-color;
-  }
-}
 
-.border-active {
-  border: 1px solid $orange-accent !important;
+    &:hover {
+      border: 1px solid $orange-accent;
+    }
+  }
 }
 </style>
