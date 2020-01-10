@@ -1,7 +1,7 @@
 <template>
-  <li 
+  <li
     @click="applyFilter(item)"
-    :class="['filter-list-item', {'filter-list-item--active' : isActive(item)}]" 
+    :class="['filter-list-item', {'filter-list-item--active' : isActive(item)}]"
   >
     <img :src="icon" alt="gold icon" class="filter-list-item__icon" v-size="iconSize" />
     <p class="filter-list-item__text">
@@ -12,6 +12,8 @@
 
 <script>
 export default {
+  name: 'FilterListItem',
+
   props: {
     icon: {
       type: String,
@@ -32,15 +34,14 @@ export default {
     },
     isActive(filter) {
       let filters = this.$store.state.filters
-      for(let category in filters){
-        if(filters[category].includes(filter)){
+      for (let category in filters) {
+        if (filters[category].includes(filter)) {
           return true
-        }  
+        }
       }
       return false
     }
-  },
-
+  }
 }
 </script>
 
@@ -51,9 +52,11 @@ export default {
   width: 30rem;
   padding: 0.75rem 0;
   cursor: pointer;
+
   &:first-of-type {
     padding-top: 1.2rem;
   }
+
   &::after {
     content: '';
     display: block;
@@ -62,29 +65,32 @@ export default {
     position: absolute;
     background: transparent;
     border-radius: 50%;
-    border: 2px solid hsla(0,0%,100%,.25);
+    border: 2px solid hsla(0, 0%, 100%, 0.25);
     top: 50%;
     right: 0;
     transform: translateY(-50%);
     transition: all 0.3s;
   }
+
   &:hover {
     &::after {
       border: 2px solid $textgray;
     }
   }
-  &--active{
-    &::after{
+
+  &--active {
+    &::after {
       border: 2px solid $lightblue;
       background-color: $lightblue;
-    }    
-    &:hover{
-      &::after{
+    }
+
+    &:hover {
+      &::after {
         border: 2px solid $lightblue;
       }
     }
 
-    .filter-list-item__icon{
+    .filter-list-item__icon {
       opacity: 1;
     }
   }

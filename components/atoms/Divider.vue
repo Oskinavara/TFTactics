@@ -1,5 +1,5 @@
-<template>
-  <div class="divider"></div>
+<template functional>
+  <div class="divider" />
 </template>
 
 <style lang="scss" scoped>

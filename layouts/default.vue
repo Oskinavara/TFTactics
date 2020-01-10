@@ -9,14 +9,16 @@
 <script>
 import TheHeader from '../components/organisms/TheHeader'
 import TheFooter from '../components/organisms/TheFooter'
+
 export default {
   components: {
     TheHeader,
     TheFooter
   },
   mounted() {
-    Object.keys(this.$store.state.apiData)
-    .map(category => this.$store.dispatch('fetchData', category));
+    Object.keys(this.$store.state.apiData).map(category =>
+      this.$store.dispatch('fetchData', category)
+    )
   }
 }
 </script>
@@ -46,11 +48,11 @@ body {
   color: $textwhite;
 }
 
-h2{
+h2 {
   font-size: 2.1rem;
 }
 
-h4{
+h4 {
   font-size: 1.6rem;
 }
 </style>

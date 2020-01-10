@@ -1,4 +1,4 @@
-<template>
+<template functional>
   <div class="disclaimer">
     <p class="disclaimer__text">
       The order within the tiers does not matter. If you have any feedback,
@@ -20,7 +20,7 @@
   &__text {
     color: $textwhite;
   }
-  
+
   &__link {
     color: #6287a7;
     text-decoration: none;

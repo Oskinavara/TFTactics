@@ -18,8 +18,10 @@ import iconUrls from '@/logic/iconUrls.js'
 import showTooltip from '@/logic/showTooltip.js'
 
 export default {
+  name: 'OriginIcon',
+
   components: {
-    OriginTooltip,
+    OriginTooltip
   },
 
   mixins: [iconUrls, showTooltip],
@@ -29,16 +31,7 @@ export default {
       type: Object,
       required: true
     }
-  },
-
-  // computed: {
-  //   originUrl() {
-  //     return this.origin ? `https://rerollcdn.com/icons/${this.origin.key}.png` : ''
-  //   },
-  //   originAlt() {
-  //     return this.origin ? `${this.origin.key} splash art` : ''
-  //   }
-  // }
+  }
 }
 </script>
 
@@ -59,7 +52,7 @@ export default {
     transform: translateX(-50%);
     border: 1px solid transparent;
   }
-  
+
   &__text {
     text-align: center;
     font-size: 1.4rem;

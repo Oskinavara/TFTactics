@@ -19,6 +19,8 @@ import iconUrls from '@/logic/iconUrls.js'
 import showTooltip from '@/logic/showTooltip.js'
 
 export default {
+  name: 'ChampionIcon',
+
   components: {
     ChampionTooltip
   },
@@ -62,7 +64,6 @@ export default {
 .champion-icon {
   height: 4.5rem;
   width: 4.5rem;
-  margin: auto;
   cursor: pointer;
   position: relative;
 
@@ -77,10 +78,6 @@ export default {
     }
   }
 }
-
-// .border-active {
-//   border: 1px solid $orange-accent !important;
-// }
 
 .border-common {
   border-color: $common;

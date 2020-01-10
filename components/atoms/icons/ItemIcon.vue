@@ -17,6 +17,8 @@ import iconUrls from '@/logic/iconUrls.js'
 import showTooltip from '@/logic/showTooltip.js'
 
 export default {
+  name: 'ItemIcon',
+
   props: {
     item: {
       type: Object,

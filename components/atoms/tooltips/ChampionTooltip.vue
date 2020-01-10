@@ -39,17 +39,18 @@
 
 <script>
 import ChampionIcon from '@/components/atoms/icons/ChampionIcon.vue'
-import iconUrls from '@/logic/iconUrls.js';
-
+import iconUrls from '@/logic/iconUrls.js'
 import { mapState } from 'vuex'
 
 export default {
+  name: 'ChampionTooltip',
+
   components: {
     ChampionIcon
   },
 
   mixins: [iconUrls],
-  
+
   props: {
     champion: {
       type: Object,
@@ -112,10 +113,11 @@ export default {
     justify-content: center;
     flex-direction: column;
     color: $textwhite;
-    font-size: 1.6rem;
-    font-weight: 600;
+    font-size: 1.5rem;
+    font-weight: 500;
     background: $dark-gray;
     padding: 0 1rem;
+    width: max-content;
   }
 
   &__icon {

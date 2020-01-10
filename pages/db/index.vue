@@ -5,12 +5,10 @@
 <script>
 export default {
   mounted() {
-    this.$router.push({
-      path: '/tierlist/champions',
-      name: 'tierlist-champions',
-      params: { heading: 'Champions' }
-    })
-  }
+    this.$router.push('/db/champions')
+  },
+
+  layout: 'database'
 }
 </script>
 

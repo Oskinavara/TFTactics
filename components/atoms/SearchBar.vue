@@ -1,39 +1,38 @@
 <template>
   <div class="search-bar">
-    <img 
-      src="https://rerollcdn.com/search-icon.svg" 
-      alt="search icon" 
-      class="search-bar__icon"
-    />
+    <img src="https://rerollcdn.com/search-icon.svg" alt="search icon" class="search-bar__icon" />
     <input
       :value="userInput"
       @input="emitValue"
-      type="search" 
-      placeholder="Search by name, origin, or class..." 
+      type="search"
+      placeholder="Search by name, origin, or class..."
       class="search-bar__input"
     />
-
     <div class="search-bar__cancel">
-      <div class="search-bar__cancel-icon"/>
+      <div class="search-bar__cancel-icon" />
     </div>
   </div>
 </template>
 
 <script>
 export default {
+  name: 'SearchBar',
+
   data() {
     return {
       userInput: ''
     }
   },
+
   methods: {
     emitValue() {
-      this.userInput = event.target.value;
-      this.$bus.$emit('value-changed', this.userInput);
-    },
-  },
+      this.userInput = event.target.value
+      this.$bus.$emit('value-changed', this.userInput)
+    }
+  }
 }
 </script>
+
 <style lang="scss" scoped>
 .search-bar {
   display: flex;
@@ -44,6 +43,7 @@ export default {
   transition: all 0.3s;
   height: 35px;
   width: 300px;
+
   &:active,
   &:focus-within {
     border: 1px solid $orange-accent;
@@ -54,7 +54,7 @@ export default {
     width: 12px;
     margin-right: 1rem;
   }
-  
+
   &__input {
     appearance: none;
     background: transparent;
@@ -64,12 +64,14 @@ export default {
     color: white;
     caret-color: white;
     overflow: visible;
+
     &::placeholder {
       color: $textgray;
       font-weight: 600;
       font-size: 1.4rem;
     }
-    &::-webkit-search-cancel-button{
+
+    &::-webkit-search-cancel-button {
       position: absolute;
       right: 0;
       cursor: pointer;

@@ -1,4 +1,4 @@
-<template>
+<template functional>
   <footer class="the-footer">
     <div class="the-footer__inner">
       <div class="the-footer__navbar">
@@ -41,7 +41,7 @@
     transition: all 0.3s;
     @include hover-lighten;
   }
-  
+
   &__about {
     color: $textwhite;
     font-size: 1.4rem;
