@@ -5,8 +5,10 @@
     >Find a list of all the Champions in Teamfight Tactics with their corresponding Origins, Classes, and cost.</p>
     <custom-table :columns="columns" :tableData="champions">
       <template v-slot:[columns[0].name]="{row}">
-        <champion-icon :champion="row" />
-        <span>{{row.name}}</span>
+        <router-link :to="`/champions/${row.key}`" class="database-champions__champion-link">
+          <champion-icon :champion="row" />
+          <span>{{row.name}}</span>
+        </router-link>
       </template>
       <template v-slot:[columns[1].name]="{row}">
         <div
@@ -125,6 +127,23 @@ export default {
     .gold-icon {
       width: 1.5rem;
       opacity: 0.57;
+    }
+  }
+
+  &__champion-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+
+    &:hover {
+      span {
+        color: $text-blue--light;
+      }
+    }
+
+    span {
+      transition: color 0.3s;
+      color: $text-blue;
     }
   }
 }

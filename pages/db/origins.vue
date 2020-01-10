@@ -121,6 +121,9 @@ export default {
     width: 2.5rem;
     min-width: 2.5rem;
     display: flex;
+    color: $textgray;
+    font-weight: 600;
+    font-size: 1.4rem;
     justify-content: center;
     align-items: center;
     border: 1px solid $border-color;
