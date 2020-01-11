@@ -18,8 +18,7 @@
             v-for="champion in filteredChampions(Object.keys(champions))"
             :key="champion.key"
           >
-            <champion-icon :champion="champions[champion]" />
-            <p class="champions-page__champion-name">{{champions[champion].name}}</p>
+            <champion-icon :champion="champions[champion]" :showName="true" />
           </div>
         </div>
       </div>
@@ -83,18 +82,6 @@ export default {
       width: 5.5rem;
       margin: auto;
     }
-  }
-  &__champion-name {
-    font-size: 1.4rem;
-    text-align: center;
-    color: $textgray;
-    padding-top: 0.3rem;
-    transition: all 0.3s;
-    font-weight: 600;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    white-space: nowrap;
   }
 }
 </style>

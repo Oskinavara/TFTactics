@@ -3,7 +3,7 @@
     <page-heading>
       <template>Filters</template>
       <template #content>
-        <base-button>Reset</base-button>
+        <base-button @click="clearFilters">Reset</base-button>
       </template>
     </page-heading>
     <divider />
@@ -31,8 +31,15 @@ export default {
     PageHeading,
     Divider
   },
+
   computed: {
     ...mapGetters(['costArray', 'originArray', 'classArray'])
+  },
+
+  methods: {
+    clearFilters() {
+      this.$store.dispatch('initFilters')
+    }
   }
 }
 </script>

@@ -1,6 +1,6 @@
 <template>
   <div class="base-button">
-    <button class="base-button__button" @click="clearFilters">
+    <button class="base-button__button" @click="$emit('click')">
       <slot>Reset</slot>
     </button>
   </div>
@@ -8,13 +8,7 @@
 
 <script>
 export default {
-  name: 'BaseButton',
-
-  methods: {
-    clearFilters() {
-      this.$store.dispatch('initFilters')
-    }
-  }
+  name: 'BaseButton'
 }
 </script>
 
