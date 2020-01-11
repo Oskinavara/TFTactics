@@ -5,17 +5,20 @@
         <img src="~/assets/icons/logo.svg" alt="main logo" class="the-header__logo" />
       </nuxt-link>
       <nav-bar />
+      <hamburger-menu />
     </div>
   </header>
 </template>
 
 <script>
 import NavBar from '@/components/molecules/Header/NavBar.vue'
+import HamburgerMenu from '@/components/atoms/HamburgerMenu.vue'
 export default {
   name: 'Header',
 
   components: {
-    NavBar
+    NavBar,
+    HamburgerMenu
   }
 }
 </script>

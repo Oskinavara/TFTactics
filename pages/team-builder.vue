@@ -2,6 +2,8 @@
   <div class="team-builder page">
     <div class="team-builder__inner inner">
       <div class="team-builder__sidebar sidebar">
+        <page-heading>Choose Your Champions</page-heading>
+        <search-bar />
         <listing
           v-for="cost in 5"
           :key="cost"
@@ -115,6 +117,7 @@ export default {
 
   mounted() {
     this.$bus.$on('select-champion', this.selectChampion)
+    this.clearTeam()
   },
 
   beforeDestroy() {
@@ -187,6 +190,10 @@ export default {
       width: calc(25% - 2rem);
       margin: 1rem;
     }
+  }
+
+  .search-bar {
+    margin-top: 2rem;
   }
 }
 </style>

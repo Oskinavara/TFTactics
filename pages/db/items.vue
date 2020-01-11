@@ -35,8 +35,8 @@
       <template v-slot:[columns.all[3].name]="{row}">
         <div class="database-champion-items__item-wrapper">
           <item-icon
-            v-for="item in row.buildsFrom"
-            :key="item"
+            v-for="(item, index) in row.buildsFrom"
+            :key="index"
             :item="items[item]"
             class="item-icon--small"
           />
@@ -83,8 +83,8 @@
       <template v-slot:[columns.combined[2].name]="{row}">
         <div class="database-champion-items__item-wrapper">
           <item-icon
-            v-for="item in row.buildsFrom"
-            :key="item"
+            v-for="(item, index) in row.buildsFrom"
+            :key="index"
             :item="items[item]"
             class="item-icon--small"
           />
@@ -100,7 +100,7 @@ import ItemIcon from '@/components/atoms/icons/ItemIcon.vue'
 import { mapState } from 'vuex'
 
 export default {
-  name: 'DatabaseChampions',
+  name: 'DatabaseItems',
 
   layout: 'database',
 
