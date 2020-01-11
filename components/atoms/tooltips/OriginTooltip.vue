@@ -7,8 +7,18 @@
     <div class="origin-tooltip__content">
       <p class="origin-tooltip__description" v-if="origin.description">{{origin.description}}</p>
       <div v-for="bonus in origin.bonuses" :key="bonus.needed" class="origin-tooltip__bonus">
-        <div class="origin-tooltip__bonus-number">{{bonus.needed}}</div>
-        <p class="origin-tooltip__bonus-description">{{bonus.effect}}</p>
+        <div
+          :class="[
+            'origin-tooltip__bonus-number', 
+            {'origin-tooltip__bonus-number--active': (isTeamBuilder && count >= bonus.needed)}
+          ]"
+        >{{bonus.needed}}</div>
+        <p
+          :class="[
+            'origin-tooltip__bonus-description', 
+            {'origin-tooltip__bonus-description--inactive': (isTeamBuilder && count < bonus.needed)}
+          ]"
+        >{{bonus.effect}}</p>
       </div>
     </div>
     <div class="origin-tooltip__champions">
@@ -41,6 +51,15 @@ export default {
     origin: {
       type: Object,
       required: true
+    },
+    isTeamBuilder: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+    count: {
+      type: Number,
+      required: false
     }
   },
 
@@ -129,6 +148,7 @@ export default {
       border-radius: 50%;
       height: 2.5rem;
       width: 2.5rem;
+      min-width: 2.5rem;
       font-size: 1.4rem;
       line-height: 2.2rem;
       display: flex;
@@ -136,11 +156,19 @@ export default {
       color: $textgray;
       font-weight: 600;
       margin-right: 1rem;
+
+      &--active {
+        border: 1px solid $orange-accent;
+      }
     }
 
     &-description {
       line-height: 2.5rem;
       color: $textwhite;
+
+      &--inactive {
+        color: $textgray--dark;
+      }
     }
   }
 

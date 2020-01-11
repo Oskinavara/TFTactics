@@ -4,13 +4,13 @@
       <div class="item-builder__sidebar sidebar">
         <page-heading>Choose an item</page-heading>
         <search-bar />
-        <item-listing
+        <listing
           v-for="listing in itemListings"
           :key="listing.name"
-          :items="listing.content"
+          :data="listing.content"
           :selectedItem="selectedItem"
           @set-item="setItem"
-        >{{listing.name}}</item-listing>
+        >{{listing.name}}</listing>
       </div>
       <div class="item-builder__wrapper">
         <page-heading>Teamfight Tactics Item Builder Cheat Sheet</page-heading>
@@ -44,7 +44,7 @@ import SearchBar from '@/components/atoms/SearchBar.vue'
 import ItemIcon from '@/components/atoms/icons/ItemIcon.vue'
 import Divider from '@/components/atoms/Divider.vue'
 import CustomTable from '@/components/organisms/CustomTable.vue'
-import ItemListing from '@/components/molecules/Pages/ItemListing.vue'
+import Listing from '@/components/molecules/Pages/Listing.vue'
 import TierSquare from '@/components/atoms/TierSquare.vue'
 
 export default {
@@ -76,7 +76,7 @@ export default {
   components: {
     PageHeading,
     SearchBar,
-    ItemListing,
+    Listing,
     ItemIcon,
     CustomTable,
     Divider,
