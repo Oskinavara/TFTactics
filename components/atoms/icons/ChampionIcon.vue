@@ -1,14 +1,18 @@
 <template>
   <div class="champion-icon">
-    <nuxt-link :to="`/champions/${champion.key}`">
+    <component
+      :is="isTeamBuilder ? 'div' : 'nuxt-link'"
+      :to="`/champions/${champion.key}`"
+      @click="selectChampion()"
+    >
       <img
         @mouseover="toggleHover"
         @mouseleave="toggleHover"
         :src="championUrl"
         :alt="championAlt"
-        :class="['champion-icon__image', borderColor]"
+        :class="['champion-icon__image', borderColor, borderHover, {'champion-icon--selected': championSelected}]"
       />
-    </nuxt-link>
+    </component>
     <champion-tooltip v-show="hover" :champion="champion" />
   </div>
 </template>
@@ -31,10 +35,19 @@ export default {
     champion: {
       type: Object,
       required: true
+    },
+    isTeamBuilder: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   },
 
   computed: {
+    championSelected() {
+      let team = this.$store.state.team
+      return team.includes(this.champion)
+    },
     borderColor() {
       switch (this.champion.cost) {
         case 1:
@@ -55,6 +68,17 @@ export default {
         default:
           break
       }
+    },
+    borderHover() {
+      if (!this.isTeamBuilder) {
+        return 'border-orange'
+      }
+    }
+  },
+
+  methods: {
+    selectChampion() {
+      this.$store.dispatch('addChampion', this.champion)
     }
   }
 }
@@ -67,15 +91,16 @@ export default {
   cursor: pointer;
   position: relative;
 
+  &--selected {
+    opacity: 0.5;
+    filter: grayscale(1);
+  }
+
   &__image {
     height: 100%;
     width: 100%;
     transition: all 0.3s;
     border: 1px solid;
-
-    &:hover {
-      border: 1px solid $orange-accent;
-    }
   }
 }
 
@@ -97,5 +122,11 @@ export default {
 
 .border-legendary {
   border-color: $legendary;
+}
+
+.border-orange {
+  &:hover {
+    border: 1px solid $orange-accent;
+  }
 }
 </style>

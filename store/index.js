@@ -15,7 +15,8 @@ const createStore = () => {
         cost: [],
         origin: [],
         class: []
-      }
+      },
+      team: []
     },
 
     mutations: {
@@ -39,6 +40,16 @@ const createStore = () => {
               : state.filters[category].push(filter)
           }
         }
+      },
+      addChampion(state, champion) {
+        if (state.team.indexOf(champion) !== -1) {
+          state.team.splice(state.team.indexOf(champion), 1)
+        } else {
+          state.team.push(champion)
+        }
+      },
+      clearTeam(state) {
+        state.team = []
       }
     },
 
@@ -54,6 +65,12 @@ const createStore = () => {
       },
       toggleFilter({ commit, getters }, filter) {
         commit('toggleFilter', { filter, getters })
+      },
+      addChampion({ commit }, champion) {
+        commit('addChampion', champion)
+      },
+      clearTeam({ commit }) {
+        commit('clearTeam')
       }
     },
 
