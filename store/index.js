@@ -44,7 +44,7 @@ const createStore = () => {
       addChampion(state, champion) {
         if (state.team.indexOf(champion) !== -1) {
           state.team.splice(state.team.indexOf(champion), 1)
-        } else {
+        } else if (state.team.length < 9) {
           state.team.push(champion)
         }
       },

@@ -17,8 +17,9 @@
         v-for="champion in data"
         :champion="champion"
         :key="champion.name"
-        :class="{'champion-icon--selected': selectedChampion === champion}"
-        :isTeamBuilder="true"
+        :isLink="false"
+        :disableHoverEffect="true"
+        :class="{'champion-icon--selected': championSelected(champion)}"
       />
     </div>
   </div>
@@ -55,6 +56,10 @@ export default {
   methods: {
     selectItem(item) {
       this.$emit('set-item', item)
+    },
+    championSelected(champion) {
+      let team = this.$store.state.team
+      return team.includes(champion)
     }
   }
 }
@@ -103,6 +108,11 @@ export default {
       height: 5.5rem;
       width: 5rem;
       padding: 0.75rem 0.5rem;
+
+      &--selected {
+        opacity: 0.5;
+        filter: grayscale(1);
+      }
     }
   }
 }

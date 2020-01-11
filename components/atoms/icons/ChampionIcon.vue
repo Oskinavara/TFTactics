@@ -1,17 +1,32 @@
 <template>
   <div class="champion-icon">
     <component
-      :is="isTeamBuilder ? 'div' : 'nuxt-link'"
+      :is="isLink ? 'nuxt-link' : 'div'"
       :to="`/champions/${champion.key}`"
       @click="selectChampion()"
     >
+      <div class="champion-icon__origins" v-if="showOrigins">
+        <img
+          :src="originIconUrl(origin)"
+          :alt="originIconAlt(origin)"
+          class="champion-icon__origin"
+          v-for="origin in champion.origin"
+        />
+        <img
+          :src="originIconUrl(origin)"
+          :alt="originIconAlt(origin)"
+          class="champion-icon__origin"
+          v-for="origin in champion.class"
+        />
+      </div>
       <img
         @mouseover="toggleHover"
         @mouseleave="toggleHover"
         :src="championUrl"
         :alt="championAlt"
-        :class="['champion-icon__image', borderColor, borderHover, {'champion-icon--selected': championSelected}]"
+        :class="['champion-icon__image', borderColor, borderHover]"
       />
+      <p class="champion-icon__name" v-if="showName">{{champion.name}}</p>
     </component>
     <champion-tooltip v-show="hover" :champion="champion" />
   </div>
@@ -36,7 +51,22 @@ export default {
       type: Object,
       required: true
     },
-    isTeamBuilder: {
+    isLink: {
+      type: Boolean,
+      required: false,
+      default: true
+    },
+    disableHoverEffect: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+    showOrigins: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+    showName: {
       type: Boolean,
       required: false,
       default: false
@@ -48,6 +78,7 @@ export default {
       let team = this.$store.state.team
       return team.includes(this.champion)
     },
+
     borderColor() {
       switch (this.champion.cost) {
         case 1:
@@ -70,7 +101,7 @@ export default {
       }
     },
     borderHover() {
-      if (!this.isTeamBuilder) {
+      if (!this.disableHoverEffect) {
         return 'border-orange'
       }
     }
@@ -79,6 +110,12 @@ export default {
   methods: {
     selectChampion() {
       this.$store.dispatch('addChampion', this.champion)
+    },
+    originIconUrl(origin) {
+      return `https://rerollcdn.com/icons/${origin.toLowerCase()}.png`
+    },
+    originIconAlt(origin) {
+      return `${origin} splash art`
     }
   }
 }
@@ -90,17 +127,47 @@ export default {
   width: 4.5rem;
   cursor: pointer;
   position: relative;
-
-  &--selected {
-    opacity: 0.5;
-    filter: grayscale(1);
-  }
+  transition: all 0.3s;
 
   &__image {
     height: 100%;
     width: 100%;
     transition: all 0.3s;
     border: 1px solid;
+  }
+
+  &__origins {
+    position: absolute;
+    left: 50%;
+    top: -1.3rem;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: space-between;
+    min-width: 9rem;
+  }
+
+  &__origin {
+    height: 2.6rem;
+    width: 2.6rem;
+    min-height: 2.6rem;
+    min-width: 2.6rem;
+    padding: 0.3rem;
+    border-radius: 50%;
+    background: $dark-blue;
+  }
+
+  &__name {
+    font-size: 1.4rem;
+    text-align: center;
+    line-height: 1.3em;
+    color: $textgray;
+    padding-top: 0.3rem;
+    transition: all 0.3s;
+    font-weight: 600;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
   }
 }
 

@@ -9,26 +9,44 @@
           :data="sameCostChampions(cost)"
         >{{ `Cost ${cost}` }}</listing>
       </div>
-      <base-button @click.native="clearTeam()">Clear Team</base-button>
-      <!-- <div class="team-builder__wrapper">
+      <div class="team-builder__wrapper main">
         <page-heading>
           Teamfight Tactics Champions List
           <template #content>
-            <search-bar />
+            <div class="team-builder__button-wrapper">
+              <base-button @click="copyTeam()">Copy Link to Team</base-button>
+              <base-button @click="clearTeam()">Clear Team</base-button>
+            </div>
           </template>
         </page-heading>
-        <filter-tags />
-        <div class="team-builder__champion-grid">
-          <div
-            class="team-builder__champion-block"
-            v-for="champion in filteredChampions(Object.keys(champions))"
-            :key="champion.key"
-          >
-            <champion-icon :champion="champions[champion]" />
-            <p class="team-builder__champion-name">{{champions[champion].name}}</p>
+        <divider />
+        <div class="team-builder__team">
+          <div class="team-builder__champion-wrapper" v-for="champion in team" :key="champion.name">
+            <champion-icon
+              :champion="champion"
+              :showOrigins="true"
+              :isLink="false"
+              :showName="true"
+            />
           </div>
         </div>
-      </div>-->
+        <div class="team-builder__origins-and-classes">
+          <div class="team-builder__origins">
+            <h2 class="team-builder__category-name">Origins</h2>
+            <divider />
+            <div class="team-builder__origin-wrapper">
+              <origin-counter v-for="origin in origins" :origin="origin" :key="origin.key" />
+            </div>
+          </div>
+          <div class="team-builder__origins">
+            <h2 class="team-builder__category-name">Classes</h2>
+            <divider />
+            <div class="team-builder__origin-wrapper">
+              <origin-counter v-for="origin in classes" :origin="origin" :key="origin.key" />
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -36,25 +54,29 @@
 <script>
 import { mapState } from 'vuex'
 import ChampionIcon from '@/components/atoms/icons/ChampionIcon.vue'
+import OriginCounter from '@/components/atoms/OriginCounter.vue'
+import Divider from '@/components/atoms/Divider.vue'
 import Listing from '@/components/molecules/Pages/Listing.vue'
 import BaseButton from '@/components/atoms/BaseButton.vue'
+import SearchBar from '@/components/atoms/SearchBar.vue'
+import PageHeading from '@/components/atoms/PageHeading.vue'
 
 export default {
-  data() {
-    return {
-      // team: []
-    }
-  },
-
   components: {
     ChampionIcon,
     Listing,
-    BaseButton
+    BaseButton,
+    PageHeading,
+    SearchBar,
+    Divider,
+    OriginCounter
   },
 
   computed: {
     ...mapState({
       champions: state => state.apiData.champions,
+      origins: state => state.apiData.origins,
+      classes: state => state.apiData.classes,
       team: state => state.team
     })
   },
@@ -74,6 +96,9 @@ export default {
     },
     clearTeam() {
       this.$store.dispatch('clearTeam')
+    },
+    copyTeam() {
+      //  ' this.$store.dispatch('clearTeam')'
     }
   },
 
@@ -88,4 +113,59 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.team-builder {
+  &__team {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+  }
+
+  &__champion {
+    &-wrapper {
+      width: 20%;
+      padding: 1rem 1.5rem 5rem 1.5rem;
+
+      .champion-icon {
+        height: 5.5rem;
+        width: 5.5rem;
+        margin: 0 auto 0.5rem auto;
+      }
+    }
+
+    &-name {
+      text-align: center;
+    }
+  }
+
+  &__button-wrapper {
+    display: flex;
+
+    .base-button:first-of-type {
+      margin-right: 2rem;
+    }
+  }
+
+  &__origins-and-classes {
+    display: flex;
+  }
+
+  &__origins {
+    width: calc(50% - 2.5rem);
+
+    &:first-of-type {
+      margin-right: 5rem;
+    }
+  }
+
+  &__origin-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+
+    .origin-counter {
+      width: calc(25% - 2rem);
+      margin: 1rem;
+    }
+  }
+}
 </style>
