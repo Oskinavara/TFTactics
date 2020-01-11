@@ -1,4 +1,4 @@
-<template>
+<template >
   <div :class="['origin-counter', {'origin-counter--active': count() > 0}]">
     <div class="origin-counter__number">
       <span>{{count()}}</span>
@@ -9,14 +9,17 @@
     <div class="origin-counter__bars">
       <div
         class="origin-counter__bar"
-        v-for="bar in origin.bonuses"
+        v-for="(bar, index) in origin.bonuses"
         :style="{height: `calc((100% - ${origin.bonuses.length - 1} * 0.5rem) / ${origin.bonuses.length})`}"
+        :class="{'origin-counter__bar--full': bonusReached(index)}"
       />
     </div>
+    <origin-tooltip :origin="origin" :isTeamBuilder="true" :count="count()" />
   </div>
 </template>
 
 <script>
+import OriginTooltip from '@/components/atoms/tooltips/OriginTooltip.vue'
 import iconUrls from '@/logic/iconUrls.js'
 import { mapState } from 'vuex'
 
@@ -27,7 +30,15 @@ export default {
     origin: {
       type: Object,
       required: true
+    },
+    type: {
+      type: String,
+      required: false
     }
+  },
+
+  components: {
+    OriginTooltip
   },
 
   computed: {
@@ -38,9 +49,15 @@ export default {
     count() {
       let count = 0
       this.team.forEach(champion =>
-        champion.origin.includes(this.origin.name) ? count++ : ''
+        champion[this.type].includes(this.origin.name) ? count++ : ''
       )
       return count
+    },
+    bonusReached(index) {
+      if (this.origin.name === 'Ninja') {
+        return this.count() === this.origin.bonuses[index].needed ? true : false
+      }
+      return this.count() >= this.origin.bonuses[index].needed ? true : false
     }
   }
 }
@@ -50,6 +67,12 @@ export default {
 .origin-counter {
   display: flex;
   position: relative;
+
+  &:hover {
+    .origin-tooltip {
+      display: block;
+    }
+  }
 
   &__number {
     position: absolute;
@@ -96,6 +119,10 @@ export default {
     &:last-of-type {
       margin-bottom: 0;
     }
+
+    &--full {
+      background: $orange-accent;
+    }
   }
 
   &--active {
@@ -113,6 +140,11 @@ export default {
         opacity: 1;
       }
     }
+  }
+
+  .origin-tooltip {
+    display: none;
+    bottom: 7rem;
   }
 }
 </style>

@@ -11,7 +11,7 @@
       </div>
       <div class="team-builder__wrapper main">
         <page-heading>
-          Teamfight Tactics Champions List
+          Teamfight Tactics Team Builder - ({{team.length}} / 9)
           <template #content>
             <div class="team-builder__button-wrapper">
               <base-button @click="copyTeam()">Copy Link to Team</base-button>
@@ -20,7 +20,7 @@
           </template>
         </page-heading>
         <divider />
-        <div class="team-builder__team">
+        <div class="team-builder__team" v-if="team.length">
           <div class="team-builder__champion-wrapper" v-for="champion in team" :key="champion.name">
             <champion-icon
               :champion="champion"
@@ -30,19 +30,30 @@
             />
           </div>
         </div>
+        <div class="team-builder__team team-builder__team--empty" v-else>Your team is empty!</div>
         <div class="team-builder__origins-and-classes">
           <div class="team-builder__origins">
             <h2 class="team-builder__category-name">Origins</h2>
             <divider />
             <div class="team-builder__origin-wrapper">
-              <origin-counter v-for="origin in origins" :origin="origin" :key="origin.key" />
+              <origin-counter
+                v-for="origin in origins"
+                :origin="origin"
+                :key="origin.key"
+                type="origin"
+              />
             </div>
           </div>
           <div class="team-builder__origins">
             <h2 class="team-builder__category-name">Classes</h2>
             <divider />
             <div class="team-builder__origin-wrapper">
-              <origin-counter v-for="origin in classes" :origin="origin" :key="origin.key" />
+              <origin-counter
+                v-for="origin in classes"
+                :origin="origin"
+                :key="origin.key"
+                type="class"
+              />
             </div>
           </div>
         </div>
@@ -118,6 +129,16 @@ export default {
     display: flex;
     flex-wrap: wrap;
     margin-top: 1rem;
+    min-height: 25rem;
+    margin-bottom: 4rem;
+
+    &--empty {
+      border: 1px solid $s-tier;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 3rem;
+    }
   }
 
   &__champion {
