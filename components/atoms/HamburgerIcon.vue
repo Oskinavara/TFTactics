@@ -1,9 +1,9 @@
 <template>
-  <div class="hamburger-menu" @click="menuOpened = !menuOpened">
+  <div class="hamburger-icon" @click="toggleMenu">
     <div
       :class="[
-      'hamburger-menu__inner', 
-      {'hamburger-menu__inner--opened': menuOpened}
+      'hamburger-icon__inner', 
+      {'hamburger-icon__inner--opened': menuOpened}
     ]"
     />
   </div>
@@ -11,20 +11,33 @@
 
 <script>
 export default {
-  data() {
-    return {
-      menuOpened: false
+  name: 'HamburgerIcon',
+
+  methods: {
+    toggleMenu() {
+      this.$store.dispatch('toggleMobileMenu')
+    }
+  },
+
+  computed: {
+    menuOpened() {
+      return this.$store.state.mobileMenuOpened
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.hamburger-menu {
+.hamburger-icon {
   width: 2.5rem;
   height: 2rem;
   cursor: pointer;
   position: relative;
+  margin: 1.5rem;
+  display: none;
+  @include media-xl {
+    display: block;
+  }
 
   &__inner {
     height: 0.3rem;

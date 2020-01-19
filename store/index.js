@@ -16,7 +16,8 @@ const createStore = () => {
         origin: [],
         class: []
       },
-      team: []
+      team: [],
+      mobileMenuOpened: false
     },
 
     mutations: {
@@ -50,6 +51,9 @@ const createStore = () => {
       },
       clearTeam(state) {
         state.team = []
+      },
+      toggleMobileMenu(state) {
+        state.mobileMenuOpened = !state.mobileMenuOpened
       }
     },
 
@@ -71,6 +75,9 @@ const createStore = () => {
       },
       clearTeam({ commit }) {
         commit('clearTeam')
+      },
+      toggleMobileMenu({ commit }) {
+        commit('toggleMobileMenu')
       }
     },
 

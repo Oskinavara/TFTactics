@@ -43,6 +43,7 @@ export default {
   transition: all 0.3s;
   height: 35px;
   width: 300px;
+  min-width: 300px;
 
   &:active,
   &:focus-within {

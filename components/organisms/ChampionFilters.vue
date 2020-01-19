@@ -48,6 +48,9 @@ export default {
 .champion-filters {
   width: 100%;
   margin: 0 2rem 0 0;
+  @include media-l {
+    display: none;
+  }
 
   &__filter-title {
     color: $textgray;

@@ -1,20 +1,34 @@
 <template>
-  <div>
-    <TheHeader></TheHeader>
+  <div id="app">
+    <the-header></the-header>
+    <transition name="fade">
+      <mobile-menu v-if="menuOpened"></mobile-menu>
+    </transition>
     <nuxt />
-    <TheFooter></TheFooter>
+    <the-footer></the-footer>
   </div>
 </template>
 
 <script>
 import TheHeader from '../components/organisms/TheHeader'
 import TheFooter from '../components/organisms/TheFooter'
+import MobileMenu from '../components/molecules/Header/MobileMenu'
 
 export default {
+  name: 'Default',
+
   components: {
     TheHeader,
-    TheFooter
+    TheFooter,
+    MobileMenu
   },
+
+  computed: {
+    menuOpened() {
+      return this.$store.state.mobileMenuOpened
+    }
+  },
+
   mounted() {
     Object.keys(this.$store.state.apiData).map(category =>
       this.$store.dispatch('fetchData', category)
@@ -54,5 +68,13 @@ h2 {
 
 h4 {
   font-size: 1.6rem;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
 }
 </style>
