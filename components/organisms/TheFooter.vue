@@ -26,10 +26,10 @@
 
   &__navbar {
     margin: 0 auto;
-    width: 40%;
     display: flex;
-    justify-content: space-between;
-    padding: 3rem 0;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 1rem 0;
   }
 
   &__link {
@@ -39,6 +39,7 @@
     font-weight: 600;
     font-weight: 100;
     transition: all 0.3s;
+    margin: 2rem 3rem;
     @include hover-lighten;
   }
 
@@ -50,6 +51,7 @@
     padding: 3rem 0;
     line-height: 3rem;
     font-weight: 400;
+    margin: 0 2rem;
   }
 }
 </style>

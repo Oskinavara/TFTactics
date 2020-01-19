@@ -4,13 +4,14 @@
       <div class="champions-page__sidebar sidebar">
         <champion-filters />
       </div>
-      <div class="champions-page__wrapper">
+      <div class="champions-page__wrapper main">
         <page-heading>
           Teamfight Tactics Champions List
           <template #content>
             <search-bar />
           </template>
         </page-heading>
+        <divider />
         <filter-tags />
         <div class="champions-page__champion-grid">
           <div
@@ -29,6 +30,7 @@
 <script>
 import PageHeading from '@/components/atoms/PageHeading.vue'
 import SearchBar from '@/components/atoms/SearchBar.vue'
+import Divider from '@/components/atoms/Divider.vue'
 import ChampionIcon from '@/components/atoms/icons/ChampionIcon.vue'
 import ChampionFilters from '@/components/organisms/ChampionFilters.vue'
 import searchLogic from '@/logic/searchLogic.js'
@@ -44,7 +46,8 @@ export default {
     SearchBar,
     ChampionIcon,
     ChampionFilters,
-    FilterTags
+    FilterTags,
+    Divider
   },
 
   computed: {
@@ -60,19 +63,41 @@ export default {
 
 <style lang="scss" scoped>
 .champions-page {
+  @include media-s {
+    padding: 0 1.5rem;
+  }
+
   &__wrapper {
     padding: 0 0 0 3rem;
     border-left: 1px solid $border-color;
+
+    @include media-l {
+      border-left: none;
+      padding-left: 0;
+    }
   }
+
   &__champion-grid {
     display: flex;
     flex-wrap: wrap;
     padding-top: 2rem;
-    width: 83rem;
+    width: 100%;
   }
+
   &__champion-block {
-    padding: 0 2.4rem 6rem;
+    padding: 1rem 0 3.5rem;
     position: relative;
+    width: calc(100% / 8);
+    @include media-xxl {
+      width: calc(100% / 6);
+    }
+    @include media-m {
+      width: calc(100% / 5);
+    }
+    @include media-s {
+      width: calc(100% / 4);
+    }
+
     &:hover .champions-page__champion-name {
       color: $textwhite;
     }
@@ -81,6 +106,19 @@ export default {
       height: 5.5rem;
       width: 5.5rem;
       margin: auto;
+    }
+  }
+
+  .sidebar {
+    @include media-l {
+      display: none;
+    }
+  }
+
+  .search-bar {
+    @include media-m {
+      margin-top: 2rem;
+      width: 100%;
     }
   }
 }

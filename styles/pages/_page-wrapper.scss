@@ -2,6 +2,18 @@
   display: flex;
   max-width: 1200px;
   margin: 0 auto;
+  @include media-xxl {
+    max-width: 932px;
+  }
+  @include media-l {
+    max-width: 690px;
+  }
+  @include media-m {
+    max-width: 510px;
+  }
+  @include media-s {
+    max-width: auto;
+  }
 }
 
 .page {
@@ -13,4 +25,8 @@
   width: calc(100% - 30rem);
   padding: 0 0 0 3rem;
   border-left: 1px solid $border-color;
+  margin: 0 auto;
+  @include media-l {
+    width: 100%;
+  }
 }

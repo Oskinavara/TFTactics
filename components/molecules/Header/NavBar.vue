@@ -41,6 +41,9 @@ export default {}
 .nav-bar {
   display: flex;
   align-items: center;
+  @include media-xl {
+    display: none;
+  }
 
   &__wrapper {
     position: relative;
@@ -59,7 +62,7 @@ export default {}
 
   &__nav-link {
     height: 100%;
-    line-height: 6rem;
+    line-height: 4.9rem;
     position: relative;
     text-decoration: none;
     color: $textgray;
