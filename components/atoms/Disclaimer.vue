@@ -2,10 +2,7 @@
   <div class="disclaimer">
     <p class="disclaimer__text">
       The order within the tiers does not matter. If you have any feedback,
-      <a
-        href="#"
-        class="disclaimer__link"
-      >I'd love to read it.</a>
+      <a href="#" class="disclaimer__link">I'd love to read it.</a>
     </p>
   </div>
 </template>

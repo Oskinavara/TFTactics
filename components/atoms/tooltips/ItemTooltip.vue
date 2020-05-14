@@ -3,27 +3,31 @@
     <div class="item-tooltip__heading">
       <img :src="itemUrl" :alt="itemAlt" class="item-tooltip__icon" />
       <div class="item-tooltip__heading-wrapper">
-        <h2 class="item-tooltip__name">{{item.name}}</h2>
+        <h2 class="item-tooltip__name">{{ item.name }}</h2>
         <div class="item-tooltip__stats">
-          <div class="item-tooltip__stat" v-for="stat in this.item.stats" :key="stat.name">
+          <div
+            v-for="stat in item.stats"
+            :key="stat.name"
+            class="item-tooltip__stat"
+          >
             <img
               :src="statUrl(stat.name)"
               :alt="statAlt(stat.title)"
               class="item-tooltip__stat-icon"
             />
-            {{stat.amount}}
+            {{ stat.amount }}
           </div>
         </div>
       </div>
     </div>
-    <div class="item-tooltip__description">{{item.bonus}}</div>
+    <div class="item-tooltip__description">{{ item.bonus }}</div>
     <div class="item-tooltip__recipes">
-      {{ recipeText}}
+      {{ recipeText }}
       <img
+        v-for="(itemname, index) in recipeItems"
+        :key="index"
         :src="itemUrlRecipe(itemname)"
         alt
-        v-for="(itemname,index) in recipeItems"
-        :key="index"
         class="item-tooltip__recipe-icon"
       />
     </div>
@@ -37,14 +41,14 @@ import iconUrls from '@/logic/iconUrls.js'
 export default {
   name: 'ItemTooltip',
 
+  mixins: [iconUrls],
+
   props: {
     item: {
       type: Object,
       required: true
     }
   },
-
-  mixins: [iconUrls],
 
   computed: {
     ...mapState({

@@ -2,9 +2,9 @@
   <div class="hamburger-icon" @click="toggleMenu">
     <div
       :class="[
-      'hamburger-icon__inner', 
-      {'hamburger-icon__inner--opened': menuOpened}
-    ]"
+        'hamburger-icon__inner', 
+        {'hamburger-icon__inner--opened': menuOpened}
+      ]"
     />
   </div>
 </template>
@@ -13,15 +13,15 @@
 export default {
   name: 'HamburgerIcon',
 
-  methods: {
-    toggleMenu() {
-      this.$store.dispatch('toggleMobileMenu')
-    }
-  },
-
   computed: {
     menuOpened() {
       return this.$store.state.mobileMenuOpened
+    }
+  },
+
+  methods: {
+    toggleMenu() {
+      this.$store.dispatch('toggleMobileMenu')
     }
   }
 }
