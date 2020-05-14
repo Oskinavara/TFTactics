@@ -2,36 +2,36 @@
   <div class="item-builder page">
     <div class="item-builder__inner inner">
       <div class="item-builder__sidebar sidebar">
-        <page-heading>Choose an item</page-heading>
-        <search-bar />
-        <listing
+        <PageHeading>Choose an item</PageHeading>
+        <SearchBar />
+        <Listing
           v-for="listing in itemListings"
           :key="listing.name"
           :data="listing.content"
-          :selectedItem="selectedItem"
+          :selected-item="selectedItem"
           @set-item="setItem"
-        >{{listing.name}}</listing>
+        >{{ listing.name }}</Listing>
       </div>
       <div class="item-builder__wrapper">
-        <page-heading>Teamfight Tactics Item Builder Cheat Sheet</page-heading>
-        <divider />
-        <div class="item-builder__selected-item" v-if="selectedItem">
-          <item-icon :item="selectedItem" />
-          {{selectedItem.name}}
+        <PageHeading>Teamfight Tactics Item Builder Cheat Sheet</PageHeading>
+        <Divider />
+        <div v-if="selectedItem" class="item-builder__selected-item">
+          <ItemIcon :item="selectedItem" />
+          {{ selectedItem.name }}
         </div>
-        <custom-table :columns="columns" :tableData="filteredCombinedItems">
-          <template v-slot:[columns[0].name]="{row}">
-            <item-icon :item="firstItem" />
-            <item-icon :item="secondItem(row)" />
+        <CustomTable :columns="columns" :table-data="filteredCombinedItems">
+          <template v-slot:[columns[0].name]="{ row }">
+            <ItemIcon :item="firstItem" />
+            <ItemIcon :item="secondItem(row)" />
           </template>
-          <template v-slot:[columns[1].name]="{row}">
-            <item-icon :item="row" />
-            <p class="item-builder__bonus">{{row.bonus}}</p>
+          <template v-slot:[columns[1].name]="{ row }">
+            <ItemIcon :item="row" />
+            <p class="item-builder__bonus">{{ row.bonus }}</p>
           </template>
-          <template v-slot:[columns[2].name]="{row}">
-            <tier-square :tier="itemTier(row)" />
+          <template v-slot:[columns[2].name]="{ row }">
+            <TierSquare :tier="itemTier(row)" />
           </template>
-        </custom-table>
+        </CustomTable>
       </div>
     </div>
   </div>
@@ -49,6 +49,16 @@ import TierSquare from '@/components/atoms/TierSquare.vue'
 
 export default {
   name: 'ItemBuilder',
+
+  components: {
+    PageHeading,
+    SearchBar,
+    Listing,
+    ItemIcon,
+    CustomTable,
+    Divider,
+    TierSquare
+  },
 
   data() {
     return {
@@ -71,16 +81,6 @@ export default {
         }
       ]
     }
-  },
-
-  components: {
-    PageHeading,
-    SearchBar,
-    Listing,
-    ItemIcon,
-    CustomTable,
-    Divider,
-    TierSquare
   },
 
   computed: {
@@ -108,6 +108,9 @@ export default {
     },
     filteredCombinedItems() {
       let items = { ...this.combinedItems }
+      if (!this.selectedItem) {
+        return []
+      }
       if (this.selectedItem.depth === 2) {
         return {
           [this.selectedItem.key]: this.selectedItem
@@ -133,6 +136,10 @@ export default {
     }
   },
 
+  created() {
+    this.selectedItem = this.items.bfsword
+  },
+
   methods: {
     setItem(item) {
       this.selectedItem = item
@@ -155,10 +162,6 @@ export default {
         }
       }
     }
-  },
-
-  created() {
-    this.selectedItem = this.items.bfsword
   }
 }
 </script>
