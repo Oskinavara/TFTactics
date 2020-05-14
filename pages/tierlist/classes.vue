@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import TierBlock from '@/components/molecules/pages/TierBlock.vue'
+import TierBlock from '@/components/molecules/Pages/TierBlock.vue'
 import OriginIcon from '@/components/atoms/icons/OriginIcon.vue'
 import filterChampions from '@/logic/filterChampions.js'
 import searchLogic from '@/logic/searchLogic.js'
