@@ -1,31 +1,31 @@
 <template>
   <div class="tier-block">
-    <tier-square :tier="tier" />
+    <TierSquare :tier="tier" />
     <div class="tier-block__container">
-      <slot/>
+      <slot />
     </div>
   </div>
 </template>
 
 <script>
-import TierSquare from '@/components/atoms/TierSquare.vue';
+import TierSquare from '@/components/atoms/TierSquare.vue'
 
 export default {
+  name: 'TierBlock',
+  components: {
+    TierSquare
+  },
   props: {
     tier: {
       type: String,
       required: true
     }
-  },
-  components: {
-    TierSquare,
-  },
+  }
 }
 </script>
 
 <style lang="scss" scoped>
 .tier-block {
-
   width: 100%;
   min-height: 7rem;
   display: flex;
@@ -46,5 +46,4 @@ export default {
     }
   }
 }
-
 </style>
