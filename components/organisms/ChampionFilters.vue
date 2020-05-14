@@ -1,16 +1,16 @@
 <template>
   <div class="champion-filters">
-    <page-heading>
+    <PageHeading>
       <template>Filters</template>
       <template #content>
-        <base-button @click="clearFilters">Reset</base-button>
+        <BaseButton @click="clearFilters">Reset</BaseButton>
       </template>
-    </page-heading>
-    <divider />
+    </PageHeading>
+    <Divider />
     <ul class="champion-filters__filter-title">
-      <filter-list name="cost" :content="costArray" :iconSize="15" />
-      <filter-list name="origin" :content="originArray" />
-      <filter-list name="class" :content="classArray" />
+      <FilterList name="cost" :content="costArray" :icon-size="15" />
+      <FilterList name="origin" :content="originArray" />
+      <FilterList name="class" :content="classArray" />
     </ul>
   </div>
 </template>
@@ -19,7 +19,7 @@
 import BaseButton from '@/components/atoms/BaseButton.vue'
 import PageHeading from '@/components/atoms/PageHeading.vue'
 import Divider from '@/components/atoms/Divider.vue'
-import FilterList from '@/components/molecules/pages/FilterList.vue'
+import FilterList from '@/components/molecules/Pages/FilterList.vue'
 import { mapState, mapGetters } from 'vuex'
 
 export default {
