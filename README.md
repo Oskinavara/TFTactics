@@ -1,6 +1,6 @@
 # tftactics
 
-> My impeccable Nuxt.js project
+### [Live demo](https://oskinavaratft.netlify.app/)
 
 ## Build Setup
 

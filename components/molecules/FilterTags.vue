@@ -6,7 +6,7 @@
       class="filter-tags__block"
       @click="removeFilter(tag)"
     >
-      <span class="filter-tags__text">{{tag}}</span>
+      <span class="filter-tags__text">{{ tag }}</span>
       <button class="filter-tags__button">
         <img
           src="https://rerollcdn.com/close-icon.svg"
@@ -29,9 +29,9 @@ export default {
     filterArray() {
       let filterArray = []
       for (let filterType in this.filters) {
-        filterArray.push(this.filters[filterType])
+        filterArray = [...filterArray, this.filters[filterType]]
       }
-      return filterArray.flat()
+      return [].concat.apply([], filterArray)
     }
   },
 

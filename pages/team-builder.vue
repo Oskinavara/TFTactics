@@ -2,58 +2,58 @@
   <div class="team-builder page">
     <div class="team-builder__inner inner">
       <div class="team-builder__sidebar sidebar">
-        <page-heading>Choose Your Champions</page-heading>
-        <search-bar />
-        <listing
+        <PageHeading>Choose Your Champions</PageHeading>
+        <SearchBar />
+        <Listing
           v-for="cost in 5"
           :key="cost"
           data-type="champion"
           :data="sameCostChampions(cost)"
-        >{{ `Cost ${cost}` }}</listing>
+        >{{ `Cost ${cost}` }}</Listing>
       </div>
       <div class="team-builder__wrapper main">
-        <page-heading>
-          Teamfight Tactics Team Builder - ({{team.length}} / 9)
+        <PageHeading>
+          Teamfight Tactics Team Builder - ({{ team.length }} / 9)
           <template #content>
             <div class="team-builder__button-wrapper">
-              <base-button @click="copyTeam()">Copy Link to Team</base-button>
-              <base-button @click="clearTeam()">Clear Team</base-button>
+              <BaseButton @click="copyTeam()">Copy Link to Team</BaseButton>
+              <BaseButton @click="clearTeam()">Clear Team</BaseButton>
             </div>
           </template>
-        </page-heading>
-        <divider />
-        <div class="team-builder__team" v-if="team.length">
-          <div class="team-builder__champion-wrapper" v-for="champion in team" :key="champion.name">
-            <champion-icon
+        </PageHeading>
+        <Divider />
+        <div v-if="team.length" class="team-builder__team">
+          <div v-for="champion in team" :key="champion.name" class="team-builder__champion-wrapper">
+            <ChampionIcon
               :champion="champion"
-              :showOrigins="true"
-              :isLink="false"
-              :showName="true"
+              :show-origins="true"
+              :is-link="false"
+              :show-name="true"
             />
           </div>
         </div>
-        <div class="team-builder__team team-builder__team--empty" v-else>Your team is empty!</div>
+        <div v-else class="team-builder__team team-builder__team--empty">Your team is empty!</div>
         <div class="team-builder__origins-and-classes">
           <div class="team-builder__origins">
             <h2 class="team-builder__category-name">Origins</h2>
-            <divider />
+            <Divider />
             <div class="team-builder__origin-wrapper">
-              <origin-counter
+              <OriginCounter
                 v-for="origin in origins"
-                :origin="origin"
                 :key="origin.key"
+                :origin="origin"
                 type="origin"
               />
             </div>
           </div>
           <div class="team-builder__origins">
             <h2 class="team-builder__category-name">Classes</h2>
-            <divider />
+            <Divider />
             <div class="team-builder__origin-wrapper">
-              <origin-counter
+              <OriginCounter
                 v-for="origin in classes"
-                :origin="origin"
                 :key="origin.key"
+                :origin="origin"
                 type="class"
               />
             </div>
@@ -94,6 +94,15 @@ export default {
     })
   },
 
+  mounted() {
+    this.$bus.$on('select-champion', this.selectChampion)
+    this.clearTeam()
+  },
+
+  beforeDestroy() {
+    this.$bus.$off('select-champion')
+  },
+
   methods: {
     sameCostChampions(cost) {
       let champions = { ...this.champions }
@@ -105,7 +114,7 @@ export default {
       return champions
     },
     selectChampion(champion) {
-      this.team.push(champion)
+      this.team = [...this.team, champion]
     },
     clearTeam() {
       this.$store.dispatch('clearTeam')
@@ -113,15 +122,6 @@ export default {
     copyTeam() {
       //  ' this.$store.dispatch('clearTeam')'
     }
-  },
-
-  mounted() {
-    this.$bus.$on('select-champion', this.selectChampion)
-    this.clearTeam()
-  },
-
-  beforeDestroy() {
-    this.$bus.$off('select-champion')
   }
 }
 </script>

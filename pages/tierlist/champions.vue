@@ -1,20 +1,19 @@
 <template>
   <div>
-    <filter-tags />
-    <tier-block v-for="(tier, index) in tiers" :key="index" :tier="tier">
-      <champion-icon
+    <FilterTags />
+    <TierBlock v-for="(tier, index) in tiers" :key="index" :tier="tier">
+      <ChampionIcon
         v-for="champion in filteredChampions(tierlist.champions[index])"
         :key="champion"
         :champion="champions[champion]"
       />
-    </tier-block>
+    </TierBlock>
   </div>
 </template>
 
 <script>
-import TierBlock from '@/components/molecules/pages/TierBlock.vue'
+import TierBlock from '@/components/molecules/Pages/TierBlock.vue'
 import ChampionIcon from '@/components/atoms/icons/ChampionIcon.vue'
-import ChampionFilters from '@/components/organisms/ChampionFilters.vue'
 import searchLogic from '@/logic/searchLogic.js'
 import filterChampions from '@/logic/filterChampions.js'
 import FilterTags from '@/components/molecules/FilterTags.vue'
@@ -25,18 +24,19 @@ export default {
 
   layout: 'tierlist',
 
+  components: {
+    TierBlock,
+    ChampionIcon,
+    FilterTags
+  },
+
+  mixins: [searchLogic, filterChampions],
+
   data() {
     return {
       tiers: ['s', 'a', 'b', 'c', 'd', 'e'],
       filterTags: [1, 2, 3, 4]
     }
-  },
-
-  components: {
-    TierBlock,
-    ChampionIcon,
-    ChampionFilters,
-    FilterTags
   },
 
   computed: {
@@ -45,8 +45,6 @@ export default {
       tierlist: state => state.apiData.tierlist,
       filters: state => state.filters
     })
-  },
-
-  mixins: [searchLogic, filterChampions]
+  }
 }
 </script>

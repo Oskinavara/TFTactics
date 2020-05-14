@@ -6,45 +6,51 @@
           <div class="champion-page__image-wrapper">
             <img
               :src="championUrl"
-              :alt="`${champion.name} splash art`"
+              :alt="`${championName} splash art`"
               class="champion-page__image"
             />
           </div>
-          <h2 class="champion-page__name">{{`Teamfight Tactics ${champion.name}`}}</h2>
+          <h2 class="champion-page__name">
+            {{ `Teamfight Tactics ${championName}` }}
+          </h2>
         </div>
         <section>
-          <heading-underlined>Item Build</heading-underlined>
+          <HeadingUnderlined>Item Build</HeadingUnderlined>
           <div class="champion-page__item-wrapper">
-            <item-icon v-for="item in champion.items" :key="item" :item="items[item]" />
+            <ItemIcon
+              v-for="item in champion.items"
+              :key="item"
+              :item="items[item]"
+            />
           </div>
         </section>
-        <champion-stats :champion="champion" />
+        <ChampionStats :champion="champion" />
       </div>
       <div class="champion-page__main">
-        <champion-ability :champion="champion" />
-        <champion-origin
-          :origin="origins[origin.toLowerCase()]"
-          :key="origin"
+        <ChampionAbility :champion="champion" />
+        <ChampionOrigin
           v-for="origin in champion.origin"
+          :key="origin"
+          :origin="origins[origin.toLowerCase()]"
           type="Origin"
         />
-        <champion-origin
-          :origin="classes[origin.toLowerCase()]"
-          :key="origin"
+        <ChampionOrigin
           v-for="origin in champion.class"
+          :key="origin"
+          :origin="classes[origin.toLowerCase()]"
           type="Class"
         />
         <section>
-          <heading-underlined>Synergies</heading-underlined>
+          <HeadingUnderlined>Synergies</HeadingUnderlined>
           <ul class="champion-page__synergies">
-            <champion-synergy
+            <ChampionSynergy
               v-for="origin in champion.origin"
               :key="origin"
               type="origin"
               :origin="origins[origin.toLowerCase()]"
               :champion="champion"
             />
-            <champion-synergy
+            <ChampionSynergy
               v-for="origin in champion.class"
               :key="origin"
               type="class"
@@ -65,7 +71,6 @@ import ChampionStats from '@/components/organisms/ChampionPage/ChampionStats.vue
 import ChampionAbility from '@/components/organisms/ChampionPage/ChampionAbility.vue'
 import ChampionOrigin from '@/components/organisms/ChampionPage/ChampionOrigin.vue'
 import ItemIcon from '@/components/atoms/icons/ItemIcon.vue'
-import ChampionIcon from '@/components/atoms/icons/ChampionIcon.vue'
 import ChampionSynergy from '@/components/molecules/ChampionSynergy.vue'
 import iconUrls from '@/logic/iconUrls.js'
 
@@ -75,7 +80,6 @@ export default {
   components: {
     HeadingUnderlined,
     ItemIcon,
-    ChampionIcon,
     ChampionStats,
     ChampionAbility,
     ChampionOrigin,
@@ -93,6 +97,9 @@ export default {
     }),
     champion() {
       return this.champions[this.$route.params.champion]
+    },
+    championName() {
+      return this.champion && this.champion.name
     }
   },
 
