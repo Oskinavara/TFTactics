@@ -30,7 +30,7 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['~/plugins/directives/index.js', '~/plugins/eventBus.js', {src: '~/plugins/vuex-persist', ssr: false}],
+  plugins: ['~/plugins/directives/index.js', '~/plugins/eventBus.js'],
   /*
    ** Nuxt.js dev-modules
    */
@@ -58,6 +58,6 @@ export default {
     /*
      ** You can extend webpack config here
      */
-    extend(config, ctx) {}
+    extend(config, ctx) { }
   }
 }

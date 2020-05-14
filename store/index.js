@@ -1,5 +1,4 @@
 import Vuex from 'vuex'
-import VuexPersistence from 'vuex-persist'
 
 const createStore = () => {
   return new Vuex.Store({
@@ -36,8 +35,8 @@ const createStore = () => {
           if (getters[`${category}Array`].includes(filter)) {
             state.filters[category].includes(filter)
               ? (state.filters[category] = state.filters[category].filter(
-                  x => x !== filter
-                ))
+                x => x !== filter
+              ))
               : state.filters[category].push(filter)
           }
         }
@@ -91,9 +90,7 @@ const createStore = () => {
       classArray: state => {
         return Object.keys(state.apiData.classes)
       }
-    },
-
-    plugins: [new VuexPersistence().plugin]
+    }
   })
 }
 
