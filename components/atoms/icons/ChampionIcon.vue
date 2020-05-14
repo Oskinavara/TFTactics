@@ -5,30 +5,32 @@
       :to="`/champions/${champion.key}`"
       @click="selectChampion()"
     >
-      <div class="champion-icon__origins" v-if="showOrigins">
+      <div v-if="showOrigins" class="champion-icon__origins">
         <img
+          v-for="origin in champion.origin"
+          :key="origin"
           :src="originIconUrl(origin)"
           :alt="originIconAlt(origin)"
           class="champion-icon__origin"
-          v-for="origin in champion.origin"
         />
         <img
+          v-for="origin in champion.class"
+          :key="origin"
           :src="originIconUrl(origin)"
           :alt="originIconAlt(origin)"
           class="champion-icon__origin"
-          v-for="origin in champion.class"
         />
       </div>
       <img
-        @mouseover="toggleHover"
-        @mouseleave="toggleHover"
         :src="championUrl"
         :alt="championAlt"
         :class="['champion-icon__image', borderColor, borderHover]"
+        @mouseover="toggleHover"
+        @mouseleave="toggleHover"
       />
-      <p class="champion-icon__name" v-if="showName">{{champion.name}}</p>
+      <p v-if="showName" class="champion-icon__name">{{ champion.name }}</p>
     </component>
-    <champion-tooltip v-show="hover" :champion="champion" />
+    <ChampionTooltip v-show="hover" :champion="champion" />
   </div>
 </template>
 
@@ -83,27 +85,22 @@ export default {
       switch (this.champion.cost) {
         case 1:
           return 'border-common'
-          break
         case 2:
           return 'border-uncommon'
-          break
         case 3:
           return 'border-rare'
-          break
         case 4:
           return 'border-epic'
-          break
         case 5:
           return 'border-legendary'
-          break
         default:
-          break
+          return ''
       }
     },
     borderHover() {
       if (!this.disableHoverEffect) {
         return 'border-orange'
-      }
+      } else return ''
     }
   },
 

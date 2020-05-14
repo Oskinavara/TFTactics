@@ -14,7 +14,6 @@
 <script>
 import TierBlock from '@/components/molecules/Pages/TierBlock.vue'
 import ChampionIcon from '@/components/atoms/icons/ChampionIcon.vue'
-import ChampionFilters from '@/components/organisms/ChampionFilters.vue'
 import searchLogic from '@/logic/searchLogic.js'
 import filterChampions from '@/logic/filterChampions.js'
 import FilterTags from '@/components/molecules/FilterTags.vue'
@@ -28,9 +27,10 @@ export default {
   components: {
     TierBlock,
     ChampionIcon,
-    ChampionFilters,
     FilterTags
   },
+
+  mixins: [searchLogic, filterChampions],
 
   data() {
     return {
@@ -45,8 +45,6 @@ export default {
       tierlist: state => state.apiData.tierlist,
       filters: state => state.filters
     })
-  },
-
-  mixins: [searchLogic, filterChampions]
+  }
 }
 </script>

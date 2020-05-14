@@ -136,8 +136,8 @@ export default {
     }
   },
 
-  created() {
-    this.selectedItem = this.items.bfsword
+  mounted() {
+    this.selectedItem = this.items && this.items.bfsword
   },
 
   methods: {
