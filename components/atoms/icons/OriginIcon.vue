@@ -1,14 +1,14 @@
 <template>
   <div class="origin-icon">
     <img
-      @mouseover="toggleHover"
-      @mouseleave="toggleHover"
       :src="originUrl"
       :alt="originAlt"
       class="origin-icon__image"
+      @mouseover="toggleHover"
+      @mouseleave="toggleHover"
     />
-    <p class="origin-icon__text">{{origin ? origin.name : ''}}</p>
-    <origin-tooltip v-show="hover" :origin="origin" />
+    <p class="origin-icon__text">{{ origin ? origin.name : '' }}</p>
+    <OriginTooltip v-show="hover" :origin="origin" />
   </div>
 </template>
 
