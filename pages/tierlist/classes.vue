@@ -1,12 +1,12 @@
 <template>
   <div>
-    <tier-block v-for="(tier, index) in tiers" :key="index" :tier="tier">
-      <origin-icon
+    <TierBlock v-for="(tier, index) in tiers" :key="index" :tier="tier">
+      <OriginIcon
         v-for="origin in filterDataBySearch(tierlist.classes[index])"
         :key="origin"
         :origin="classes[origin]"
       />
-    </tier-block>
+    </TierBlock>
   </div>
 </template>
 
@@ -22,22 +22,22 @@ export default {
 
   layout: 'tierlist',
 
+  components: {
+    TierBlock,
+    OriginIcon
+  },
+
+  mixins: [searchLogic, filterChampions],
+
   data() {
     return {
       tiers: ['s', 'a', 'b', 'c', 'd']
     }
   },
 
-  components: {
-    TierBlock,
-    OriginIcon
-  },
-
   computed: mapState({
     classes: state => state.apiData.classes,
     tierlist: state => state.apiData.tierlist
-  }),
-
-  mixins: [searchLogic, filterChampions]
+  })
 }
 </script>

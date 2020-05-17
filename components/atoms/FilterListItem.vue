@@ -1,9 +1,17 @@
 <template>
   <li
+    :class="[
+      'filter-list-item',
+      {'filter-list-item--active': isActive(item)}
+    ]"
     @click="applyFilter(item)"
-    :class="['filter-list-item', {'filter-list-item--active' : isActive(item)}]"
   >
-    <img :src="icon" alt="gold icon" class="filter-list-item__icon" v-size="iconSize" />
+    <img
+      v-size="iconSize"
+      :src="icon"
+      alt="gold icon"
+      class="filter-list-item__icon"
+    />
     <p class="filter-list-item__text">
       <slot></slot>
     </p>

@@ -1,13 +1,13 @@
 <template>
   <div class="item-icon">
     <img
-      @mouseover="toggleHover"
-      @mouseleave="toggleHover"
       :src="itemUrl"
       :alt="itemAlt"
       :class="['item-icon__image']"
+      @mouseover="toggleHover"
+      @mouseleave="toggleHover"
     />
-    <item-tooltip v-show="hover" :item="item" />
+    <ItemTooltip v-show="hover" :item="item" />
   </div>
 </template>
 
@@ -19,17 +19,17 @@ import showTooltip from '@/logic/showTooltip.js'
 export default {
   name: 'ItemIcon',
 
+  components: {
+    ItemTooltip
+  },
+
+  mixins: [iconUrls, showTooltip],
+
   props: {
     item: {
       type: Object,
       required: true
     }
-  },
-
-  mixins: [iconUrls, showTooltip],
-
-  components: {
-    ItemTooltip
   }
 }
 </script>
