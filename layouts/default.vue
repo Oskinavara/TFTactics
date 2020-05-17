@@ -1,42 +1,32 @@
 <template>
   <div id="app">
-    <the-header></the-header>
+    <TheHeader></TheHeader>
     <transition name="fade">
-      <mobile-menu v-if="menuOpened"></mobile-menu>
+      <MobileMenu v-if="menuOpened"></MobileMenu>
     </transition>
     <nuxt />
-    <the-footer></the-footer>
+    <TheFooter></TheFooter>
   </div>
 </template>
 
 <script>
 import TheHeader from '../components/organisms/TheHeader'
 import TheFooter from '../components/organisms/TheFooter'
-import MobileMenu from '../components/molecules/Header/MobileMenu'
+import layoutLogic from '@/logic/layoutLogic.js'
 
 export default {
   name: 'Default',
 
   components: {
     TheHeader,
-    TheFooter,
-    MobileMenu
+    TheFooter
   },
 
-  computed: {
-    menuOpened() {
-      return this.$store.state.mobileMenuOpened
-    }
-  },
-
-  mounted() {
-    Object.keys(this.$store.state.apiData).map(category =>
-      this.$store.dispatch('fetchData', category)
-    )
-  }
+  mixins: [layoutLogic]
 }
 </script>
-<style lang="scss" >
+
+<style lang="scss">
 html {
   font-size: 62.5%;
   word-spacing: 1px;

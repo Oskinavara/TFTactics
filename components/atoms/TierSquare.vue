@@ -1,5 +1,5 @@
 <template>
-  <div :class="['tier-square', tierColor]">{{tier}}</div>
+  <div :class="['tier-square', tierColor]">{{ tier }}</div>
 </template>
 
 <script>
@@ -9,7 +9,7 @@ export default {
   props: {
     tier: {
       type: String,
-      default: true
+      required: true
     }
   },
   computed: {
@@ -17,27 +17,20 @@ export default {
       switch (this.tier) {
         case 's':
           return 's-tier'
-          break
         case 'a':
           return 'a-tier'
-          break
         case 'b':
           return 'b-tier'
-          break
         case 'c':
           return 'c-tier'
-          break
         case 'd':
           return 'd-tier'
-          break
         case 'e':
           return 'e-tier'
-          break
         case '?':
           return 'e-tier'
-          break
         default:
-          break
+          return ''
       }
     }
   }

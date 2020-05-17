@@ -1,30 +1,33 @@
 <template>
   <div>
-    <the-header />
+    <TheHeader />
     <div class="page">
-      <div class="inner inner">
-        <div class="sidebar sidebar">
-          <page-heading>Lists</page-heading>
-          <divider />
-          <side-navbar :routes="routes" />
-          <champion-filters v-if="championsPage" />
+      <transition name="fade">
+        <MobileMenu v-if="menuOpened"></MobileMenu>
+      </transition>
+      <div class="inner">
+        <div class="sidebar">
+          <PageHeading>Lists</PageHeading>
+          <Divider />
+          <SideNavbar :routes="routes" />
+          <ChampionFilters v-if="championsPage" />
 
-          <divider />
-          <disclaimer />
+          <Divider />
+          <Disclaimer />
         </div>
         <div class="main">
-          <page-heading>
-            {{`Teamfight Tactics ${pageHeading} Tier List`}}
+          <PageHeading>
+            {{ `Teamfight Tactics ${pageHeading} Tier List` }}
             <template #content>
-              <search-bar />
+              <SearchBar />
             </template>
-          </page-heading>
-          <divider></divider>
+          </PageHeading>
+          <Divider />
           <nuxt />
         </div>
       </div>
     </div>
-    <the-footer />
+    <TheFooter />
   </div>
 </template>
 
@@ -37,16 +40,10 @@ import Divider from '@/components/atoms/Divider.vue'
 import Disclaimer from '@/components/atoms/Disclaimer.vue'
 import SearchBar from '@/components/atoms/SearchBar.vue'
 import PageHeading from '@/components/atoms/PageHeading.vue'
+import layoutLogic from '@/logic/layoutLogic.js'
 
 export default {
   name: 'Tierlist',
-
-  data() {
-    return {
-      routes: ['Champions', 'Team Comps', 'Origins', 'Classes', 'Items'],
-      pageHeading: 'Champions'
-    }
-  },
 
   components: {
     ChampionFilters,
@@ -57,6 +54,15 @@ export default {
     TheHeader,
     TheFooter,
     Disclaimer
+  },
+
+  mixins: [layoutLogic],
+
+  data() {
+    return {
+      routes: ['Champions', 'Team Comps', 'Origins', 'Classes', 'Items'],
+      pageHeading: 'Champions'
+    }
   },
 
   computed: {
@@ -70,6 +76,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-</style>
