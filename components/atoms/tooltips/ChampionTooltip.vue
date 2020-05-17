@@ -2,17 +2,25 @@
   <div class="champion-tooltip">
     <div class="champion-tooltip__wrapper">
       <div class="champion-tooltip__heading">
-        <img :src="championUrl" :alt="championAlt" class="champion-tooltip__icon" />
-        {{champion.name}}
+        <img
+          :src="championUrl"
+          :alt="championAlt"
+          class="champion-tooltip__icon"
+        />
+        {{ champion.name }}
       </div>
       <div class="champion-tooltip__origins">
         <div
-          class="champion-tooltip__origin-wrapper"
           v-for="origin in championOriginList"
           :key="origin"
+          class="champion-tooltip__origin-wrapper"
         >
-          <img :src="championOriginUrl(origin)" alt class="champion-tooltip__origin-icon" />
-          <p class="champion-tooltip__origin-name">{{origin}}</p>
+          <img
+            :src="championOriginUrl(origin)"
+            :alt="championOriginAlt(origin)"
+            class="champion-tooltip__origin-icon"
+          />
+          <p class="champion-tooltip__origin-name">{{ origin }}</p>
         </div>
       </div>
       <div class="champion-tooltip__cost">
@@ -21,16 +29,16 @@
           alt="gold icon"
           class="champion-tooltip__gold-icon"
         />
-        {{champion.cost}}
+        {{ champion.cost }}
       </div>
     </div>
     <div class="champion-tooltip__items">
       Items:
       <img
-        :src="tooltipUrl(item)"
-        :alt="tooltipAlt(item)"
         v-for="item in champion.items"
         :key="item"
+        :src="tooltipUrl(item)"
+        :alt="tooltipAlt(item)"
         class="champion-tooltip__item-icon"
       />
     </div>
@@ -38,16 +46,11 @@
 </template>
 
 <script>
-import ChampionIcon from '@/components/atoms/icons/ChampionIcon.vue'
 import iconUrls from '@/logic/iconUrls.js'
 import { mapState } from 'vuex'
 
 export default {
   name: 'ChampionTooltip',
-
-  components: {
-    ChampionIcon
-  },
 
   mixins: [iconUrls],
 
@@ -76,17 +79,21 @@ export default {
       return `${origin} splash art`
     },
     tooltipUrl(item) {
-      let itemCapitalized = this.items[item].name
-        .split('.')
-        .join('')
-        .split("'")
-        .join('')
-        .split(' ')
-        .join('')
+      let itemCapitalized =
+        this.items &&
+        this.items[item] &&
+        this.items[item].name
+          .split('.')
+          .join('')
+          .split("'")
+          .join('')
+          .split(' ')
+          .join('')
       return `https://rerollcdn.com/items/${itemCapitalized}.png`
     },
     tooltipAlt(item) {
-      return `${this.items[item].name} splash art`
+      let itemName = this.items && this.items[item] && this.items[item].name
+      return `${itemName} splash art`
     }
   }
 }

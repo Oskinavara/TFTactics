@@ -2,34 +2,44 @@
   <div class="origin-tooltip">
     <div class="origin-tooltip__heading">
       <img :src="originUrl" :alt="originAlt" class="origin-tooltip__icon" />
-      {{origin ? origin.name : ''}}
+      {{ origin ? origin.name : '' }}
     </div>
     <div class="origin-tooltip__content">
-      <p class="origin-tooltip__description" v-if="origin.description">{{origin.description}}</p>
-      <div v-for="bonus in origin.bonuses" :key="bonus.needed" class="origin-tooltip__bonus">
-        <div
+      <p v-if="origin.description" class="origin-tooltip__description">
+        {{ origin.description }}
+      </p>
+      <div
+        v-for="bonus in origin.bonuses"
+        :key="bonus.needed"
+        class="origin-tooltip__bonus"
+      >
+        <div 
           :class="[
-            'origin-tooltip__bonus-number', 
-            {'origin-tooltip__bonus-number--active': (isTeamBuilder && count >= bonus.needed)}
+            'origin-tooltip__bonus-number',
+            {'origin-tooltip__bonus-number--active': isTeamBuilder && count >= bonus.needed}
           ]"
-        >{{bonus.needed}}</div>
+        >
+          {{ bonus.needed }}
+        </div>
         <p
           :class="[
-            'origin-tooltip__bonus-description', 
-            {'origin-tooltip__bonus-description--inactive': (isTeamBuilder && count < bonus.needed)}
+            'origin-tooltip__bonus-description',
+            {'origin-tooltip__bonus-description--inactive': isTeamBuilder && count < bonus.needed}
           ]"
-        >{{bonus.effect}}</p>
+        >
+          {{ bonus.effect }}
+        </p>
       </div>
     </div>
     <div class="origin-tooltip__champions">
       Champions:
-      <champion-icon
+      <ChampionIcon
         v-for="champion in originChampions"
         :key="champion.name"
         :champion="champion"
         class="origin-tooltip__champion"
       />
-      <champion-icon
+      <ChampionIcon
         v-for="champion in classChampions"
         :key="champion.name"
         :champion="champion"
@@ -47,6 +57,12 @@ import { mapState } from 'vuex'
 export default {
   name: 'OriginTooltip',
 
+  components: {
+    ChampionIcon
+  },
+
+  mixins: [iconUrls],
+
   props: {
     origin: {
       type: Object,
@@ -59,14 +75,9 @@ export default {
     },
     count: {
       type: Number,
-      required: false
+      required: false,
+      default: 0
     }
-  },
-
-  mixins: [iconUrls],
-
-  components: {
-    ChampionIcon
   },
 
   computed: {
