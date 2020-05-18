@@ -12,7 +12,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  @include media-m {
+  @include media-l {
     flex-direction: column;
     align-items: flex-start;
   }
@@ -24,6 +24,11 @@
     color: $textwhite;
     font-weight: 800;
     line-height: 3.5rem;
+
+    @include media-l {
+      margin-right: 2rem;
+      padding: 1rem 0;
+    }
   }
 }
 </style>

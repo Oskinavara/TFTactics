@@ -2,4 +2,16 @@
   min-width: 30rem;
   width: 30rem;
   margin-right: 3rem;
+
+  @include media-l {
+    width: 100%;
+
+    .disclaimer {
+      display: none;
+    }
+  }
+
+  @include media-s {
+    min-width: unset;
+  }
 }
