@@ -24,7 +24,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .tier-block {
   width: 100%;
   min-height: 7rem;
@@ -41,8 +41,43 @@ export default {
     background: $dark-gray;
     border: 1px solid $border-color;
 
-    div {
+    .div {
       margin: 0.5rem 1.25rem;
+
+      @include media-m {
+        margin: 0.5rem 0.9rem;
+      }
+
+      @include media-s {
+        width: 50%;
+        padding: 1rem 0;
+        margin: 0;
+        height: auto;
+      }
+    }
+
+    .champion-icon,
+    .item-icon,
+    .origin-icon {
+      margin: 0.5rem 1.25rem;
+
+      @include media-s {
+        width: calc(25%);
+        margin: 0;
+        padding: 0.5rem calc((25% - 4.5rem) / 2);
+        height: 5.5rem;
+
+        .item-icon__image {
+          width: 4.5rem;
+        }
+      }
+    }
+
+    .origin-icon {
+      @include media-s {
+        width: 50%;
+        height: auto;
+      }
     }
   }
 }

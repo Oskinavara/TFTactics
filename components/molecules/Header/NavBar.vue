@@ -3,33 +3,67 @@
     <nuxt-link to="/champions" class="nav-bar__nav-link">Champions</nuxt-link>
     <div class="nav-bar__wrapper">
       <nuxt-link
-        :to="{path: '/tierlist', name: 'tierlist', params: {heading: 'Champions'}}"
+        :to="{
+          path: '/tierlist',
+          name: 'tierlist',
+          params: { heading: 'Champions' }
+        }"
         class="nav-bar__nav-link"
-      >Tier Lists</nuxt-link>
+      >
+        Tier Lists
+      </nuxt-link>
       <div class="nav-bar__sub-menu">
-        <nuxt-link to="/tierlist/champions" class="nav-bar__sub-link">Champions</nuxt-link>
-        <nuxt-link to="/tierlist/team-comps" class="nav-bar__sub-link">Team Comps</nuxt-link>
-        <nuxt-link to="/tierlist/origins" class="nav-bar__sub-link">Origins</nuxt-link>
-        <nuxt-link to="/tierlist/classes" class="nav-bar__sub-link">Classes</nuxt-link>
-        <nuxt-link to="/tierlist/items" class="nav-bar__sub-link">Items</nuxt-link>
+        <nuxt-link to="/tierlist/champions" class="nav-bar__sub-link">
+          Champions
+        </nuxt-link>
+        <nuxt-link to="/tierlist/team-comps" class="nav-bar__sub-link">
+          Team Comps
+        </nuxt-link>
+        <nuxt-link to="/tierlist/origins" class="nav-bar__sub-link">
+          Origins
+        </nuxt-link>
+        <nuxt-link to="/tierlist/classes" class="nav-bar__sub-link">
+          Classes
+        </nuxt-link>
+        <nuxt-link to="/tierlist/items" class="nav-bar__sub-link">
+          Items
+        </nuxt-link>
       </div>
     </div>
-    <nuxt-link to="/item-builder" class="nav-bar__nav-link">Item Builder</nuxt-link>
-    <nuxt-link to="/team-builder" class="nav-bar__nav-link">Team Builder</nuxt-link>
+    <nuxt-link to="/item-builder" class="nav-bar__nav-link">
+      Item Builder
+    </nuxt-link>
+    <nuxt-link to="/team-builder" class="nav-bar__nav-link">
+      Team Builder
+    </nuxt-link>
     <div class="nav-bar__wrapper">
       <nuxt-link
-        :to="{path: '/db', name: 'db', params: {heading: 'Champions'}}"
+        :to="{ path: '/db', name: 'db', params: { heading: 'Champions' } }"
         class="nav-bar__nav-link"
-      >Database</nuxt-link>
+      >
+        Database
+      </nuxt-link>
       <div class="nav-bar__sub-menu">
-        <nuxt-link to="/db/champions" class="nav-bar__sub-link">Champions</nuxt-link>
-        <nuxt-link to="/db/champion-stats" class="nav-bar__sub-link">Champion Stats</nuxt-link>
-        <nuxt-link to="/db/origins" class="nav-bar__sub-link">Origins</nuxt-link>
-        <nuxt-link to="/db/classes" class="nav-bar__sub-link">Classes</nuxt-link>
-        <nuxt-link to="/db/items" class="nav-bar__sub-link">Items</nuxt-link>
+        <nuxt-link to="/db/champions" class="nav-bar__sub-link">
+          Champions
+        </nuxt-link>
+        <nuxt-link to="/db/champion-stats" class="nav-bar__sub-link">
+          Champion Stats
+        </nuxt-link>
+        <nuxt-link to="/db/origins" class="nav-bar__sub-link">
+          Origins
+        </nuxt-link>
+        <nuxt-link to="/db/classes" class="nav-bar__sub-link">
+          Classes
+        </nuxt-link>
+        <nuxt-link to="/db/items" class="nav-bar__sub-link">
+          Items
+        </nuxt-link>
       </div>
     </div>
-    <nuxt-link to="/patch-notes" class="nav-bar__nav-link">Patch Notes</nuxt-link>
+    <nuxt-link to="/patch-notes" class="nav-bar__nav-link">
+      Patch Notes
+    </nuxt-link>
   </div>
 </template>
 

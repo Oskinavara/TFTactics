@@ -1,20 +1,26 @@
-<template >
-  <div :class="['origin-counter', {'origin-counter--active': count() > 0}]">
+<template>
+  <div
+    :class="[
+      'origin-counter', 
+      {'origin-counter--active': count() > 0}
+    ]"
+  >
     <div class="origin-counter__number">
-      <span>{{count()}}</span>
+      <span>{{ count() }}</span>
     </div>
     <div class="origin-counter__icon-wrapper">
       <img :src="originUrl" :alt="originAlt" class="origin-counter__icon" />
     </div>
     <div class="origin-counter__bars">
       <div
-        class="origin-counter__bar"
         v-for="(bar, index) in origin.bonuses"
-        :style="{height: `calc((100% - ${origin.bonuses.length - 1} * 0.5rem) / ${origin.bonuses.length})`}"
+        :key="index"
+        class="origin-counter__bar"
+        :style="{height: barHeight}"
         :class="{'origin-counter__bar--full': bonusReached(index)}"
       />
     </div>
-    <origin-tooltip :origin="origin" :isTeamBuilder="true" :count="count()" />
+    <OriginTooltip :origin="origin" isTeamBuilder :count="count()" />
   </div>
 </template>
 
@@ -42,7 +48,11 @@ export default {
   },
 
   computed: {
-    ...mapState(['team'])
+    ...mapState(['team']),
+    barHeight() {
+      let bonusesAmount = this.origin.bonuses.length
+      return `calc((100% - ${bonusesAmount - 1} * 0.5rem) / ${bonusesAmount})`
+    }
   },
 
   methods: {
